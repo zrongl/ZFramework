@@ -45,6 +45,8 @@
     
     UIImageView *hairLine = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     hairLine.hidden = YES;
+    
+    NSLog(@"");
 }
 
 - (void)setupNavigationBar

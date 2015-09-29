@@ -11,6 +11,10 @@
 @interface ZStarGradeView : UIView
 
 /**
+ *  
+ */
+
+/**
  *  设置frame时需要注意：
  *  1. 默认为5颗星星
  *  1. frame.size.height 默认为星星的边长sideWidth 星星默认为正方形

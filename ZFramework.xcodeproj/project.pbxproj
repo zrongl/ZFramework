@@ -35,7 +35,7 @@
 		5D33BBD51BB4D15700F534DF /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBD31BB4D15700F534DF /* LoginRequest.m */; };
 		5D33BBD91BB4D4DE00F534DF /* ZLocaitonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBD81BB4D4DE00F534DF /* ZLocaitonManager.m */; };
 		5D33BBDB1BB4D51400F534DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33BBDA1BB4D51400F534DF /* CoreLocation.framework */; };
-<<<<<<< HEAD
+
 		5D33BBDE1BB4DB6200F534DF /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBDD1BB4DB6200F534DF /* CLLocation+YCLocation.m */; settings = {ASSET_TAGS = (); }; };
 		5D33BBE51BB4F04400F534DF /* ZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBE41BB4F04400F534DF /* ZTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		5D33BBEF1BB4F37D00F534DF /* tabbar3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BBE91BB4F37D00F534DF /* tabbar3@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -67,7 +67,6 @@
 		5D33BC9C1BB97E0400F534DF /* star_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC9A1BB97E0400F534DF /* star_gray@3x.png */; settings = {ASSET_TAGS = (); }; };
 		5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC9B1BB97E0400F534DF /* star_light@3x.png */; settings = {ASSET_TAGS = (); }; };
 		5D33BCA01BB981BC00F534DF /* ZHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC9F1BB981BC00F534DF /* ZHelper.m */; settings = {ASSET_TAGS = (); }; };
-=======
 		5D33BBDE1BB4DB6200F534DF /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBDD1BB4DB6200F534DF /* CLLocation+YCLocation.m */; };
 		5D33BBE51BB4F04400F534DF /* ZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BBE41BB4F04400F534DF /* ZTabBarController.m */; };
 		5D33BBEF1BB4F37D00F534DF /* tabbar3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BBE91BB4F37D00F534DF /* tabbar3@2x.png */; };
@@ -95,7 +94,6 @@
 		5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC471BB6BDC700F534DF /* ZViewController.m */; };
 		5D33BC581BB6E91100F534DF /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC571BB6E91100F534DF /* tabbar_bg@2x.png */; };
 		5D33BC5B1BB7956000F534DF /* UIView+ZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC5A1BB7956000F534DF /* UIView+ZAddition.m */; };
->>>>>>> 1e33cc11996cf30b9e061f24997e56ac23452032
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

@@ -10,6 +10,8 @@
 
 @interface ZStarGradeView : UIView
 
+@property (assign, nonatomic) CGFloat grade;
+
 /**
  *  
  */

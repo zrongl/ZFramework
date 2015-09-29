@@ -12,12 +12,10 @@
 
 @interface ZStarGradeView()
 {
-    UIView *_frontView;
     CGFloat _spacing;
+    UIView *_frontView;
     CGFloat _sideLength;
-    CGFloat _grade;
 }
-
 @end
 
 @implementation ZStarGradeView
@@ -46,6 +44,38 @@
     }
     
     return self;
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    if (point.x > 0) {
+        CGRect frame = _frontView.frame;
+        frame.size.width = point.x;
+        _frontView.frame = frame;
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    CGRect frame = _frontView.frame;
+    if (point.x > 0) {
+        CGFloat rate = ceil(point.x/(_spacing + _sideLength));
+        frame.size.width = rate * (_spacing + _sideLength);
+        _grade = rate;
+        [UIView animateWithDuration:0.2f animations:^{
+            _frontView.frame = frame;
+        }];
+    }else{
+        frame.size.width = 0;
+        _grade = 0;
+        [UIView animateWithDuration:0.2f animations:^{
+            _frontView.frame = frame;
+        }];
+    }
 }
 
 - (void)setGradeWithScore:(CGFloat)score scoreSystem:(NSInteger)scoreSystem animation:(BOOL)animation

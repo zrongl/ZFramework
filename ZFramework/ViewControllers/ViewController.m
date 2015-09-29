@@ -61,7 +61,7 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"我的"];
     
-    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake(30, 100, 110, 17)
+    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake(30, 100, 200, 25)
                                                            grayImage:[UIImage imageNamed:@"star_gray.png"]
                                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];

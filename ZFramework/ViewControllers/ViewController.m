@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "Macro.h"
+#import "ZStarGradeView.h"
+#import "ZHelper.h"
+#import "stdlib.h"
 
 @implementation ViewController
 
@@ -45,6 +48,12 @@
 
 @end
 
+@interface ViewController2()
+
+@property (strong, nonatomic) ZStarGradeView *starView;
+
+@end
+
 @implementation ViewController2
 
 - (void)viewDidLoad
@@ -52,9 +61,21 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"我的"];
     
+    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake(30, 100, 110, 17)
+                                                           grayImage:[UIImage imageNamed:@"star_gray.png"]
+                                                          lightImage:[UIImage imageNamed:@"star_light"]];
+    [self.view addSubview:_starView];
+    
+    UIButton *button = [ZHelper createButtonWithPoint:CGPointMake(118, 200) title:@"改变分数" action:@selector(scoreChange) target:self];
+    [self.view addSubview:button];
 }
 
-@end
+- (void)scoreChange
+{
+    [_starView setGradeWithScore:xRandom(10) scoreSystem:10 animation:YES];
+}
+
+@end    
 
 @implementation ViewController3
 

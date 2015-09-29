@@ -62,6 +62,10 @@
 		5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC471BB6BDC700F534DF /* ZViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D33BC581BB6E91100F534DF /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC571BB6E91100F534DF /* tabbar_bg@2x.png */; settings = {ASSET_TAGS = (); }; };
 		5D33BC5B1BB7956000F534DF /* UIView+ZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC5A1BB7956000F534DF /* UIView+ZAddition.m */; settings = {ASSET_TAGS = (); }; };
+		5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC941BB96F3800F534DF /* ZStarGradeView.m */; settings = {ASSET_TAGS = (); }; };
+		5D33BC9C1BB97E0400F534DF /* star_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC9A1BB97E0400F534DF /* star_gray@3x.png */; settings = {ASSET_TAGS = (); }; };
+		5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC9B1BB97E0400F534DF /* star_light@3x.png */; settings = {ASSET_TAGS = (); }; };
+		5D33BCA01BB981BC00F534DF /* ZHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC9F1BB981BC00F534DF /* ZHelper.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +167,12 @@
 		5D33BC571BB6E91100F534DF /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
 		5D33BC591BB7956000F534DF /* UIView+ZAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZAddition.h"; sourceTree = "<group>"; };
 		5D33BC5A1BB7956000F534DF /* UIView+ZAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZAddition.m"; sourceTree = "<group>"; };
+		5D33BC931BB96F3800F534DF /* ZStarGradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZStarGradeView.h; sourceTree = "<group>"; };
+		5D33BC941BB96F3800F534DF /* ZStarGradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZStarGradeView.m; sourceTree = "<group>"; };
+		5D33BC9A1BB97E0400F534DF /* star_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_gray@3x.png"; sourceTree = "<group>"; };
+		5D33BC9B1BB97E0400F534DF /* star_light@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_light@3x.png"; sourceTree = "<group>"; };
+		5D33BC9E1BB981BC00F534DF /* ZHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHelper.h; sourceTree = "<group>"; };
+		5D33BC9F1BB981BC00F534DF /* ZHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +206,7 @@
 		5D33BB651BB4CF3300F534DF /* ZFramework */ = {
 			isa = PBXGroup;
 			children = (
+				5D33BC921BB96F3800F534DF /* ZStarGradeView */,
 				5D33BB7D1BB4CFEA00F534DF /* Network */,
 				5D33BBD61BB4D4B900F534DF /* Location */,
 				5D33BBF81BB4FA2E00F534DF /* ZAdditions */,
@@ -316,6 +327,8 @@
 			children = (
 				5D33BBB41BB4CFEA00F534DF /* ViewController.h */,
 				5D33BBB51BB4CFEA00F534DF /* ViewController.m */,
+				5D33BC9E1BB981BC00F534DF /* ZHelper.h */,
+				5D33BC9F1BB981BC00F534DF /* ZHelper.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -433,6 +446,25 @@
 			path = Resouses;
 			sourceTree = "<group>";
 		};
+		5D33BC921BB96F3800F534DF /* ZStarGradeView */ = {
+			isa = PBXGroup;
+			children = (
+				5D33BC991BB97E0400F534DF /* Resource */,
+				5D33BC931BB96F3800F534DF /* ZStarGradeView.h */,
+				5D33BC941BB96F3800F534DF /* ZStarGradeView.m */,
+			);
+			path = ZStarGradeView;
+			sourceTree = "<group>";
+		};
+		5D33BC991BB97E0400F534DF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5D33BC9A1BB97E0400F534DF /* star_gray@3x.png */,
+				5D33BC9B1BB97E0400F534DF /* star_light@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -490,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */,
 				5D33BBF01BB4F37D00F534DF /* tabbar3_sel@2x.png in Resources */,
 				5D33BC531BB6BDC700F534DF /* nav_back@2x.png in Resources */,
 				5D33BC4F1BB6BDC700F534DF /* LSToastView.xib in Resources */,
@@ -500,6 +533,7 @@
 				5D33BBEF1BB4F37D00F534DF /* tabbar3@2x.png in Resources */,
 				5D33BBF41BB4F37D00F534DF /* tabbar1_sel@2x.png in Resources */,
 				5D33BC551BB6BDC700F534DF /* nav_dismiss@2x.png in Resources */,
+				5D33BC9C1BB97E0400F534DF /* star_gray@3x.png in Resources */,
 				5D33BBF11BB4F37D00F534DF /* tabbar2@2x.png in Resources */,
 				5D33BB731BB4CF3300F534DF /* Assets.xcassets in Resources */,
 				5D33BC4D1BB6BDC700F534DF /* LSNoNetworkView.xib in Resources */,
@@ -528,6 +562,7 @@
 				5D33BBFB1BB4FA6000F534DF /* NSString+ZAddition.m in Sources */,
 				5D33BBCD1BB4CFEA00F534DF /* ViewController.m in Sources */,
 				5D33BBBC1BB4CFEA00F534DF /* AFHTTPRequestOperation.m in Sources */,
+				5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */,
 				5D33BC4E1BB6BDC700F534DF /* LSToastView.m in Sources */,
 				5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */,
 				5D33BBDE1BB4DB6200F534DF /* CLLocation+YCLocation.m in Sources */,
@@ -551,6 +586,7 @@
 				5D33BBD91BB4D4DE00F534DF /* ZLocaitonManager.m in Sources */,
 				5D33BBCB1BB4CFEA00F534DF /* UIRefreshControl+AFNetworking.m in Sources */,
 				5D33BBD51BB4D15700F534DF /* LoginRequest.m in Sources */,
+				5D33BCA01BB981BC00F534DF /* ZHelper.m in Sources */,
 				5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */,
 				5D33BC4C1BB6BDC700F534DF /* LSNoNetworkView.m in Sources */,
 				5D33BB681BB4CF3300F534DF /* main.m in Sources */,

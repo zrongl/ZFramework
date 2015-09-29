@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>88196734-0570-4F55-8949-EC6B8D4B880A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ZFramework</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>28E0FC3EEEF148EF990615341B62BA7987CA7879</key>
+		<string>https://github.com/zrongl/ZFramework.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ZFramework.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>28E0FC3EEEF148EF990615341B62BA7987CA7879</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/zrongl/ZFramework.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>28E0FC3EEEF148EF990615341B62BA7987CA7879</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>28E0FC3EEEF148EF990615341B62BA7987CA7879</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ZFramework</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -66,7 +66,7 @@
                                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];
     
-    UIButton *button = [ZHelper createButtonWithPoint:CGPointMake(118, 200) title:@"改变分数" action:@selector(scoreChange) target:self];
+    UIButton *button = [ZHelper createButtonWithPoint:CGPointMake(118, 200) title:@"ChageGrade" action:@selector(scoreChange) target:self];
     [self.view addSubview:button];
 }
 

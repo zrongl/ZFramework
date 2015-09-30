@@ -66,16 +66,13 @@
         CGFloat rate = ceil(point.x/(_spacing + _sideLength));
         frame.size.width = rate * (_spacing + _sideLength);
         _grade = rate;
-        [UIView animateWithDuration:0.2f animations:^{
-            _frontView.frame = frame;
-        }];
     }else{
         frame.size.width = 0;
         _grade = 0;
-        [UIView animateWithDuration:0.2f animations:^{
-            _frontView.frame = frame;
-        }];
     }
+    [UIView animateWithDuration:0.2f animations:^{
+        _frontView.frame = frame;
+    }];
 }
 
 - (void)setGradeWithScore:(CGFloat)score scoreSystem:(NSInteger)scoreSystem animation:(BOOL)animation

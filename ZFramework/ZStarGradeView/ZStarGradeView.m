@@ -15,6 +15,7 @@
     CGFloat _spacing;
     UIView *_frontView;
     CGFloat _sideLength;
+    CGFloat _grade;
 }
 @end
 
@@ -46,6 +47,36 @@
     return self;
 }
 
+- (CGFloat)getScore
+{
+    return _grade;
+}
+
+- (void)setScore:(CGFloat)score animation:(BOOL)animation
+{
+    [self setGradeWithScore:score scoreSystem:5 animation:animation];
+}
+
+- (void)setGradeWithScore:(CGFloat)score scoreSystem:(NSInteger)scoreSystem animation:(BOOL)animation
+{
+    _grade = score/(scoreSystem/kStarNumber);
+    
+    double fractpart, intpart;
+    fractpart = modf(_grade, &intpart);// 拆分浮点数的整数部分和小数部分
+    
+    CGRect frame = _frontView.frame;
+    frame.size.width = intpart*(_spacing + _sideLength) + fractpart*_sideLength;
+    if (animation) {
+        [UIView animateWithDuration:0.2f
+                         animations:^{
+                             [_frontView setFrame:frame];
+                         }];
+    }else{
+        [_frontView setFrame:frame];
+    }
+}
+
+#pragma mark - TouchEvent - 手势滑动设置评分
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
@@ -73,25 +104,6 @@
     [UIView animateWithDuration:0.2f animations:^{
         _frontView.frame = frame;
     }];
-}
-
-- (void)setGradeWithScore:(CGFloat)score scoreSystem:(NSInteger)scoreSystem animation:(BOOL)animation
-{
-    _grade = score/(scoreSystem/kStarNumber);
-    
-    double fractpart, intpart;
-    fractpart = modf(_grade, &intpart);// 拆分浮点数的整数部分和小数部分
-    
-    CGRect frame = _frontView.frame;
-    frame.size.width = intpart*(_spacing + _sideLength) + fractpart*_sideLength;
-    if (animation) {
-        [UIView animateWithDuration:0.2f
-                         animations:^{
-                             [_frontView setFrame:frame];
-                         }];
-    }else{
-        [_frontView setFrame:frame];
-    }
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "ZStarGradeView.h"
 #import "ZHelper.h"
 #import "stdlib.h"
+#import "ZToastManager.h"
 
 @implementation ViewController
 
@@ -44,6 +45,14 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"清算"];
     [self showLoadingViewWithTitle:@"正在加载..."];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue setMaxConcurrentOperationCount:1];
+    
+    for (NSInteger i = 0; i < 10; i++) {
+        [ZToastManager toastWithMessage:@"正在加载正在加载正在加载正在加载" stady:2.f];
+    }
+    
+//    [ZToastView toastWithMessage:@"正在加载..." stady:3.f];
 }
 
 @end

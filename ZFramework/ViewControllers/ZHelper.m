@@ -11,13 +11,10 @@
 
 @implementation ZHelper
 
-+ (UIButton *)createButtonWithPoint:(CGPoint)origin title:(NSString *)title action:(SEL)action target:(id)target
++ (UIButton *)createButtonWithTitle:(NSString *)title action:(SEL)action target:(id)target
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame = CGRectZero;
-    frame.origin = origin;
-    frame.size = CGSizeMake(110, 32);
-    button.frame = frame;
+    button.frame = CGRectMake((kMainBoundsWidth - 220)/2, kMainBoundsHeight*0.7, 220, 40.f);;
     button.layer.cornerRadius = 5.f;
     button.backgroundColor = kThemeColor;
     [button setTitle:title forState:UIControlStateNormal];

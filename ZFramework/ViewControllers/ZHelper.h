@@ -20,6 +20,6 @@
 
 @interface ZHelper : NSObject
 
-+ (UIButton *)createButtonWithPoint:(CGPoint)origin title:(NSString *)title action:(SEL)action target:(id)target;
++ (UIButton *)createButtonWithTitle:(NSString *)title action:(SEL)action target:(id)target;
 
 @end

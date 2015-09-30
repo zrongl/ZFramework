@@ -180,12 +180,12 @@
 		5D33BB651BB4CF3300F534DF /* ZFramework */ = {
 			isa = PBXGroup;
 			children = (
-				5DB881DF1BBBD09B007FFE0A /* ZLocationManager */,
-				5DB881E41BBBD09B007FFE0A /* ZNetworking */,
 				5DB8821C1BBBD09B007FFE0A /* ZToastView */,
-				5D33BC921BB96F3800F534DF /* ZStarGradeView */,
 				5D33BBF81BB4FA2E00F534DF /* ZAdditions */,
+				5DB881E41BBBD09B007FFE0A /* ZNetworking */,
+				5D33BC921BB96F3800F534DF /* ZStarGradeView */,
 				5D33BC2E1BB6BDC700F534DF /* ZViewController */,
+				5DB881DF1BBBD09B007FFE0A /* ZLocationManager */,
 				5D33BBDF1BB4F00C00F534DF /* ZTabBarController */,
 				5D33BBB31BB4CFEA00F534DF /* ViewControllers */,
 				5D33BB691BB4CF3300F534DF /* AppDelegate.h */,

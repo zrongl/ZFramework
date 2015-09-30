@@ -26,4 +26,4 @@
 #define RGB(r, g, b)            [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:1.0f]
 
 #define kBackgroundColor        [UIColor whiteColor]
-#define kThemeColor             RGBA(255, 98, 28, 1.f)
+#define kThemeColor             RGBA(30, 171, 254, 1.f)

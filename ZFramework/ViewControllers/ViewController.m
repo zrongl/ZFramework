@@ -20,14 +20,9 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"统计"];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, 220, 32);
-    button.layer.cornerRadius = 5.f;
-    button.backgroundColor = kThemeColor;
-    button.center = self.view.center;
-    [button setTitle:@"推出" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(pushInTo) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *button = [ZHelper createButtonWithTitle:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
+    
 }
 
 - (void)pushInTo
@@ -49,10 +44,8 @@
     [queue setMaxConcurrentOperationCount:1];
     
     for (NSInteger i = 0; i < 10; i++) {
-        [ZToastManager toastWithMessage:@"正在加载正在加载正在加载正在加载" stady:2.f];
+        [ZToastManager toastWithMessage:@"请求失败，请稍后重试" stady:2.f];
     }
-    
-//    [ZToastView toastWithMessage:@"正在加载..." stady:3.f];
 }
 
 @end
@@ -70,12 +63,12 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"我的"];
     
-    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake(30, 100, 200, 25)
+    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kMainBoundsWidth - 200)/2, 100, 200, 25)
                                                            grayImage:[UIImage imageNamed:@"star_gray.png"]
                                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];
     
-    UIButton *button = [ZHelper createButtonWithPoint:CGPointMake(118, 200) title:@"ChageGrade" action:@selector(scoreChange) target:self];
+    UIButton *button = [ZHelper createButtonWithTitle:@"评分" action:@selector(scoreChange) target:self];
     [self.view addSubview:button];
 }
 
@@ -94,13 +87,7 @@
     [self customBackButton];
     [self setNavigationTitle:@"推视图"];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, 220, 32);
-    button.layer.cornerRadius = 5.f;
-    button.backgroundColor = kThemeColor;
-    button.center = self.view.center;
-    [button setTitle:@"弹出" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(popTo) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *button = [ZHelper createButtonWithTitle:@"弹出" action:@selector(popTo) target:self];
     [self.view addSubview:button];
 }
 

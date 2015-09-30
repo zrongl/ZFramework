@@ -113,7 +113,7 @@
 - (void)setupTabBarView
 {
     // 自定义tabbar的标题，正常状态图片及选中状态图片的名称
-    NSArray *titles =           [NSArray arrayWithObjects:@"统计",@"清算", @"我的", nil];
+    NSArray *titles =                    [NSArray arrayWithObjects:@"统计",@"清算", @"我的", nil];
     __unused NSArray *images =           [NSArray arrayWithObjects:@"tabbar1", @"tabbar2", @"tabbar3", nil];
     __unused NSArray *selectedImages =   [NSArray arrayWithObjects:@"tabbar1_sel", @"tabbar2_sel", @"tabbar3_sel", nil];
     

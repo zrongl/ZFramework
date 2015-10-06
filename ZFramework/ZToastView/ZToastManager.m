@@ -74,16 +74,17 @@
 - (void)main
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [ZToastView toastWithMessage:_message];
+        [[ZToastView sharedToastView] toastWithMessage:_message];
     });
     
     [NSThread sleepForTimeInterval:_stadySecond];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [ZToastView toastHide];
+        [[ZToastView sharedToastView] hide];
     });
     
-    [NSThread sleepForTimeInterval:kToastHideDelay];
+    // 延迟0.1秒，使得当前toast充分hide之后，下一个toast弹出
+    [NSThread sleepForTimeInterval:kToastHideDelay + 0.1f];
 }
 
 @end

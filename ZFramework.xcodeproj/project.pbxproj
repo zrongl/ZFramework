@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D3080371BBCFFBC00EF158E /* ZStretchHeaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3080361BBCFFBC00EF158E /* ZStretchHeaderController.m */; settings = {ASSET_TAGS = (); }; };
 		5D33BB681BB4CF3300F534DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BB671BB4CF3300F534DF /* main.m */; };
 		5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BB6A1BB4CF3300F534DF /* AppDelegate.m */; };
 		5D33BB731BB4CF3300F534DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BB721BB4CF3300F534DF /* Assets.xcassets */; };
@@ -31,7 +32,7 @@
 		5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D33BC9B1BB97E0400F534DF /* star_light@3x.png */; settings = {ASSET_TAGS = (); }; };
 		5D33BCA01BB981BC00F534DF /* ZHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BC9F1BB981BC00F534DF /* ZHelper.m */; settings = {ASSET_TAGS = (); }; };
 		5DB8821F1BBBD09B007FFE0A /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */; settings = {ASSET_TAGS = (); }; };
-		5DB882201BBBD09B007FFE0A /* ZLocaitonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E31BBBD09B007FFE0A /* ZLocaitonManager.m */; settings = {ASSET_TAGS = (); }; };
+		5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882211BBBD09B007FFE0A /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E71BBBD09B007FFE0A /* LoginRequest.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882221BBBD09B007FFE0A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881EB1BBBD09B007FFE0A /* AFHTTPRequestOperation.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882231BBBD09B007FFE0A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881ED1BBBD09B007FFE0A /* AFHTTPRequestOperationManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -56,9 +57,15 @@
 		5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8821B1BBBD09B007FFE0A /* ZGlobalData.m */; settings = {ASSET_TAGS = (); }; };
 		5DC70DFE1BBC068000AA5D04 /* ZToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70DFD1BBC068000AA5D04 /* ZToastManager.m */; settings = {ASSET_TAGS = (); }; };
 		5DC70E031BBC124700AA5D04 /* ZToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E021BBC124700AA5D04 /* ZToastView.m */; settings = {ASSET_TAGS = (); }; };
+		5DC70E061BBC2C3800AA5D04 /* ZLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */; settings = {ASSET_TAGS = (); }; };
+		5DC70E091BBC2FC300AA5D04 /* location_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */; settings = {ASSET_TAGS = (); }; };
+		5DE7A3FB1BBD633B0065D95C /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7A3FA1BBD633B0065D95C /* UIImage+ImageEffects.m */; settings = {ASSET_TAGS = (); }; };
+		5DE7A3FF1BBD726B0065D95C /* header_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE7A3FE1BBD726B0065D95C /* header_image.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D3080351BBCFFBC00EF158E /* ZStretchHeaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZStretchHeaderController.h; sourceTree = "<group>"; };
+		5D3080361BBCFFBC00EF158E /* ZStretchHeaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZStretchHeaderController.m; sourceTree = "<group>"; };
 		5D33BB631BB4CF3300F534DF /* ZFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D33BB671BB4CF3300F534DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D33BB691BB4CF3300F534DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,8 +103,8 @@
 		5D33BC9F1BB981BC00F534DF /* ZHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHelper.m; sourceTree = "<group>"; };
 		5DB881E01BBBD09B007FFE0A /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
 		5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
-		5DB881E21BBBD09B007FFE0A /* ZLocaitonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLocaitonManager.h; sourceTree = "<group>"; };
-		5DB881E31BBBD09B007FFE0A /* ZLocaitonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLocaitonManager.m; sourceTree = "<group>"; };
+		5DB881E21BBBD09B007FFE0A /* ZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLocationManager.h; sourceTree = "<group>"; };
+		5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLocationManager.m; sourceTree = "<group>"; };
 		5DB881E61BBBD09B007FFE0A /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequest.h; sourceTree = "<group>"; };
 		5DB881E71BBBD09B007FFE0A /* LoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRequest.m; sourceTree = "<group>"; };
 		5DB881EA1BBBD09B007FFE0A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -148,6 +155,12 @@
 		5DC70DFD1BBC068000AA5D04 /* ZToastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZToastManager.m; sourceTree = "<group>"; };
 		5DC70E011BBC124700AA5D04 /* ZToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZToastView.h; sourceTree = "<group>"; };
 		5DC70E021BBC124700AA5D04 /* ZToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZToastView.m; sourceTree = "<group>"; };
+		5DC70E041BBC2C3800AA5D04 /* ZLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLocationView.h; sourceTree = "<group>"; };
+		5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLocationView.m; sourceTree = "<group>"; };
+		5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_btn@2x.png"; sourceTree = "<group>"; };
+		5DE7A3F91BBD633A0065D95C /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		5DE7A3FA1BBD633B0065D95C /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		5DE7A3FE1BBD726B0065D95C /* header_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +174,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D3080341BBCFF8B00EF158E /* ZStretchHeaderController */ = {
+			isa = PBXGroup;
+			children = (
+				5D3080381BBD37CF00EF158E /* Resouse */,
+				5DE7A3F91BBD633A0065D95C /* UIImage+ImageEffects.h */,
+				5DE7A3FA1BBD633B0065D95C /* UIImage+ImageEffects.m */,
+				5D3080351BBCFFBC00EF158E /* ZStretchHeaderController.h */,
+				5D3080361BBCFFBC00EF158E /* ZStretchHeaderController.m */,
+			);
+			path = ZStretchHeaderController;
+			sourceTree = "<group>";
+		};
+		5D3080381BBD37CF00EF158E /* Resouse */ = {
+			isa = PBXGroup;
+			children = (
+				5DE7A3FE1BBD726B0065D95C /* header_image.png */,
+			);
+			path = Resouse;
+			sourceTree = "<group>";
+		};
 		5D33BB5A1BB4CF3300F534DF = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +220,7 @@
 				5D33BC2E1BB6BDC700F534DF /* ZViewController */,
 				5DB881DF1BBBD09B007FFE0A /* ZLocationManager */,
 				5D33BBDF1BB4F00C00F534DF /* ZTabBarController */,
+				5D3080341BBCFF8B00EF158E /* ZStretchHeaderController */,
 				5D33BBB31BB4CFEA00F534DF /* ViewControllers */,
 				5D33BB691BB4CF3300F534DF /* AppDelegate.h */,
 				5D33BB6A1BB4CF3300F534DF /* AppDelegate.m */,
@@ -297,10 +331,13 @@
 		5DB881DF1BBBD09B007FFE0A /* ZLocationManager */ = {
 			isa = PBXGroup;
 			children = (
+				5DC70E071BBC2FC300AA5D04 /* Resource */,
 				5DB881E01BBBD09B007FFE0A /* CLLocation+YCLocation.h */,
 				5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */,
-				5DB881E21BBBD09B007FFE0A /* ZLocaitonManager.h */,
-				5DB881E31BBBD09B007FFE0A /* ZLocaitonManager.m */,
+				5DB881E21BBBD09B007FFE0A /* ZLocationManager.h */,
+				5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */,
+				5DC70E041BBC2C3800AA5D04 /* ZLocationView.h */,
+				5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */,
 			);
 			path = ZLocationManager;
 			sourceTree = "<group>";
@@ -425,6 +462,14 @@
 			path = ZToastView;
 			sourceTree = "<group>";
 		};
+		5DC70E071BBC2FC300AA5D04 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,7 +527,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DC70E091BBC2FC300AA5D04 /* location_btn@2x.png in Resources */,
 				5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */,
+				5DE7A3FF1BBD726B0065D95C /* header_image.png in Resources */,
 				5D33BBF01BB4F37D00F534DF /* tabbar3_sel@2x.png in Resources */,
 				5D33BC531BB6BDC700F534DF /* nav_back@2x.png in Resources */,
 				5D33BC541BB6BDC700F534DF /* nav_bg@2x.png in Resources */,
@@ -519,6 +566,7 @@
 				5D33BBCD1BB4CFEA00F534DF /* ViewController.m in Sources */,
 				5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */,
 				5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */,
+				5DE7A3FB1BBD633B0065D95C /* UIImage+ImageEffects.m in Sources */,
 				5DB882261BBBD09B007FFE0A /* AFSecurityPolicy.m in Sources */,
 				5DC70DFE1BBC068000AA5D04 /* ZToastManager.m in Sources */,
 				5DB882311BBBD09B007FFE0A /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -526,9 +574,10 @@
 				5DB882221BBBD09B007FFE0A /* AFHTTPRequestOperation.m in Sources */,
 				5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */,
 				5DB8822B1BBBD09B007FFE0A /* AFNetworkActivityIndicatorManager.m in Sources */,
-				5DB882201BBBD09B007FFE0A /* ZLocaitonManager.m in Sources */,
+				5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */,
 				5D33BBF71BB4F5B300F534DF /* ZTabBarItem.m in Sources */,
 				5DC70E031BBC124700AA5D04 /* ZToastView.m in Sources */,
+				5DC70E061BBC2C3800AA5D04 /* ZLocationView.m in Sources */,
 				5DB882321BBBD09B007FFE0A /* UIWebView+AFNetworking.m in Sources */,
 				5DB8821F1BBBD09B007FFE0A /* CLLocation+YCLocation.m in Sources */,
 				5DB882241BBBD09B007FFE0A /* AFHTTPSessionManager.m in Sources */,
@@ -539,6 +588,7 @@
 				5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */,
 				5D33BB681BB4CF3300F534DF /* main.m in Sources */,
 				5DB882251BBBD09B007FFE0A /* AFNetworkReachabilityManager.m in Sources */,
+				5D3080371BBCFFBC00EF158E /* ZStretchHeaderController.m in Sources */,
 				5DB882291BBBD09B007FFE0A /* AFURLResponseSerialization.m in Sources */,
 				5DB882211BBBD09B007FFE0A /* LoginRequest.m in Sources */,
 			);

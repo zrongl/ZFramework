@@ -8,10 +8,14 @@
 
 #import "ViewController.h"
 #import "Macro.h"
-#import "ZStarGradeView.h"
-#import "ZHelper.h"
 #import "stdlib.h"
+#import "ZHelper.h"
 #import "ZToastManager.h"
+#import "ZLocationView.h"
+#import "ZStarGradeView.h"
+#import "UIView+ZAddition.h"
+#import "ZStretchHeaderController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation ViewController
 
@@ -43,7 +47,7 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue setMaxConcurrentOperationCount:1];
     
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 3; i++) {
         [ZToastManager toastWithMessage:@"请求失败，请稍后重试" stady:2.f];
     }
 }
@@ -70,6 +74,42 @@
     
     UIButton *button = [ZHelper createButtonWithTitle:@"评分" action:@selector(scoreChange) target:self];
     [self.view addSubview:button];
+    UIButton *pushButton = [ZHelper createButtonWithTitle:@"推出" action:@selector(pushViewController) target:self];
+    pushButton.y = button.bottom + 20.f;
+    [self.view addSubview:pushButton];
+    
+    // location view
+    if(![CLLocationManager locationServicesEnabled] ||
+       [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+        UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                           message:@"需要开启定位服务,请到设置->隐私,打开定位服务"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           
+                                                       }];
+        [alertView addAction:action];
+        [self presentViewController:alertView animated:YES completion:nil];
+#else
+        UIAlertView *alvertView=[[UIAlertView alloc] initWithTitle:@"提示"
+                                                           message:@"需要开启定位服务,请到设置->隐私,打开定位服务"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"确定"
+                                                 otherButtonTitles: nil];
+        [alvertView show];
+#endif
+    }
+    ZLocationView *loactionView = [[ZLocationView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 28)];
+    [self.view addSubview:loactionView];
+}
+
+- (void)pushViewController
+{
+    ZStretchHeaderController *vc = [[ZStretchHeaderController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)scoreChange
@@ -86,7 +126,6 @@
     [super viewDidLoad];
     [self customBackButton];
     [self setNavigationTitle:@"推视图"];
-    
     UIButton *button = [ZHelper createButtonWithTitle:@"弹出" action:@selector(popTo) target:self];
     [self.view addSubview:button];
 }

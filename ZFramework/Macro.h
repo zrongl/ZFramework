@@ -16,7 +16,7 @@
 // 自定义NavigationBar属性
 #define kNavgationBarHeight     (44.f + (SYSTEM_VERSION > 7.0 ? 20 : 0))
 #define kNavigationTitleColor   [UIColor blackColor]
-#define kNavigationTitleFont    [UIFont systemFontOfSize:18.f]
+#define kNavigationTitleFont    [UIFont boldSystemFontOfSize:20.f]
 
 #define kMainBoundsWidth        [UIScreen mainScreen].bounds.size.width
 #define kMainBoundsHeight       [UIScreen mainScreen].bounds.size.height

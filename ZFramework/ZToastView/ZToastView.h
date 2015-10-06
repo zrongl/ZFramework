@@ -15,8 +15,9 @@
 /**
  *  供ZToastOperation调用
  */
-+ (void)toastHide;
-+ (void)toastWithMessage:(NSString *)message;
++ (ZToastView*)sharedToastView;
+- (void)hide;
+- (void)toastWithMessage:(NSString *)message;
 
 /**
  *  直接弹出提示框，当有多个弹框时，前面的弹框会被后面的覆盖

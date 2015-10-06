@@ -45,16 +45,6 @@
     [self performSelector:@selector(hide) withObject:nil afterDelay:second];
 }
 
-+ (void)toastHide
-{
-    [[ZToastView sharedToastView] hide];
-}
-
-+ (void)toastWithMessage:(NSString *)message
-{
-    [[ZToastView sharedToastView] toastWithMessage:message];
-}
-
 - (id)init
 {
     CGRect frame = CGRectMake(kMainBoundsWidth*(1 - kToastWidthScale)/2, kMainBoundsHeight - 130, kMainBoundsWidth*kToastWidthScale, 30.f);

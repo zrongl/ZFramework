@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 typedef void (^ LocationErrorBlock)(NSError *error);
 typedef void (^ LocationInfoBlock)(NSString *locationInfo);
 typedef void (^ LocationCoordinateBlock)(CLLocationCoordinate2D locationCorrrdinate);
 
-@interface ZLocaitonManager : NSObject <CLLocationManagerDelegate>
+@interface ZLocationManager : NSObject <CLLocationManagerDelegate>
 
 @property(nonatomic,assign)float latitude;
 @property(nonatomic,assign)float longitude;

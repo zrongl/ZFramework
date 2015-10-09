@@ -74,7 +74,7 @@ static NSString *md5(NSString *stirng)
     }
     
     // 设置与服务器协商好的全局参数
-    [self appendGlobalParameters];
+    // [self appendGlobalParameters];
     
     if (_methodType == HttpMethodGet) {
         ZRequestManager *manager = [ZRequestManager manager];

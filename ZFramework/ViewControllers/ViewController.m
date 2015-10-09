@@ -15,6 +15,7 @@
 #import "ZStarGradeView.h"
 #import "UIView+ZAddition.h"
 #import "ZStretchHeaderController.h"
+#import "ZPullTableView.h"
 #import <CoreLocation/CoreLocation.h>
 
 @implementation ViewController
@@ -117,7 +118,7 @@
     [_starView setGradeWithScore:xRandom(10) scoreSystem:10 animation:YES];
 }
 
-@end    
+@end
 
 @implementation ViewController3
 
@@ -139,6 +140,15 @@
 
 @end
 
+#import "LoginRequest.h"
+
+@interface ViewController4()<UITableViewDataSource, UITableViewDelegate, ZPullTableViewDelegate>
+
+@property (strong, nonatomic) ZPullTableView *tableView;
+@property (strong, nonatomic) NSMutableArray *dataSource;
+
+@end
+
 @implementation ViewController4
 
 - (void)viewDidLoad
@@ -147,6 +157,77 @@
     [self customDismissButton];
     [self setNavigationTitle:@"弹视图"];
     [self customRightButtonWithTitle:@"发送" action:nil];
+    [self setupRefreshTabelView];
 }
 
+- (void)setupRefreshTabelView
+{
+    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _dataSource = [[NSMutableArray alloc] init];
+    [self.view addSubview:_tableView];
+}
+
+#pragma mark - UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _dataSource.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 46.f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.layer.borderWidth = 0.5f;
+        cell.layer.borderColor = kThemeColor.CGColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+- (void)refreshTableView:(ZPullTableView *)tableView
+{
+    [_tableView setTotalCount:50];
+    LoginRequest *request = [[LoginRequest alloc] init];
+    [request requestonSuccess:^(ZBaseRequest *request) {
+        if (_dataSource) {
+            [_dataSource removeAllObjects];
+        }
+        NSArray *list = [request.resultDic objectForKey:@"list"];
+        for (NSDictionary *dic in list) {
+            [_dataSource addObject:[dic objectForKey:@"title"]];
+        }
+        [_tableView reloadData];
+    }
+                     onFailed:^(ZBaseRequest *request, NSError *error) {
+                         
+                     }];
+}
+
+- (void)loadMoreTableView:(ZPullTableView *)tableView
+{
+    [_tableView setTotalCount:50];
+    LoginRequest *request = [[LoginRequest alloc] init];
+    [request requestonSuccess:^(ZBaseRequest *request) {
+        NSArray *list = [request.resultDic objectForKey:@"list"];
+        for (NSDictionary *dic in list) {
+            [_dataSource addObject:[dic objectForKey:@"title"]];
+        }
+        [_tableView reloadData];
+    }
+                     onFailed:^(ZBaseRequest *request, NSError *error) {
+                         
+                     }];
+}
 @end

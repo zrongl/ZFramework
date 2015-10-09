@@ -20,4 +20,9 @@
     return self;
 }
 
+- (NSString *)localServerURL
+{
+    return @"http://localhost/t.php";
+}
+
 @end

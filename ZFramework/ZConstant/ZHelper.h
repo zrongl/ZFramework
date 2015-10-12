@@ -20,6 +20,7 @@
 
 @interface ZHelper : NSObject
 
-+ (UIButton *)createButtonWithTitle:(NSString *)title action:(SEL)action target:(id)target;
++ (UIButton *)createButtonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action target:(id)target;
++ (UILabel *)createLabelWithFrame:(CGRect)frame fontSize:(CGFloat)size color:(UIColor *)color textAlignment:(NSTextAlignment)alignment;
 
 @end

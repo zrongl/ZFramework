@@ -7,7 +7,7 @@
 //
 
 #import "ZToastView.h"
-#import "Macro.h"
+#import "ZConstant.h"
 #import "NSString+ZAddition.h"
 
 #define kToastWidthScale    0.6f

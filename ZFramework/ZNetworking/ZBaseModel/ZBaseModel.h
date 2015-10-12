@@ -17,7 +17,7 @@
  *
  *  @return 填充数据的model
  */
-- (id)initWithDictionary:(NSDictionary*)dic;
+- (id)initWithDictionary:(NSDictionary*)dictionary;
 
 /**
  *  返回model自定义字符名称与服务端字段名称之间的映射字典
@@ -25,6 +25,6 @@
  *   ...
  *  }
  */
-- (NSDictionary*)attributeMapDictionary;
+- (NSDictionary*)fieldMappingTable;
 
 @end

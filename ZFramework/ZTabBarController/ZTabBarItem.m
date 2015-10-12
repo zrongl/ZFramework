@@ -6,7 +6,7 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
-#import "Macro.h"
+#import "ZConstant.h"
 #import "ZTabBarItem.h"
 #import "NSString+ZAddition.h"
 
@@ -19,7 +19,7 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont systemFontOfSize:13.f];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self setTitleColor:kThemeColor forState:UIControlStateSelected];
+        [self setTitleColor:kMainColor forState:UIControlStateSelected];
         [self setTitle:title forState:UIControlStateNormal];
         [self setTitle:title forState:UIControlStateSelected];
         [self setImage:image forState:UIControlStateNormal];

@@ -6,7 +6,7 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
-#import "Macro.h"
+#import "ZConstant.h"
 #import "ZPullTableView.h"
 #import "UIView+ZAddition.h"
 #import "ZLoadMoreTableFooterView.h"
@@ -40,7 +40,7 @@
         _loadMoreFooterView = [[ZLoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, 0, self.width, 48)];
         self.tableFooterView = _loadMoreFooterView;
         
-        // 拦截消息集合 存储本类(UITableView)拦截父类(UIScrollView)的协议列表
+        // 拦截代理消息集合 存储本类(UITableView)拦截父类(UIScrollView)的协议列表
         _interceptSelectors = [[NSSet alloc] initWithObjects:NSStringFromSelector(@selector(scrollViewDidScroll:)),
                                                              NSStringFromSelector(@selector(scrollViewDidEndDragging:willDecelerate:)), nil];
         
@@ -96,10 +96,11 @@
         /**
          *  @_loadedCount < _totalCount : 是否加载足够数量
          *  @!_isPullLoadingMore        : 是否正在请求下一页数据 防止多次发送请求
+         *  @!_isPullRefreshing         : 是否正在刷新请求
          *  @totalOffsetY + 100 > self.contentSize.height   : 是否滑动到距离底部100像素的位置 如果小于100则自动发送请求加载更多数据
          */
         if (_loadedCount < _totalCount) {
-            if (!_isPullLoadingMore && totalOffsetY + 100 > self.contentSize.height) {
+            if (!_isPullLoadingMore &&!_isPullRefreshing && totalOffsetY + 100 > self.contentSize.height) {
                 if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
                     _isPullLoadingMore = YES;
                     [_loadMoreFooterView setState:ZPullLoading];
@@ -149,7 +150,7 @@
 }
 
 
-//-----------------------------子类拦截父类方法的实现-----------------------------//
+//-----------------------------子类拦截父类代理方法-----------------------------//
 /**
  *  如果包含指定消息 返回YES 进行拦截
  *

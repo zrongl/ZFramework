@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "Macro.h"
+#import "ZConstant.h"
 #import "stdlib.h"
 #import "ZHelper.h"
+#import "ListModel.h"
 #import "ZToastManager.h"
 #import "ZLocationView.h"
 #import "ZStarGradeView.h"
@@ -25,7 +26,7 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"统计"];
     
-    UIButton *button = [ZHelper createButtonWithTitle:@"推出" action:@selector(pushInTo) target:self];
+    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
     
 }
@@ -73,9 +74,9 @@
                                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];
     
-    UIButton *button = [ZHelper createButtonWithTitle:@"评分" action:@selector(scoreChange) target:self];
+    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"评分" action:@selector(scoreChange) target:self];
     [self.view addSubview:button];
-    UIButton *pushButton = [ZHelper createButtonWithTitle:@"推出" action:@selector(pushViewController) target:self];
+    UIButton *pushButton = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushViewController) target:self];
     pushButton.y = button.bottom + 20.f;
     [self.view addSubview:pushButton];
     
@@ -127,7 +128,7 @@
     [super viewDidLoad];
     [self customBackButton];
     [self setNavigationTitle:@"推视图"];
-    UIButton *button = [ZHelper createButtonWithTitle:@"弹出" action:@selector(popTo) target:self];
+    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"弹出" action:@selector(popTo) target:self];
     [self.view addSubview:button];
 }
 
@@ -187,7 +188,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.layer.borderWidth = 0.5f;
-        cell.layer.borderColor = kThemeColor.CGColor;
+        cell.layer.borderColor = kMainColor.CGColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     

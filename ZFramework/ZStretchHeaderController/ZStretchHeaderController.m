@@ -9,9 +9,9 @@
 #import "ZStretchHeaderController.h"
 #import "UIImage+ImageEffects.h"
 #import "UIView+ZAddition.h"
-#import "Macro.h"
+#import "ZConstant.h"
 
-#define kStretchViewHeight  200
+#define kStretchViewHeight  230
 
 @interface ZStretchHeaderController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -51,9 +51,11 @@
 - (void)customStretchImageView
 {
     _stretchImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kStretchViewHeight)];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"header_image" ofType:@"png"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"header_bg" ofType:@"png"];
     UIImage *headerImage = [UIImage imageWithContentsOfFile:path];
-    _stretchImageView.image = headerImage;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _stretchImageView.image = headerImage;
+    });
     _stretchImageView.clipsToBounds = YES;
     [self.view addSubview:_stretchImageView];
 }
@@ -63,14 +65,19 @@
  */
 - (void)setupTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kMainBoundsWidth, kMainBoundsHeight - 64)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.clipsToBounds = YES;
     _tableView.backgroundColor = [UIColor clearColor];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kStretchViewHeight - 64)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kStretchViewHeight)];
     headerView.backgroundColor = [UIColor clearColor];
+    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((headerView.width - 70)/2, 84, 70, 70)];
+    headerImageView.image = [UIImage imageNamed:@"header.png"];
+    headerImageView.layer.cornerRadius = 35.f;
+    [headerView addSubview:headerImageView];
     _tableView.tableHeaderView = headerView;
     [self.view addSubview:_tableView];
 }
@@ -81,12 +88,15 @@
 - (void)customNavigationBar
 {
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 64)];
+    navigationView.backgroundColor = [UIColor clearColor];
     _navigationBackgoundView = [[UIImageView alloc] initWithFrame:navigationView.bounds];
+    _navigationBackgoundView.backgroundColor = [UIColor clearColor];
     _navigationBackgoundView.image = [UIImage imageNamed:@"nav_bg.png"];
     _navigationBackgoundView.alpha = 0;
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 19, kMainBoundsWidth, 44)];
     titleLabel.text = @"我的";
     titleLabel.textColor = [UIColor blackColor];
+    titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont boldSystemFontOfSize:20.f];
     [_navigationBackgoundView addSubview:titleLabel];
@@ -122,7 +132,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
         cell.layer.borderWidth = 0.5f;
-        cell.layer.borderColor = kThemeColor.CGColor;
+        cell.layer.borderColor = kMainColor.CGColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -135,9 +145,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetY = scrollView.contentOffset.y;
+    _navigationBackgoundView.alpha = offsetY/(kStretchViewHeight - 64);
     if (offsetY >= 0) {
         _stretchImageView.y = -offsetY;
-        _navigationBackgoundView.alpha = (offsetY - (kStretchViewHeight - 64*2))/64;
     }else{
         CGRect frame = _stretchImageView.frame;
         CGFloat widthOffset = kMainBoundsWidth*offsetY/kStretchViewHeight;

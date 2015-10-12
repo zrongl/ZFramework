@@ -9,7 +9,7 @@
 #import "ZTabBarController.h"
 #import "ZTabBarItem.h"
 #import <Availability.h>
-#import "Macro.h"
+#import "ZConstant.h"
 
 #import "ZViewController.h"
 #import "ViewController.h"

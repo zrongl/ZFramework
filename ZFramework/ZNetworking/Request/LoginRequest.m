@@ -22,7 +22,7 @@
 
 - (NSString *)localServerURL
 {
-    return @"http://localhost/t.php";
+    return @"http://localhost/t_.php";
 }
 
 @end

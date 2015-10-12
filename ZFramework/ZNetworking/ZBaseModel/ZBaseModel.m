@@ -10,62 +10,49 @@
 
 @implementation ZBaseModel
 
-- (id)initWithDictionary:(NSDictionary*)dic
+- (id)initWithDictionary:(NSDictionary*)dictionary
 {
     self = [super init];
+    
     if (self) {
-        [self setAttributes:dic];
+        NSDictionary *mappingTable = [self fieldMappingTable];
+        if (mappingTable != nil) {
+            NSEnumerator *keyEnum = [mappingTable keyEnumerator];
+            id propertyName;
+            while ((propertyName = [keyEnum nextObject])) {
+                SEL setterSelector = [self setterSelectorFrom:propertyName];
+                if ([self respondsToSelector:setterSelector]) {
+                    NSString *fieldName = mappingTable[propertyName];
+                    id value = nil;
+                    if ([[dictionary objectForKey:fieldName] isKindOfClass:[NSNumber class]]) {
+                        value = [[dictionary objectForKey:fieldName] stringValue];
+                    }else if([[dictionary objectForKey:fieldName] isKindOfClass:[NSNull class]]){
+                        value = nil;
+                    }else{
+                        value = [dictionary objectForKey:fieldName];
+                    }
+                    
+                    [self performSelectorOnMainThread:setterSelector
+                                           withObject:value
+                                        waitUntilDone:[NSThread isMainThread]];
+                }
+            }
+        }
     }
     
     return self;
 }
 
-- (NSDictionary*)attributeMapDictionary
+- (SEL)setterSelectorFrom:(NSString *)propertyName
+{
+    NSString *capitalInital = [[propertyName substringToIndex:1] uppercaseString];
+    NSString *selectorString = [NSString stringWithFormat:@"set%@%@:",capitalInital,[propertyName substringFromIndex:1]];
+    return NSSelectorFromString(selectorString);
+}
+
+- (NSDictionary*)fieldMappingTable
 {
     return nil;
 }
-
-#pragma mark - private methods
-- (SEL)getSetterSelWithAttibuteName:(NSString*)attributeName
-{
-    NSString *capital = [[attributeName substringToIndex:1] uppercaseString];
-    NSString *setterSelStr = [NSString stringWithFormat:@"set%@%@:",capital,[attributeName substringFromIndex:1]];
-    return NSSelectorFromString(setterSelStr);
-}
-
-/**
- *  将服务端字段对应的值赋值给在attributeMapDictionary中与服务端字段相对应的model中属性
- *
- *  @param dic 服务端数据字典
- */
-- (void)setAttributes:(NSDictionary*)dic
-{
-    NSDictionary *attrMapDic = [self attributeMapDictionary];
-    if (attrMapDic == nil) {
-        return;
-    }
-    NSEnumerator *keyEnum = [attrMapDic keyEnumerator];
-    id attributeName;
-    while ((attributeName = [keyEnum nextObject])) {
-        SEL sel = [self getSetterSelWithAttibuteName:attributeName];
-        if ([self respondsToSelector:sel]) {
-            NSString *dataDicKey = attrMapDic[attributeName];
-            NSString *value = nil;
-            if ([[dic objectForKey:dataDicKey] isKindOfClass:[NSNumber class]]) {
-                value = [[dic objectForKey:dataDicKey] stringValue];
-            }
-            else if([[dic objectForKey:dataDicKey] isKindOfClass:[NSNull class]]){
-                value = nil;
-            }
-            else{
-                value = [dic objectForKey:dataDicKey];
-            }
-            [self performSelectorOnMainThread:sel
-                                   withObject:value
-                                waitUntilDone:[NSThread isMainThread]];
-        }
-    }
-}
-
 
 @end

@@ -10,7 +10,7 @@
 #import "UIView+ZAddition.h"
 #import "NSString+ZAddition.h"
 #import <Availability.h>
-#import "Macro.h"
+#import "ZConstant.h"
 
 @implementation ZNavigationController
 

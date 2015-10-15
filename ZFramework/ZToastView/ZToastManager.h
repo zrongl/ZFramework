@@ -22,6 +22,14 @@
 
 @interface ZToastOperation : NSOperation
 
+/**
+ *  供ZToastManager调用
+ *
+ *  @param message 提示信息
+ *  @param second  显示秒数
+ *
+ *  @return 返回ZToastOperation实例
+ */
 - (id)initWithMessage:(NSString *)message stady:(float)second;
 
 @end

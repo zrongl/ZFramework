@@ -29,7 +29,11 @@
 #define RGB(r, g, b)            RGBA(r, g, b, 1)
 
 #define kMainColor              RGBA(30, 171, 254, 1.f)
-#define kSeperateLineColor      [UIColor grayColor]
-#define kBackgroundColor        [UIColor whiteColor]
+#define kSeperateLineColor      [ZHelper hexStringToColor:@"#C9C9C9"]
+#define kBackgroundColor        [ZHelper hexStringToColor:@"#F0F0F0"]
+
+#define kTextBlackColor         [UIColor blackColor]
+#define kTextDarkColor          [UIColor darkGrayColor]
+#define kTextLightColor         [UIColor lightGrayColor]
 
 #endif /* ZConstant_h */

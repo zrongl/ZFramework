@@ -56,6 +56,7 @@
     NSString    *_message;
     float       _stadySecond;
 }
+
 @end
 
 @implementation ZToastOperation

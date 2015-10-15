@@ -19,6 +19,8 @@
 #import "ZPullTableView.h"
 #import <CoreLocation/CoreLocation.h>
 
+#import "ZDemo.h"
+
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -110,7 +112,7 @@
 
 - (void)pushViewController
 {
-    ZStretchHeaderController *vc = [[ZStretchHeaderController alloc] init];
+    BarberDetailViewController *vc = [[BarberDetailViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -134,7 +136,7 @@
 
 - (void)popTo
 {
-    ViewController4 *vc = [[ViewController4 alloc] init];
+    StoreListViewController *vc = [[StoreListViewController alloc] init];
     ZNavigationController *nav = [[ZNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -143,10 +145,7 @@
 
 #import "LoginRequest.h"
 
-@interface ViewController4()<UITableViewDataSource, UITableViewDelegate, ZPullTableViewDelegate>
-
-@property (strong, nonatomic) ZPullTableView *tableView;
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@interface ViewController4()
 
 @end
 
@@ -158,77 +157,6 @@
     [self customDismissButton];
     [self setNavigationTitle:@"弹视图"];
     [self customRightButtonWithTitle:@"发送" action:nil];
-    [self setupRefreshTabelView];
 }
 
-- (void)setupRefreshTabelView
-{
-    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64) style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _dataSource = [[NSMutableArray alloc] init];
-    [self.view addSubview:_tableView];
-}
-
-#pragma mark - UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _dataSource.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 46.f;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.layer.borderWidth = 0.5f;
-        cell.layer.borderColor = kMainColor.CGColor;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
-    
-    return cell;
-}
-
-- (void)refreshTableView:(ZPullTableView *)tableView
-{
-    [_tableView setTotalCount:50];
-    LoginRequest *request = [[LoginRequest alloc] init];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        if (_dataSource) {
-            [_dataSource removeAllObjects];
-        }
-        NSArray *list = [request.resultDic objectForKey:@"list"];
-        for (NSDictionary *dic in list) {
-            [_dataSource addObject:[dic objectForKey:@"title"]];
-        }
-        [_tableView reloadData];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-                         
-                     }];
-}
-
-- (void)loadMoreTableView:(ZPullTableView *)tableView
-{
-    [_tableView setTotalCount:50];
-    LoginRequest *request = [[LoginRequest alloc] init];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        NSArray *list = [request.resultDic objectForKey:@"list"];
-        for (NSDictionary *dic in list) {
-            [_dataSource addObject:[dic objectForKey:@"title"]];
-        }
-        [_tableView reloadData];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-                         
-                     }];
-}
 @end

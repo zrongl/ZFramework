@@ -22,5 +22,15 @@
 - (CGFloat)widthWithFont:(UIFont *)font height:(CGFloat)height;
 - (CGFloat)heightWithFont:(UIFont *)font width:(CGFloat)width;
 
+/**
+ *  返回属性字符串
+ *
+ *  @param position 修改属性的位置
+ *  @param color    position位置处的字符串待设置颜色
+ *  @param font     position位置处的字符串待设置字体
+ *
+ *  @return 返回修改完成后的属性字符串
+ */
+- (NSAttributedString *)attributStringWithPosition:(NSDictionary *)position color:(UIColor *)color font:(UIFont *)font;
 
 @end

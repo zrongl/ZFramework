@@ -12,7 +12,7 @@
 #import "AFHTTPRequestOperation.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define kURLHost  @"http://sp.api.lashou.com/Api/Ios"
+#define kURLHost  @"http://meiye.test.lashou.com/index.php"
 
 typedef void (^ RequestSuccessBlock)(ZBaseRequest *);
 typedef void (^ RequestFailedBlock)(ZBaseRequest*, NSError *);

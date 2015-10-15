@@ -19,6 +19,20 @@
 
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style;
 
+/**
+ *  按钮触发的请求之前调用，设置refreshHeaderView的状态
+ */
+- (void)refreshTableAction;
+
+/**
+ *  注意：此方法是在刷新或加载请求完成之后重新加载数据所用
+ *  之所以不用重载tableView的reloadData方法：
+ *  为了避免刚进入界面后，设置完tableView后系统会自动调用reloadData方法，
+ *  此前如果调用了refreshTableAction方法，会将refreshHeaderView设为normal状态
+ *  所以重新定义了一个refreshData，此方法与reloadData方法作用一样
+ */
+- (void)refreshData;
+
 @end
 
 @protocol ZPullTableViewDelegate <NSObject>

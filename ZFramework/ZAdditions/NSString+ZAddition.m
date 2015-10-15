@@ -36,4 +36,20 @@
     return ceil(height);
 }
 
+- (NSAttributedString *)attributStringWithPosition:(NSDictionary *)position color:(UIColor *)color font:(UIFont *)font
+{
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:self];
+    for (int i = 0; i < position.allKeys.count; i++) {
+        NSString* key = position.allKeys[i];
+        NSString* val = position[key];
+        if (color) {
+            [attrString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange([key intValue],[val intValue])];
+        }
+        if (font) {
+            [attrString addAttribute:NSFontAttributeName value:font range:NSMakeRange([key intValue],[val intValue])];
+        }
+    }
+    
+    return attrString;
+}
 @end

@@ -7,40 +7,68 @@
 //
 
 #import "ZBaseModel.h"
+#include <objc/objc.h>
+#include <objc/runtime.h>
+
+static NSArray *propertiesOfClass(id cls)
+{
+    unsigned int outCount, i;
+    NSMutableArray *propertiesArray = [NSMutableArray new];
+    objc_property_t *properties = class_copyPropertyList(cls, &outCount);
+    for (i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        [propertiesArray addObject:[NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding]];
+    }
+    
+    return propertiesArray;
+}
 
 @implementation ZBaseModel
 
-- (id)initWithDictionary:(NSDictionary*)dictionary
++ (instancetype)objectWithKeyValues:(NSDictionary *)keyValues
 {
-    self = [super init];
+    id object = [[self alloc] init];
     
-    if (self) {
-        NSDictionary *mappingTable = [self fieldMappingTable];
-        if (mappingTable != nil) {
-            NSEnumerator *keyEnum = [mappingTable keyEnumerator];
-            id propertyName;
-            while ((propertyName = [keyEnum nextObject])) {
-                SEL setterSelector = [self setterSelectorFrom:propertyName];
-                if ([self respondsToSelector:setterSelector]) {
-                    NSString *fieldName = mappingTable[propertyName];
-                    id value = nil;
-                    if ([[dictionary objectForKey:fieldName] isKindOfClass:[NSNumber class]]) {
-                        value = [[dictionary objectForKey:fieldName] stringValue];
-                    }else if([[dictionary objectForKey:fieldName] isKindOfClass:[NSNull class]]){
-                        value = nil;
-                    }else{
-                        value = [dictionary objectForKey:fieldName];
-                    }
-                    
-                    [self performSelectorOnMainThread:setterSelector
-                                           withObject:value
-                                        waitUntilDone:[NSThread isMainThread]];
-                }
-            }
+    NSArray *properties = propertiesOfClass([self class]);
+    NSMutableDictionary *mappingTable = [NSMutableDictionary dictionaryWithDictionary:[object fieldMappingTable]];
+    for (NSString *propertyName in properties) {
+        if (![mappingTable.allKeys containsObject:propertyName]) {
+            [mappingTable setValue:propertyName forKey:propertyName];
         }
     }
     
-    return self;
+    NSEnumerator *keyEnum = [mappingTable keyEnumerator];
+    id propertyName;
+    while ((propertyName = [keyEnum nextObject])) {
+        SEL setterSelector = [object setterSelectorFrom:propertyName];
+        if ([object respondsToSelector:setterSelector]) {
+            NSString *fieldName = mappingTable[propertyName];
+            id value = nil;
+            if ([[keyValues objectForKey:fieldName] isKindOfClass:[NSNumber class]]) {
+                value = [[keyValues objectForKey:fieldName] stringValue];
+            }else if([[keyValues objectForKey:fieldName] isKindOfClass:[NSNull class]]){
+                value = nil;
+            }else{
+                value = [keyValues objectForKey:fieldName];
+            }
+            
+            [object performSelectorOnMainThread:setterSelector
+                                     withObject:value
+                                  waitUntilDone:[NSThread isMainThread]];
+        }
+    }
+    
+    return object;
+}
+
++ (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray
+{
+    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[keyValuesArray count]];
+    for (NSDictionary *dictionary in keyValuesArray) {
+        [objects addObject:[[self class] objectWithKeyValues:dictionary]];
+    }
+    
+    return objects;
 }
 
 - (SEL)setterSelectorFrom:(NSString *)propertyName

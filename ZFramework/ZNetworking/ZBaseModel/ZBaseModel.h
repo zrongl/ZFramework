@@ -17,13 +17,15 @@
  *
  *  @return 填充数据的model
  */
-- (id)initWithDictionary:(NSDictionary*)dictionary;
++ (instancetype)objectWithKeyValues:(NSDictionary *)keyValues;
++ (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray;
 
 /**
  *  返回model自定义字符名称与服务端字段名称之间的映射字典
  *  {"userName":"user_name"
  *   ...
  *  }
+ *  注意：对于属性名称与key相同的可以不用写入字典中
  */
 - (NSDictionary*)fieldMappingTable;
 

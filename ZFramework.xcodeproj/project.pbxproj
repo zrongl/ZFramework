@@ -47,6 +47,26 @@
 		5D613C151BC78393008A299F /* ZPullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C081BC78393008A299F /* ZPullTableView.m */; settings = {ASSET_TAGS = (); }; };
 		5D613C171BC78415008A299F /* reading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D613C161BC78415008A299F /* reading.png */; settings = {ASSET_TAGS = (); }; };
 		5D613C611BC8D145008A299F /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C601BC8D145008A299F /* ListModel.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC6E1BCE01D50012E464 /* BarberDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC6F1BCE01D50012E464 /* BarberServeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC551BCE01D50012E464 /* BarberServeModel.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC701BCE01D50012E464 /* BarberWorkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC571BCE01D50012E464 /* BarberWorkModel.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC711BCE01D50012E464 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC591BCE01D50012E464 /* StoreModel.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC721BCE01D50012E464 /* BarberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC5C1BCE01D50012E464 /* BarberRequest.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC731BCE01D50012E464 /* StoreRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC5E1BCE01D50012E464 /* StoreRequest.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC741BCE01D50012E464 /* BarberHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC611BCE01D50012E464 /* BarberHeaderView.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC751BCE01D50012E464 /* BarberIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC631BCE01D50012E464 /* BarberIntroCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC761BCE01D50012E464 /* BarberServeAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC771BCE01D50012E464 /* BarberServeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC671BCE01D50012E464 /* BarberServeCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC781BCE01D50012E464 /* BarberWorksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC691BCE01D50012E464 /* BarberWorksCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC791BCE01D50012E464 /* BarberWorkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC6B1BCE01D50012E464 /* BarberWorkView.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC7A1BCE01D50012E464 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC6D1BCE01D50012E464 /* StoreCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC7D1BCE02070012E464 /* BarberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC7C1BCE02070012E464 /* BarberModel.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC831BCE1C2F0012E464 /* barber_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D80FC821BCE1C2F0012E464 /* barber_header@2x.png */; settings = {ASSET_TAGS = (); }; };
+		5D80FC851BCE1DC30012E464 /* arraw_right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D80FC841BCE1DC30012E464 /* arraw_right@3x.png */; settings = {ASSET_TAGS = (); }; };
+		5D80FC891BCE269F0012E464 /* StoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC881BCE269F0012E464 /* StoreListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC8C1BCE27710012E464 /* StoreListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC8B1BCE27710012E464 /* StoreListCell.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC8F1BCE2F310012E464 /* StoreListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FC981BCE88500012E464 /* chelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC961BCE88500012E464 /* chelper.c */; settings = {ASSET_TAGS = (); }; };
 		5D9629DE1BCBFFC000435C5E /* ZHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9629DD1BCBFFC000435C5E /* ZHelper.m */; settings = {ASSET_TAGS = (); }; };
 		5DB8821F1BBBD09B007FFE0A /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -137,6 +157,47 @@
 		5D613C161BC78415008A299F /* reading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reading.png; sourceTree = "<group>"; };
 		5D613C5F1BC8D145008A299F /* ListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListModel.h; sourceTree = "<group>"; };
 		5D613C601BC8D145008A299F /* ListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListModel.m; sourceTree = "<group>"; };
+		5D80FC511BCE01D50012E464 /* BarberDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberDetailViewController.h; sourceTree = "<group>"; };
+		5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberDetailViewController.m; sourceTree = "<group>"; };
+		5D80FC541BCE01D50012E464 /* BarberServeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberServeModel.h; sourceTree = "<group>"; };
+		5D80FC551BCE01D50012E464 /* BarberServeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberServeModel.m; sourceTree = "<group>"; };
+		5D80FC561BCE01D50012E464 /* BarberWorkModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberWorkModel.h; sourceTree = "<group>"; };
+		5D80FC571BCE01D50012E464 /* BarberWorkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberWorkModel.m; sourceTree = "<group>"; };
+		5D80FC581BCE01D50012E464 /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
+		5D80FC591BCE01D50012E464 /* StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreModel.m; sourceTree = "<group>"; };
+		5D80FC5B1BCE01D50012E464 /* BarberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberRequest.h; sourceTree = "<group>"; };
+		5D80FC5C1BCE01D50012E464 /* BarberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberRequest.m; sourceTree = "<group>"; };
+		5D80FC5D1BCE01D50012E464 /* StoreRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreRequest.h; sourceTree = "<group>"; };
+		5D80FC5E1BCE01D50012E464 /* StoreRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreRequest.m; sourceTree = "<group>"; };
+		5D80FC601BCE01D50012E464 /* BarberHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberHeaderView.h; sourceTree = "<group>"; };
+		5D80FC611BCE01D50012E464 /* BarberHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberHeaderView.m; sourceTree = "<group>"; };
+		5D80FC621BCE01D50012E464 /* BarberIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberIntroCell.h; sourceTree = "<group>"; };
+		5D80FC631BCE01D50012E464 /* BarberIntroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberIntroCell.m; sourceTree = "<group>"; };
+		5D80FC641BCE01D50012E464 /* BarberServeAppointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberServeAppointCell.h; sourceTree = "<group>"; };
+		5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberServeAppointCell.m; sourceTree = "<group>"; };
+		5D80FC661BCE01D50012E464 /* BarberServeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberServeCell.h; sourceTree = "<group>"; };
+		5D80FC671BCE01D50012E464 /* BarberServeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberServeCell.m; sourceTree = "<group>"; };
+		5D80FC681BCE01D50012E464 /* BarberWorksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberWorksCell.h; sourceTree = "<group>"; };
+		5D80FC691BCE01D50012E464 /* BarberWorksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberWorksCell.m; sourceTree = "<group>"; };
+		5D80FC6A1BCE01D50012E464 /* BarberWorkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberWorkView.h; sourceTree = "<group>"; };
+		5D80FC6B1BCE01D50012E464 /* BarberWorkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberWorkView.m; sourceTree = "<group>"; };
+		5D80FC6C1BCE01D50012E464 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
+		5D80FC6D1BCE01D50012E464 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
+		5D80FC7B1BCE02070012E464 /* BarberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberModel.h; sourceTree = "<group>"; };
+		5D80FC7C1BCE02070012E464 /* BarberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberModel.m; sourceTree = "<group>"; };
+		5D80FC7E1BCE02DF0012E464 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5D80FC7F1BCE03400012E464 /* ZAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAdditions.h; sourceTree = "<group>"; };
+		5D80FC821BCE1C2F0012E464 /* barber_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barber_header@2x.png"; sourceTree = "<group>"; };
+		5D80FC841BCE1DC30012E464 /* arraw_right@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arraw_right@3x.png"; sourceTree = "<group>"; };
+		5D80FC871BCE269F0012E464 /* StoreListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListViewController.h; sourceTree = "<group>"; };
+		5D80FC881BCE269F0012E464 /* StoreListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListViewController.m; sourceTree = "<group>"; };
+		5D80FC8A1BCE27710012E464 /* StoreListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListCell.h; sourceTree = "<group>"; };
+		5D80FC8B1BCE27710012E464 /* StoreListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListCell.m; sourceTree = "<group>"; };
+		5D80FC8D1BCE2F310012E464 /* StoreListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListRequest.h; sourceTree = "<group>"; };
+		5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListRequest.m; sourceTree = "<group>"; };
+		5D80FC901BCE2FAB0012E464 /* ZDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDemo.h; sourceTree = "<group>"; };
+		5D80FC961BCE88500012E464 /* chelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chelper.c; sourceTree = "<group>"; };
+		5D80FC971BCE88500012E464 /* chelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chelper.h; sourceTree = "<group>"; };
 		5D9629DC1BCBFFC000435C5E /* ZHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHelper.h; sourceTree = "<group>"; };
 		5D9629DD1BCBFFC000435C5E /* ZHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHelper.m; sourceTree = "<group>"; };
 		5D9629DF1BCBFFD000435C5E /* ZConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZConstant.h; sourceTree = "<group>"; };
@@ -252,6 +313,7 @@
 		5D33BB651BB4CF3300F534DF /* ZFramework */ = {
 			isa = PBXGroup;
 			children = (
+				5D80FC4F1BCE01D50012E464 /* ZDemo */,
 				5D9629DB1BCBFFC000435C5E /* ZConstant */,
 				5D33BBF81BB4FA2E00F534DF /* ZAdditions */,
 				5DB8821C1BBBD09B007FFE0A /* ZToastView */,
@@ -268,6 +330,7 @@
 				5D33BB721BB4CF3300F534DF /* Assets.xcassets */,
 				5D33BB771BB4CF3300F534DF /* Info.plist */,
 				5D33BB661BB4CF3300F534DF /* Supporting Files */,
+				5D80FC7E1BCE02DF0012E464 /* PrefixHeader.pch */,
 			);
 			path = ZFramework;
 			sourceTree = "<group>";
@@ -319,10 +382,11 @@
 		5D33BBF81BB4FA2E00F534DF /* ZAdditions */ = {
 			isa = PBXGroup;
 			children = (
-				5D33BBF91BB4FA6000F534DF /* NSString+ZAddition.h */,
-				5D33BBFA1BB4FA6000F534DF /* NSString+ZAddition.m */,
+				5D80FC7F1BCE03400012E464 /* ZAdditions.h */,
 				5D33BC591BB7956000F534DF /* UIView+ZAddition.h */,
 				5D33BC5A1BB7956000F534DF /* UIView+ZAddition.m */,
+				5D33BBF91BB4FA6000F534DF /* NSString+ZAddition.h */,
+				5D33BBFA1BB4FA6000F534DF /* NSString+ZAddition.m */,
 			);
 			path = ZAdditions;
 			sourceTree = "<group>";
@@ -416,9 +480,103 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		5D80FC4F1BCE01D50012E464 /* ZDemo */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC861BCE26860012E464 /* ZPullTableView */,
+				5D80FC501BCE01D50012E464 /* ZStretchHeaderController */,
+				5D80FC901BCE2FAB0012E464 /* ZDemo.h */,
+			);
+			path = ZDemo;
+			sourceTree = "<group>";
+		};
+		5D80FC501BCE01D50012E464 /* ZStretchHeaderController */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC811BCE1BD70012E464 /* Resource */,
+				5D80FC511BCE01D50012E464 /* BarberDetailViewController.h */,
+				5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */,
+				5D80FC531BCE01D50012E464 /* Model */,
+				5D80FC5A1BCE01D50012E464 /* Request */,
+				5D80FC5F1BCE01D50012E464 /* View */,
+			);
+			path = ZStretchHeaderController;
+			sourceTree = "<group>";
+		};
+		5D80FC531BCE01D50012E464 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC7B1BCE02070012E464 /* BarberModel.h */,
+				5D80FC7C1BCE02070012E464 /* BarberModel.m */,
+				5D80FC541BCE01D50012E464 /* BarberServeModel.h */,
+				5D80FC551BCE01D50012E464 /* BarberServeModel.m */,
+				5D80FC561BCE01D50012E464 /* BarberWorkModel.h */,
+				5D80FC571BCE01D50012E464 /* BarberWorkModel.m */,
+				5D80FC581BCE01D50012E464 /* StoreModel.h */,
+				5D80FC591BCE01D50012E464 /* StoreModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5D80FC5A1BCE01D50012E464 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC5B1BCE01D50012E464 /* BarberRequest.h */,
+				5D80FC5C1BCE01D50012E464 /* BarberRequest.m */,
+				5D80FC5D1BCE01D50012E464 /* StoreRequest.h */,
+				5D80FC5E1BCE01D50012E464 /* StoreRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		5D80FC5F1BCE01D50012E464 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC601BCE01D50012E464 /* BarberHeaderView.h */,
+				5D80FC611BCE01D50012E464 /* BarberHeaderView.m */,
+				5D80FC621BCE01D50012E464 /* BarberIntroCell.h */,
+				5D80FC631BCE01D50012E464 /* BarberIntroCell.m */,
+				5D80FC6C1BCE01D50012E464 /* StoreCell.h */,
+				5D80FC6D1BCE01D50012E464 /* StoreCell.m */,
+				5D80FC661BCE01D50012E464 /* BarberServeCell.h */,
+				5D80FC671BCE01D50012E464 /* BarberServeCell.m */,
+				5D80FC641BCE01D50012E464 /* BarberServeAppointCell.h */,
+				5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */,
+				5D80FC681BCE01D50012E464 /* BarberWorksCell.h */,
+				5D80FC691BCE01D50012E464 /* BarberWorksCell.m */,
+				5D80FC6A1BCE01D50012E464 /* BarberWorkView.h */,
+				5D80FC6B1BCE01D50012E464 /* BarberWorkView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D80FC811BCE1BD70012E464 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC841BCE1DC30012E464 /* arraw_right@3x.png */,
+				5D80FC821BCE1C2F0012E464 /* barber_header@2x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5D80FC861BCE26860012E464 /* ZPullTableView */ = {
+			isa = PBXGroup;
+			children = (
+				5D80FC8A1BCE27710012E464 /* StoreListCell.h */,
+				5D80FC8B1BCE27710012E464 /* StoreListCell.m */,
+				5D80FC8D1BCE2F310012E464 /* StoreListRequest.h */,
+				5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */,
+				5D80FC871BCE269F0012E464 /* StoreListViewController.h */,
+				5D80FC881BCE269F0012E464 /* StoreListViewController.m */,
+			);
+			path = ZPullTableView;
+			sourceTree = "<group>";
+		};
 		5D9629DB1BCBFFC000435C5E /* ZConstant */ = {
 			isa = PBXGroup;
 			children = (
+				5D80FC971BCE88500012E464 /* chelper.h */,
+				5D80FC961BCE88500012E464 /* chelper.c */,
 				5D9629DC1BCBFFC000435C5E /* ZHelper.h */,
 				5D9629DD1BCBFFC000435C5E /* ZHelper.m */,
 				5D9629DF1BCBFFD000435C5E /* ZConstant.h */,
@@ -641,12 +799,14 @@
 				5D613C101BC78393008A299F /* whiteArrow@2x.png in Resources */,
 				5D33BBF41BB4F37D00F534DF /* tabbar1_sel@2x.png in Resources */,
 				5D33BC551BB6BDC700F534DF /* nav_dismiss@2x.png in Resources */,
+				5D80FC851BCE1DC30012E464 /* arraw_right@3x.png in Resources */,
 				5D613C0D1BC78393008A299F /* grayArrow.png in Resources */,
 				5D613C0F1BC78393008A299F /* whiteArrow.png in Resources */,
 				5D613C0C1BC78393008A299F /* blueArrow@2x.png in Resources */,
 				5D613C091BC78393008A299F /* blackArrow.png in Resources */,
 				5D613C0E1BC78393008A299F /* grayArrow@2x.png in Resources */,
 				5D33BC9C1BB97E0400F534DF /* star_gray@3x.png in Resources */,
+				5D80FC831BCE1C2F0012E464 /* barber_header@2x.png in Resources */,
 				5D33BBF11BB4F37D00F534DF /* tabbar2@2x.png in Resources */,
 				5D613C0A1BC78393008A299F /* blackArrow@2x.png in Resources */,
 				5D33BB731BB4CF3300F534DF /* Assets.xcassets in Resources */,
@@ -665,26 +825,34 @@
 				5DD24E2C1BC64BBA0076923D /* AFURLRequestSerialization.m in Sources */,
 				5D613C151BC78393008A299F /* ZPullTableView.m in Sources */,
 				5D33BC5B1BB7956000F534DF /* UIView+ZAddition.m in Sources */,
+				5D80FC6E1BCE01D50012E464 /* BarberDetailViewController.m in Sources */,
 				5DD24E351BC64BBA0076923D /* UIRefreshControl+AFNetworking.m in Sources */,
 				5DB882351BBBD09B007FFE0A /* ZBaseRequest.m in Sources */,
 				5DB882331BBBD09B007FFE0A /* ZBaseModel.m in Sources */,
 				5D33BBFB1BB4FA6000F534DF /* NSString+ZAddition.m in Sources */,
+				5D80FC781BCE01D50012E464 /* BarberWorksCell.m in Sources */,
 				5D613C121BC78393008A299F /* ZLoadMoreTableFooterView.m in Sources */,
+				5D80FC711BCE01D50012E464 /* StoreModel.m in Sources */,
 				5DD24E2B1BC64BBA0076923D /* AFURLConnectionOperation.m in Sources */,
 				5DD24E301BC64BBA0076923D /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				5DD24E331BC64BBA0076923D /* UIImageView+AFNetworking.m in Sources */,
 				5D33BBCD1BB4CFEA00F534DF /* ViewController.m in Sources */,
+				5D80FC7A1BCE01D50012E464 /* StoreCell.m in Sources */,
+				5D80FC791BCE01D50012E464 /* BarberWorkView.m in Sources */,
 				5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */,
+				5D80FC701BCE01D50012E464 /* BarberWorkModel.m in Sources */,
 				5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */,
 				5D613C111BC78393008A299F /* EGORefreshTableHeaderView.m in Sources */,
 				5D613C611BC8D145008A299F /* ListModel.m in Sources */,
 				5DD24E311BC64BBA0076923D /* UIAlertView+AFNetworking.m in Sources */,
+				5D80FC751BCE01D50012E464 /* BarberIntroCell.m in Sources */,
 				5DE7A3FB1BBD633B0065D95C /* UIImage+ImageEffects.m in Sources */,
 				5D613C131BC78393008A299F /* ZMessageInterceptor.m in Sources */,
 				5DD24E291BC64BBA0076923D /* AFNetworkReachabilityManager.m in Sources */,
 				5DC70DFE1BBC068000AA5D04 /* ZToastManager.m in Sources */,
 				5DD24E361BC64BBA0076923D /* UIWebView+AFNetworking.m in Sources */,
 				5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */,
+				5D80FC731BCE01D50012E464 /* StoreRequest.m in Sources */,
 				5DD24E2E1BC64BBA0076923D /* AFURLSessionManager.m in Sources */,
 				5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */,
 				5D33BBF71BB4F5B300F534DF /* ZTabBarItem.m in Sources */,
@@ -696,14 +864,24 @@
 				5DD24E341BC64BBA0076923D /* UIProgressView+AFNetworking.m in Sources */,
 				5D33BBE51BB4F04400F534DF /* ZTabBarController.m in Sources */,
 				5DB882361BBBD09B007FFE0A /* ZRequestManager.m in Sources */,
+				5D80FC761BCE01D50012E464 /* BarberServeAppointCell.m in Sources */,
 				5DD24E2F1BC64BBA0076923D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5DD24E2A1BC64BBA0076923D /* AFSecurityPolicy.m in Sources */,
+				5D80FC981BCE88500012E464 /* chelper.c in Sources */,
+				5D80FC771BCE01D50012E464 /* BarberServeCell.m in Sources */,
+				5D80FC8C1BCE27710012E464 /* StoreListCell.m in Sources */,
+				5D80FC7D1BCE02070012E464 /* BarberModel.m in Sources */,
 				5DD24E271BC64BBA0076923D /* AFHTTPRequestOperationManager.m in Sources */,
+				5D80FC6F1BCE01D50012E464 /* BarberServeModel.m in Sources */,
 				5DD24E281BC64BBA0076923D /* AFHTTPSessionManager.m in Sources */,
+				5D80FC8F1BCE2F310012E464 /* StoreListRequest.m in Sources */,
+				5D80FC741BCE01D50012E464 /* BarberHeaderView.m in Sources */,
 				5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */,
+				5D80FC891BCE269F0012E464 /* StoreListViewController.m in Sources */,
 				5D9629DE1BCBFFC000435C5E /* ZHelper.m in Sources */,
 				5D33BB681BB4CF3300F534DF /* main.m in Sources */,
 				5DD24E261BC64BBA0076923D /* AFHTTPRequestOperation.m in Sources */,
+				5D80FC721BCE01D50012E464 /* BarberRequest.m in Sources */,
 				5D3080371BBCFFBC00EF158E /* ZStretchHeaderController.m in Sources */,
 				5DD24E2D1BC64BBA0076923D /* AFURLResponseSerialization.m in Sources */,
 				5DB882211BBBD09B007FFE0A /* LoginRequest.m in Sources */,
@@ -797,6 +975,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZFramework/PrefixHeader.pch";
 				INFOPLIST_FILE = ZFramework/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -809,6 +988,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZFramework/PrefixHeader.pch";
 				INFOPLIST_FILE = ZFramework/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

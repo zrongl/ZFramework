@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "ZTabBarController.h"
+#import "BarberWorkModel.h"
 
 @implementation AppDelegate
 

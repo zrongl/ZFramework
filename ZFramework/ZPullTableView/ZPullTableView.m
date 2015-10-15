@@ -71,7 +71,19 @@
     }
 }
 
-- (void)reloadData
+- (void)refreshTableAction
+{
+    // 保证同一时间只有一个正在请求的任务，否则不会重新进行刷新
+    if (!_isPullLoadingMore && !_isPullRefreshing) {
+        _isPullRefreshing = YES;
+        [_refreshHeaderView  egoRefreshScrollViewDataSourceDidBeginLoading:self];
+        if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
+            [_realDelegate refreshTableView:self];
+        }
+    }
+}
+
+- (void)refreshData
 {
     if (_isPullRefreshing) {
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
@@ -87,34 +99,36 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY < 0) {
-        [_refreshHeaderView egoRefreshScrollViewDidScroll:self];
-    }else{
-        NSInteger totalOffsetY = self.height + offsetY;
-        _loadedCount = totalOffsetY/46 + (totalOffsetY%46 > 0 ? 1 : 0);
-        /**
-         *  @_loadedCount < _totalCount : 是否加载足够数量
-         *  @!_isPullLoadingMore        : 是否正在请求下一页数据 防止多次发送请求
-         *  @!_isPullRefreshing         : 是否正在刷新请求
-         *  @totalOffsetY + 100 > self.contentSize.height   : 是否滑动到距离底部100像素的位置 如果小于100则自动发送请求加载更多数据
-         */
-        if (_loadedCount < _totalCount) {
-            if (!_isPullLoadingMore &&!_isPullRefreshing && totalOffsetY + 100 > self.contentSize.height) {
-                if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
-                    _isPullLoadingMore = YES;
-                    [_loadMoreFooterView setState:ZPullLoading];
-                    [_realDelegate loadMoreTableView:self];
-                }
-            }
+    if (scrollView.isDragging) {
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY < 0) {
+            [_refreshHeaderView egoRefreshScrollViewDidScroll:self];
         }else{
-            [_loadMoreFooterView setState:ZPullLoadNormal];
+            NSInteger totalOffsetY = self.height + offsetY;
+            _loadedCount = totalOffsetY/46 + (totalOffsetY%46 > 0 ? 1 : 0);
+            /**
+             *  @_loadedCount < _totalCount : 是否加载足够数量
+             *  @!_isPullLoadingMore        : 是否正在请求下一页数据 防止多次发送请求
+             *  @!_isPullRefreshing         : 是否正在刷新请求
+             *  @totalOffsetY + 100 > self.contentSize.height   : 是否滑动到距离底部100像素的位置 如果小于100则自动发送请求加载更多数据
+             */
+            if (_loadedCount < _totalCount) {
+                if (!_isPullLoadingMore &&!_isPullRefreshing && totalOffsetY + 100 > self.contentSize.height) {
+                    if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
+                        _isPullLoadingMore = YES;
+                        [_loadMoreFooterView setState:ZPullLoading];
+                        [_realDelegate loadMoreTableView:self];
+                    }
+                }
+            }else{
+                [_loadMoreFooterView setState:ZPullLoadNormal];
+            }
         }
-    }
-    
-    // transform the message to the real delegate
-    if ([_realDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
-        [_realDelegate scrollViewDidScroll:scrollView];
+        
+        // transform the message to the real delegate
+        if ([_realDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+            [_realDelegate scrollViewDidScroll:scrollView];
+        }
     }
 }
 

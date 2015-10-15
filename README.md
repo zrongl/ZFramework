@@ -19,4 +19,10 @@ TabBar控制器基类<br />
 头部可拉伸控制器<br />
 
 ####ZPullTableView		
-上拉下拉TableView<br />
+TableView三种加载事件：点击按钮刷新，下拉刷新，上拉记在更多<br />
+
+####ZBaseModel
+属性名与服务端字段名称相同无需在mapping中声明<br />
+
+####ZDemo
+各种控件在真实项目中的应用

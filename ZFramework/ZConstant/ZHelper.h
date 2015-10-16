@@ -20,10 +20,12 @@
 
 @interface ZHelper : NSObject
 
-
-+ (UIView *)createSeperateCellWithY:(CGFloat)y;
-+ (UIButton *)createButtonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action target:(id)target;
-+ (UILabel *)createLabelWithFrame:(CGRect)frame fontSize:(CGFloat)size color:(UIColor *)color textAlignment:(NSTextAlignment)alignment;
++ (UIView *)seperateCellWithY:(CGFloat)y;
++ (UIView *)seperateCellWithY:(CGFloat)y color:(UIColor *)color;
++ (UIView *)seperateLineWithY:(CGFloat)y;
++ (UIView *)seperateLineWithY:(CGFloat)y color:(UIColor *)color;
++ (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action target:(id)target;
++ (UILabel *)labelWithFrame:(CGRect)frame fontSize:(CGFloat)size color:(UIColor *)color textAlignment:(NSTextAlignment)alignment;
 
 /**
  *  16进制颜色转换为UIColor *

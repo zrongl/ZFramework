@@ -28,19 +28,19 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         CGFloat widthScale = kMainBoundsWidth/320.f;
-        _storeNameLabel = [ZHelper createLabelWithFrame:CGRectMake(8, 8, 158*widthScale, 21)
+        _storeNameLabel = [ZHelper labelWithFrame:CGRectMake(8, 8, 158*widthScale, 21)
                                                fontSize:15
                                                   color:kMainColor
                                           textAlignment:0];
         [self.contentView addSubview:_storeNameLabel];
         
-        _overAllLabel = [ZHelper createLabelWithFrame:CGRectMake(kMainBoundsWidth - 136, 8, 40, 21)
+        _overAllLabel = [ZHelper labelWithFrame:CGRectMake(kMainBoundsWidth - 136, 8, 40, 21)
                                              fontSize:13
                                                 color:[UIColor blackColor]
                                         textAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:_overAllLabel];
         
-        _orderNumLabel = [ZHelper createLabelWithFrame:CGRectMake(kMainBoundsWidth - 88, 8, 65, 21)
+        _orderNumLabel = [ZHelper labelWithFrame:CGRectMake(kMainBoundsWidth - 88, 8, 65, 21)
                                               fontSize:13
                                                  color:[UIColor blackColor]
                                          textAlignment:0];
@@ -54,14 +54,14 @@
         imageView.image = [UIImage imageNamed:@"address_img.png"];
         [self.contentView addSubview:imageView];
         
-        _addressLabel = [ZHelper createLabelWithFrame:CGRectMake(26.f, 30, kMainBoundsWidth-26-62, 0)
+        _addressLabel = [ZHelper labelWithFrame:CGRectMake(26.f, 30, kMainBoundsWidth-26-62, 0)
                                              fontSize:13
                                                 color:[UIColor blackColor]
                                         textAlignment:0];
         _addressLabel.numberOfLines = 0;
         [self.contentView addSubview:_addressLabel];
         
-        _distanceLabel = [ZHelper createLabelWithFrame:CGRectMake(kMainBoundsWidth-8-54, 49, 54, 21)
+        _distanceLabel = [ZHelper labelWithFrame:CGRectMake(kMainBoundsWidth-8-54, 49, 54, 21)
                                               fontSize:13
                                                  color:[UIColor blackColor]
                                          textAlignment:NSTextAlignmentRight];
@@ -102,6 +102,6 @@
     _distanceLabel.text = [NSString stringWithFormat:@"%@m", model.distance];
     _distanceLabel.bottom = _addressLabel.bottom;
     
-    [self.contentView addSubview:[ZHelper createSeperateCellWithY:_distanceLabel.bottom + 8]];
+    [self.contentView addSubview:[ZHelper seperateCellWithY:_distanceLabel.bottom + 8]];
 }
 @end

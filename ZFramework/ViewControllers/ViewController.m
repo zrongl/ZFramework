@@ -18,6 +18,8 @@
 #import "ZStretchHeaderController.h"
 #import "ZPullTableView.h"
 #import <CoreLocation/CoreLocation.h>
+#import "ZPhotoBrowserController.h"
+#import "ZPhoto.h"
 
 #import "ZDemo.h"
 
@@ -28,14 +30,49 @@
     [super viewDidLoad];
     [self setNavigationTitle:@"统计"];
     
-    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
+    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
     
 }
 
 - (void)pushInTo
 {
-    ViewController3 *vc = [[ViewController3 alloc] init];
+//    ViewController3 *vc = [[ViewController3 alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    NSArray *networkImages=@[
+                             @"http://www.netbian.com/d/file/20150519/f2897426d8747f2704f3d1e4c2e33fc2.jpg",
+                             @"http://www.netbian.com/d/file/20130502/701d50ab1c8ca5b5a7515b0098b7c3f3.jpg",
+                             @"http://www.netbian.com/d/file/20110418/48d30d13ae088fd80fde8b4f6f4e73f9.jpg",
+                             @"http://www.netbian.com/d/file/20150318/869f76bbd095942d8ca03ad4ad45fc80.jpg",
+                             @"http://www.netbian.com/d/file/20110424/b69ac12af595efc2473a93bc26c276b2.jpg",
+                             
+                             @"http://www.netbian.com/d/file/20140522/3e939daa0343d438195b710902590ea0.jpg",
+                             
+                             @"http://www.netbian.com/d/file/20141018/7ccbfeb9f47a729ffd6ac45115a647a3.jpg",
+                             
+                             @"http://www.netbian.com/d/file/20140724/fefe4f48b5563da35ff3e5b6aa091af4.jpg",
+                             
+                             @"http://www.netbian.com/d/file/20140529/95e170155a843061397b4bbcb1cefc50.jpg"
+                             ];
+//    NSArray *networkImages= @[@"http://ww3.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg",
+//                              @"http://ww4.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg",
+//                              @"http://ww3.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr1xydcj20gy0o9q6s.jpg",
+//                              @"http://ww2.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg",
+//                              @"http://ww2.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg",
+//                              @"http://ww3.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg",
+//                              @"http://ww4.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg",
+//                              @"http://ww3.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg"];
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *url in networkImages) {
+        ZPhoto *photo = [[ZPhoto alloc] init];
+        photo.url = url;
+        [array addObject:photo];
+    }
+    
+    ZPhotoBrowserController *vc = [[ZPhotoBrowserController alloc] init];
+    vc.photosArray = array;
+    vc.currentPhotoIndex = 3;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -76,9 +113,9 @@
                                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];
     
-    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"评分" action:@selector(scoreChange) target:self];
+    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"评分" action:@selector(scoreChange) target:self];
     [self.view addSubview:button];
-    UIButton *pushButton = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushViewController) target:self];
+    UIButton *pushButton = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushViewController) target:self];
     pushButton.y = button.bottom + 20.f;
     [self.view addSubview:pushButton];
     
@@ -130,7 +167,7 @@
     [super viewDidLoad];
     [self customBackButton];
     [self setNavigationTitle:@"推视图"];
-    UIButton *button = [ZHelper createButtonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"弹出" action:@selector(popTo) target:self];
+    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"弹出" action:@selector(popTo) target:self];
     [self.view addSubview:button];
 }
 

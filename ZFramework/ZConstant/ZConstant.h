@@ -28,6 +28,8 @@
 #define RGBA(r,g,b,a)           [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
 #define RGB(r, g, b)            RGBA(r, g, b, 1)
 
+#define String2URL(x)           [NSURL URLWithString:x]
+
 #define kMainColor              RGBA(30, 171, 254, 1.f)
 #define kSeperateLineColor      [ZHelper hexStringToColor:@"#C9C9C9"]
 #define kBackgroundColor        [ZHelper hexStringToColor:@"#F0F0F0"]

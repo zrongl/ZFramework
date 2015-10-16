@@ -25,4 +25,7 @@ TableView三种加载事件：点击按钮刷新，下拉刷新，上拉记在�
 属性名与服务端字段名称相同无需在mapping中声明<br />
 
 ####ZDemo
-各种控件在真实项目中的应用
+各种控件在真实项目中的应用<br />
+
+####ZPhotoBrowserController
+图片浏览视图控制器<br />

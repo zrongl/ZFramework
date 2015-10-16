@@ -31,7 +31,7 @@
         _nameLabel.textColor = [UIColor blackColor];
         [self.contentView addSubview:_nameLabel];
         
-        _huiLabel = [ZHelper createLabelWithFrame:CGRectMake(0, 4, 24, 14)
+        _huiLabel = [ZHelper labelWithFrame:CGRectMake(0, 4, 24, 14)
                                           fontSize:10
                                              color:[UIColor whiteColor]
                                      textAlignment:NSTextAlignmentCenter];

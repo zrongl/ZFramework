@@ -11,14 +11,31 @@
 
 @implementation ZHelper
 
-+ (UIView *)createSeperateCellWithY:(CGFloat)y
++ (UIView *)seperateCellWithY:(CGFloat)y
+{
+    return [ZHelper seperateCellWithY:y color:nil];
+}
+
++ (UIView *)seperateCellWithY:(CGFloat)y color:(UIColor *)color
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kMainBoundsWidth, 8)];
-    view.backgroundColor = kBackgroundColor;
+    view.backgroundColor = color ? color : kBackgroundColor;
     return view;
 }
 
-+ (UIButton *)createButtonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action target:(id)target
++ (UIView *)seperateLineWithY:(CGFloat)y
+{
+    return [ZHelper seperateLineWithY:y color:nil];
+}
+
++ (UIView *)seperateLineWithY:(CGFloat)y color:(UIColor *)color
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kMainBoundsWidth, 0.5)];
+    view.backgroundColor = color ? color : kBackgroundColor;
+    return view;
+}
+
++ (UIButton *)buttonWithFrame:(CGRect)frame title:(NSString *)title action:(SEL)action target:(id)target
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
@@ -30,7 +47,7 @@
     return button;
 }
 
-+ (UILabel *)createLabelWithFrame:(CGRect)frame fontSize:(CGFloat)size color:(UIColor *)color textAlignment:(NSTextAlignment)alignment
++ (UILabel *)labelWithFrame:(CGRect)frame fontSize:(CGFloat)size color:(UIColor *)color textAlignment:(NSTextAlignment)alignment
 {
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];

@@ -36,13 +36,13 @@
         _headerImageView.clipsToBounds = YES;
         [self addSubview:_headerImageView];
         
-        _nameLabel = [ZHelper createLabelWithFrame:CGRectMake((frame.size.width - 52)/2, 84.f+kTopMargin, 52.f, 21)
+        _nameLabel = [ZHelper labelWithFrame:CGRectMake((frame.size.width - 52)/2, 84.f+kTopMargin, 52.f, 21)
                                        fontSize:15
                                           color:[UIColor whiteColor]
                                   textAlignment:NSTextAlignmentCenter];
         [self addSubview:_nameLabel];
         
-        _mottoLabel = [ZHelper createLabelWithFrame:CGRectMake(8, 110+kTopMargin, frame.size.width - 16, 21.f)
+        _mottoLabel = [ZHelper labelWithFrame:CGRectMake(8, 110+kTopMargin, frame.size.width - 16, 21.f)
                                         fontSize:13
                                            color:[UIColor whiteColor]
                                    textAlignment:NSTextAlignmentCenter];
@@ -51,12 +51,12 @@
         _contentView = [[UIView alloc] initWithFrame:CGRectMake((frame.size.width - 240)/2, 131+kTopMargin, 240, 21)];
         _contentView.backgroundColor = [UIColor clearColor];
         
-        _attenCountLabel = [ZHelper createLabelWithFrame:CGRectMake(40, 0, 76, 21)
+        _attenCountLabel = [ZHelper labelWithFrame:CGRectMake(40, 0, 76, 21)
                                              fontSize:13
                                                 color:[UIColor whiteColor]
                                         textAlignment:NSTextAlignmentRight];
         [_contentView addSubview:_attenCountLabel];
-        _orderCountLabel = [ZHelper createLabelWithFrame:CGRectMake(120, 0, 76, 21)
+        _orderCountLabel = [ZHelper labelWithFrame:CGRectMake(120, 0, 76, 21)
                                              fontSize:13
                                                 color:[UIColor whiteColor]
                                         textAlignment:NSTextAlignmentRight];

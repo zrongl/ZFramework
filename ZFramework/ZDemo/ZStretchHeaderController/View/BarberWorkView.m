@@ -29,12 +29,12 @@
         _imageView.layer.cornerRadius = 2.f;
         _imageView.userInteractionEnabled = NO;
         [self addSubview:_imageView];
-        _remarkLabel = [ZHelper createLabelWithFrame:CGRectMake(0, _imageView.bottom, self.width, self.height-self.width)
+        _remarkLabel = [ZHelper labelWithFrame:CGRectMake(0, _imageView.bottom, self.width, self.height-self.width)
                                          fontSize:14
                                             color:[UIColor blackColor]
                                     textAlignment:0];
         [self addSubview:_remarkLabel];
-        _numberLabel = [ZHelper createLabelWithFrame:CGRectMake(self.width-25, self.width-25, 20, 20)
+        _numberLabel = [ZHelper labelWithFrame:CGRectMake(self.width-25, self.width-25, 20, 20)
                                          fontSize:13
                                             color:[UIColor whiteColor]
                                     textAlignment:NSTextAlignmentCenter];

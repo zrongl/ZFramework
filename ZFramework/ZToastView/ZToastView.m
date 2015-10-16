@@ -15,6 +15,7 @@
 @interface ZToastView()
 {
     UILabel *_messageLabel;
+    NSInteger _showCount;
 }
 @end
 

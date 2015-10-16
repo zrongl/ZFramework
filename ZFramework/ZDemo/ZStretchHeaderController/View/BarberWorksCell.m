@@ -40,7 +40,7 @@
         [self.contentView addSubview:_midView];
         _rightView = [[BarberWorkView alloc] initWithFrame:CGRectMake(_midView.right + kMargin*widthScale, kMargin + 37, kItemWidth*widthScale, (kItemWidth+20)*widthScale)];
         [self.contentView addSubview:_rightView];
-        [self.contentView addSubview:[ZHelper createSeperateCellWithY:_leftView.bottom + 8]];
+        [self.contentView addSubview:[ZHelper seperateCellWithY:_leftView.bottom + 8]];
     }
     
     return self;

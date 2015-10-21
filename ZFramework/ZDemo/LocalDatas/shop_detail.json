@@ -1,0 +1,16 @@
+{
+    "code": "200",
+    "msg": "成功",
+    "data": {
+        "id": "1",
+        "name": "米娜造型",
+        "address": "北京市北京西站南广场路东东花市北里20号楼6单元501室",
+        "order_num": "5",
+        "overall": "5",
+        "start_price": "99.00",
+        "distance": 100,
+        "is_go": 1,
+        "is_activity": "1",
+        "path": "http://localhost/meiye/shop.png"
+    }
+}

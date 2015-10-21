@@ -67,7 +67,7 @@
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
 {
     _currentPhotoIndex = currentPhotoIndex;
-    _pageIndexLabel.text = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)_currentPhotoIndex, _photos.count];
+    _pageIndexLabel.text = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)_currentPhotoIndex, (unsigned long)_photos.count];
     
     NSString *text = @"沈腾多次上春晚 沈腾多次上春晚 网易娱乐10月15日报道 2016央视猴年春晚正在紧张筹备当中,继魔术师傅琰东接受到春晚导演组邀请外,“开心麻花”沈腾. 沈腾多次上春晚 网易娱乐10月15日报道 2016央视猴年春晚正在紧张筹备当中,继魔术师傅琰东接受到春晚导演组邀请外,“开心麻花”沈腾.";
     _infoLabel.text = text;

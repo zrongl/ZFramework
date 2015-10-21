@@ -33,13 +33,13 @@
 {
     self = [super init];
     if (self) {
-        _userName = [[NSUserDefaults standardUserDefaults] objectForKey:kUserName];
-        _userRole = [[NSUserDefaults standardUserDefaults] objectForKey:kUserRole];
-        _shopName = [[NSUserDefaults standardUserDefaults] objectForKey:kShopName];
-        _autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:kAutoLogin];
-        _password = [[NSUserDefaults standardUserDefaults] objectForKey:kPassword];
-        _timeStamp = [[NSUserDefaults standardUserDefaults] objectForKey:kTimeStamp];
-        _sign = [[NSUserDefaults standardUserDefaults] objectForKey:kSign];
+        _userName   = [[NSUserDefaults standardUserDefaults] objectForKey:kUserName];
+        _userRole   = [[NSUserDefaults standardUserDefaults] objectForKey:kUserRole];
+        _shopName   = [[NSUserDefaults standardUserDefaults] objectForKey:kShopName];
+        _autoLogin  = [[NSUserDefaults standardUserDefaults] boolForKey:kAutoLogin];
+        _password   = [[NSUserDefaults standardUserDefaults] objectForKey:kPassword];
+        _timeStamp  = [[NSUserDefaults standardUserDefaults] objectForKey:kTimeStamp];
+        _sign       = [[NSUserDefaults standardUserDefaults] objectForKey:kSign];
     }
     
     return self;

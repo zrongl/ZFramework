@@ -1,0 +1,34 @@
+{
+    "code": "200",
+    "msg": "成功",
+    "data": [
+        {
+            "id": "3",
+            "product_name": "卷发",
+            "is_activity": "1",
+            "is_base": "1",
+            "price": "49"
+        },
+        {
+            "id": "3",
+            "product_name": "巴黎欧莱雅",
+            "is_activity": "1",
+            "is_base": "0",
+            "price": "149"
+        },
+        {
+            "id": "3",
+            "product_nafdsfas": "烫发",
+            "is_activity": "0",
+            "is_base": "1",
+            "price": "4"
+        },
+        {
+            "id": "3",
+            "product_name": "巴黎欧莱雅-焗油",
+            "is_activity": "0",
+            "is_base": "0",
+            "price": "429"
+        }
+    ]
+}

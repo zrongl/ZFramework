@@ -11,10 +11,10 @@
 #import "UIImage+ImageEffects.h"
 
 #import "BarberDetailViewController.h"
+#import "ZBaseRequest.h"
 
 #import "BarberHeaderView.h"
 #import "BarberIntroCell.h"
-#import "BarberRequest.h"
 
 #import "BarberServeCell.h"
 #import "BarberServeModel.h"
@@ -24,15 +24,30 @@
 
 #import "StoreModel.h"
 #import "StoreCell.h"
-#import "StoreRequest.h"
 
 #import "UIImageView+AFNetworking.h"
 
-#define kStretchViewHeight  217
+#define kStretchViewHeight      217
 #define kBarberIntroCellKey     @"1801"
 #define kStoreInfoCellKey       @"1802"
 #define kServeItemCellKey       @"1803"
 #define kBarberWorksCellKey     @"1804"
+
+//NSArray *networkImages=@[
+//                         @"http://www.netbian.com/d/file/20150519/f2897426d8747f2704f3d1e4c2e33fc2.jpg",
+//                         @"http://www.netbian.com/d/file/20130502/701d50ab1c8ca5b5a7515b0098b7c3f3.jpg",
+//                         @"http://www.netbian.com/d/file/20110418/48d30d13ae088fd80fde8b4f6f4e73f9.jpg",
+//                         @"http://www.netbian.com/d/file/20150318/869f76bbd095942d8ca03ad4ad45fc80.jpg",
+//                         @"http://www.netbian.com/d/file/20110424/b69ac12af595efc2473a93bc26c276b2.jpg",
+//
+//                         @"http://www.netbian.com/d/file/20140522/3e939daa0343d438195b710902590ea0.jpg",
+//
+//                         @"http://www.netbian.com/d/file/20141018/7ccbfeb9f47a729ffd6ac45115a647a3.jpg",
+//
+//                         @"http://www.netbian.com/d/file/20140724/fefe4f48b5563da35ff3e5b6aa091af4.jpg",
+//
+//                         @"http://www.netbian.com/d/file/20140529/95e170155a843061397b4bbcb1cefc50.jpg"
+//                         ];
 
 @interface BarberDetailViewController ()<UITableViewDataSource, UITableViewDelegate, BarberServeCellDelegate,BarberWorkViewDelegate>
 
@@ -172,51 +187,27 @@
 
 - (void)requestBarberDetail
 {
-    BarberRequest *request = [[BarberRequest alloc] initWithBarberId:@""];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        _barberModel = [BarberModel objectWithKeyValues:[request.resultDic objectForKey:@"data"]];
-        [_headerView setModel:_barberModel];
-        [self updateCellKeyArray];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-                         
-                     }];
+    _barberModel = [BarberModel objectWithKeyValues:[[ZBaseRequest localDataFromPath:SourcePath(@"barber_detail", @"json")] objectForKey:@"data"]];
+    [_headerView setModel:_barberModel];
+    [self updateCellKeyArray];
 }
 
 - (void)requestSotreInfo
 {
-    StoreRequest *request = [[StoreRequest alloc] initWithItemId:@"" targetId:@"" barberId:@""];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        _storeModel = [StoreModel objectWithKeyValues:[request.resultDic objectForKey:@"data"]];
-        [self updateCellKeyArray];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-                         
-                     }];
+    _storeModel = [StoreModel objectWithKeyValues:[[ZBaseRequest localDataFromPath:SourcePath(@"shop_detail", @"json")] objectForKey:@"data"]];
+    [self updateCellKeyArray];
 }
 
 - (void)requestBarberServeList
 {
-    BarberServeRequest *request = [[BarberServeRequest alloc] initWithBarberId:@""];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        _servesArray = [BarberServeModel objectsArrayWithKeyValuesArray:[request.resultDic objectForKey:@"data"]];
-        [self updateCellKeyArray];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-        
-                     }];
+    _servesArray = [BarberServeModel objectsArrayWithKeyValuesArray:[[ZBaseRequest localDataFromPath:SourcePath(@"barber_serve", @"json")] objectForKey:@"data"]];
+    [self updateCellKeyArray];
 }
 
 - (void)requestBarberWorks
 {
-    BarberWorksRequest *request = [[BarberWorksRequest alloc] initWithBarberId:@""];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        _worksArray = [BarberWorkModel objectsArrayWithKeyValuesArray:[request.resultDic objectForKey:@"data"]];
-        [self updateCellKeyArray];
-    }
-                     onFailed:^(ZBaseRequest *request, NSError *error) {
-                         
-                     }];
+    _worksArray = [BarberWorkModel objectsArrayWithKeyValuesArray:[[ZBaseRequest localDataFromPath:SourcePath(@"barber_works", @"json")] objectForKey:@"data"]];
+    [self updateCellKeyArray];
 }
 
 #pragma mark - UITableViewDeleagte

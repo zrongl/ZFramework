@@ -9,15 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-/**
- *  返回x以内的带有两位小数的浮点数
- *
- *  @param x x
- *
- *  @return x以内的带有两位小数的浮点数
- */
-#define xRandom(x) (arc4random()%x + arc4random()%100/100.f)
-
 @interface ZHelper : NSObject
 
 + (UIView *)seperateCellWithY:(CGFloat)y;

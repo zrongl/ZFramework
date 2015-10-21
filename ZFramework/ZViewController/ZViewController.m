@@ -12,6 +12,9 @@
 #import <Availability.h>
 #import "ZConstant.h"
 
+#define kLoaddingViewWidth  120.f
+#define kIndicatorViewSide  37.f
+
 @implementation ZNavigationController
 
 - (void)viewDidLoad
@@ -32,8 +35,8 @@
 
 @interface ZViewController ()
 {
-    ZLoadingView *_loadingView;
-    NSInteger *_loadingShowCount;
+    UIView      *_loadingView;
+    NSInteger   *_loadingShowCount;
 }
 
 @end
@@ -161,36 +164,11 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
-- (void)showLoadingViewWithTitle:(NSString *)title
+- (UIView *)createLoadingViewWith:(NSString *)title
 {
-    _loadingShowCount ++;
-    if (!_loadingView) {
-        _loadingView = [ZLoadingView loadingViewWith:title];
-        [self.view addSubview:_loadingView];
-    }
-    _loadingView.hidden = NO;
-}
-
-- (void)hideLoadingView
-{
-    _loadingShowCount --;
-    if (_loadingShowCount == 0) {
-        _loadingView.hidden = YES;
-    }
-}
-
-@end
-
-#define kLoaddingViewWidth  120.f
-#define kIndicatorViewSide  37.f
-
-@implementation ZLoadingView
-
-+ (ZLoadingView *)loadingViewWith:(NSString *)title
-{
-    ZLoadingView *view = [[ZLoadingView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
     view.alpha = 1.f;
-    UIView *loadingView = [[ZLoadingView alloc] initWithFrame:CGRectMake(0, 0, kLoaddingViewWidth, 100)];
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLoaddingViewWidth, 100)];
     loadingView.backgroundColor = [UIColor darkGrayColor];
     loadingView.layer.cornerRadius = 10.f;
     
@@ -211,12 +189,30 @@
     }else{
         indicatorView.frame = CGRectMake(loadingView.center.x - kIndicatorViewSide/2, loadingView.center.y - kIndicatorViewSide/2, kIndicatorViewSide, kIndicatorViewSide);
     }
-
+    
     [loadingView addSubview:indicatorView];
     [view addSubview:loadingView];
     [view setFrame:CGRectMake((kMainBoundsWidth-loadingView.width)/2.f, ((kMainBoundsHeight - kNavgationBarHeight) - loadingView.height)/2 - kNavgationBarHeight/2, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
     
     return view;
+}
+
+- (void)showLoadingViewWithTitle:(NSString *)title
+{
+    _loadingShowCount ++;
+    if (!_loadingView) {
+        _loadingView = [self createLoadingViewWith:title];
+        [self.view addSubview:_loadingView];
+    }
+    _loadingView.hidden = NO;
+}
+
+- (void)hideLoadingView
+{
+    _loadingShowCount --;
+    if (_loadingShowCount == 0) {
+        _loadingView.hidden = YES;
+    }
 }
 
 @end

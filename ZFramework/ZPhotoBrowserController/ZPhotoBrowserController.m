@@ -33,11 +33,11 @@
 // 系统navigation bar隐藏及显示操作
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 // 状态栏的隐藏与显示控制
@@ -75,6 +75,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     // 如果不设置此项，状态栏隐藏时，视图会向上便宜20像素
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     // 初始化scrollView
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];

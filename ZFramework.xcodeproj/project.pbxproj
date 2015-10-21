@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D069ACF1BD727D300285BA6 /* ZAchiverCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */; settings = {ASSET_TAGS = (); }; };
+		5D069AD01BD727D300285BA6 /* ZAchiverObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACC1BD727D300285BA6 /* ZAchiverObjectCache.m */; settings = {ASSET_TAGS = (); }; };
+		5D069AD11BD727D300285BA6 /* ZUserDefaultCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACE1BD727D300285BA6 /* ZUserDefaultCache.m */; settings = {ASSET_TAGS = (); }; };
 		5D3080371BBCFFBC00EF158E /* ZStretchHeaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3080361BBCFFBC00EF158E /* ZStretchHeaderController.m */; settings = {ASSET_TAGS = (); }; };
 		5D33BB681BB4CF3300F534DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BB671BB4CF3300F534DF /* main.m */; };
 		5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33BB6A1BB4CF3300F534DF /* AppDelegate.m */; };
@@ -46,13 +49,10 @@
 		5D613C141BC78393008A299F /* ZRefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C061BC78393008A299F /* ZRefreshTableHeaderView.m */; settings = {ASSET_TAGS = (); }; };
 		5D613C151BC78393008A299F /* ZPullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C081BC78393008A299F /* ZPullTableView.m */; settings = {ASSET_TAGS = (); }; };
 		5D613C171BC78415008A299F /* reading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D613C161BC78415008A299F /* reading.png */; settings = {ASSET_TAGS = (); }; };
-		5D613C611BC8D145008A299F /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C601BC8D145008A299F /* ListModel.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC6E1BCE01D50012E464 /* BarberDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC6F1BCE01D50012E464 /* BarberServeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC551BCE01D50012E464 /* BarberServeModel.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC701BCE01D50012E464 /* BarberWorkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC571BCE01D50012E464 /* BarberWorkModel.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC711BCE01D50012E464 /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC591BCE01D50012E464 /* StoreModel.m */; settings = {ASSET_TAGS = (); }; };
-		5D80FC721BCE01D50012E464 /* BarberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC5C1BCE01D50012E464 /* BarberRequest.m */; settings = {ASSET_TAGS = (); }; };
-		5D80FC731BCE01D50012E464 /* StoreRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC5E1BCE01D50012E464 /* StoreRequest.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC741BCE01D50012E464 /* BarberHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC611BCE01D50012E464 /* BarberHeaderView.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC751BCE01D50012E464 /* BarberIntroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC631BCE01D50012E464 /* BarberIntroCell.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC761BCE01D50012E464 /* BarberServeAppointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -65,8 +65,7 @@
 		5D80FC851BCE1DC30012E464 /* arraw_right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D80FC841BCE1DC30012E464 /* arraw_right@3x.png */; settings = {ASSET_TAGS = (); }; };
 		5D80FC891BCE269F0012E464 /* StoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC881BCE269F0012E464 /* StoreListViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FC8C1BCE27710012E464 /* StoreListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC8B1BCE27710012E464 /* StoreListCell.m */; settings = {ASSET_TAGS = (); }; };
-		5D80FC8F1BCE2F310012E464 /* StoreListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */; settings = {ASSET_TAGS = (); }; };
-		5D80FC981BCE88500012E464 /* chelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC961BCE88500012E464 /* chelper.c */; settings = {ASSET_TAGS = (); }; };
+		5D80FC981BCE88500012E464 /* helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FC961BCE88500012E464 /* helper.c */; settings = {ASSET_TAGS = (); }; };
 		5D80FCAD1BCF7BA30012E464 /* ZPhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCAC1BCF7BA30012E464 /* ZPhotoBrowserController.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCB31BCF7C010012E464 /* ZPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCB21BCF7C010012E464 /* ZPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCB61BCF7C1C0012E464 /* ZPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCB51BCF7C1C0012E464 /* ZPhotoView.m */; settings = {ASSET_TAGS = (); }; };
@@ -77,7 +76,6 @@
 		5D80FCE21BCF7E3F0012E464 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCC41BCF7E3F0012E464 /* SDWebImageDecoder.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCE31BCF7E3F0012E464 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCC61BCF7E3F0012E464 /* SDWebImageDownloader.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCE41BCF7E3F0012E464 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCC81BCF7E3F0012E464 /* SDWebImageDownloaderOperation.m */; settings = {ASSET_TAGS = (); }; };
-		5D80FCE51BCF7E3F0012E464 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCCA1BCF7E3F0012E464 /* SDWebImageManager+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCE61BCF7E3F0012E464 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCCC1BCF7E3F0012E464 /* SDWebImageManager.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCE71BCF7E3F0012E464 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCCF1BCF7E3F0012E464 /* SDWebImagePrefetcher.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCE81BCF7E3F0012E464 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCD11BCF7E3F0012E464 /* UIButton+WebCache.m */; settings = {ASSET_TAGS = (); }; };
@@ -88,15 +86,14 @@
 		5D80FCED1BCF7E3F0012E464 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCDB1BCF7E3F0012E464 /* UIImageView+WebCache.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCEE1BCF7E3F0012E464 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCDD1BCF7E3F0012E464 /* UIView+WebCacheOperation.m */; settings = {ASSET_TAGS = (); }; };
 		5D80FCF51BCF97080012E464 /* ZPhotoInfoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCF41BCF97080012E464 /* ZPhotoInfoBar.m */; settings = {ASSET_TAGS = (); }; };
+		5D80FCF91BD0F7240012E464 /* ZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80FCF81BD0F7240012E464 /* ZProgressView.m */; settings = {ASSET_TAGS = (); }; };
 		5D9629DE1BCBFFC000435C5E /* ZHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9629DD1BCBFFC000435C5E /* ZHelper.m */; settings = {ASSET_TAGS = (); }; };
 		5DB8821F1BBBD09B007FFE0A /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */; settings = {ASSET_TAGS = (); }; };
-		5DB882211BBBD09B007FFE0A /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E71BBBD09B007FFE0A /* LoginRequest.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882331BBBD09B007FFE0A /* ZBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882111BBBD09B007FFE0A /* ZBaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882351BBBD09B007FFE0A /* ZBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882161BBBD09B007FFE0A /* ZBaseRequest.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882361BBBD09B007FFE0A /* ZRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882181BBBD09B007FFE0A /* ZRequestManager.m */; settings = {ASSET_TAGS = (); }; };
 		5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8821B1BBBD09B007FFE0A /* ZGlobalData.m */; settings = {ASSET_TAGS = (); }; };
-		5DC70DFE1BBC068000AA5D04 /* ZToastManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70DFD1BBC068000AA5D04 /* ZToastManager.m */; settings = {ASSET_TAGS = (); }; };
 		5DC70E031BBC124700AA5D04 /* ZToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E021BBC124700AA5D04 /* ZToastView.m */; settings = {ASSET_TAGS = (); }; };
 		5DC70E061BBC2C3800AA5D04 /* ZLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */; settings = {ASSET_TAGS = (); }; };
 		5DC70E091BBC2FC300AA5D04 /* location_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -118,9 +115,22 @@
 		5DD24E351BC64BBA0076923D /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD24E231BC64BBA0076923D /* UIRefreshControl+AFNetworking.m */; settings = {ASSET_TAGS = (); }; };
 		5DD24E361BC64BBA0076923D /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD24E251BC64BBA0076923D /* UIWebView+AFNetworking.m */; settings = {ASSET_TAGS = (); }; };
 		5DE7A3FB1BBD633B0065D95C /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7A3FA1BBD633B0065D95C /* UIImage+ImageEffects.m */; settings = {ASSET_TAGS = (); }; };
+		5DEAB8331BD5330900CDB73F /* ZLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEAB8321BD5330900CDB73F /* ZLoadingView.m */; settings = {ASSET_TAGS = (); }; };
+		5DEAB83D1BD5EC0A00CDB73F /* barber_detail.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEAB8351BD5EB2600CDB73F /* barber_detail.json */; };
+		5DEAB83F1BD5EC0A00CDB73F /* barber_works.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEAB8371BD5EB2600CDB73F /* barber_works.json */; };
+		5DEAB8401BD5EC0A00CDB73F /* shop_detail.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEAB8381BD5EB2600CDB73F /* shop_detail.json */; };
+		5DEAB8431BD5F0C700CDB73F /* barber_serve.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEAB8411BD5F0AA00CDB73F /* barber_serve.json */; };
+		5DEAB8451BD5F2EC00CDB73F /* shop_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEAB8441BD5F2EC00CDB73F /* shop_list.json */; settings = {ASSET_TAGS = (); }; };
+		5DEAB8481BD60BC100CDB73F /* ZDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEAB8471BD60BC100CDB73F /* ZDemoViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D069AC91BD727D300285BA6 /* ZAchiverCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAchiverCache.h; sourceTree = "<group>"; };
+		5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAchiverCache.m; sourceTree = "<group>"; };
+		5D069ACB1BD727D300285BA6 /* ZAchiverObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAchiverObjectCache.h; sourceTree = "<group>"; };
+		5D069ACC1BD727D300285BA6 /* ZAchiverObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAchiverObjectCache.m; sourceTree = "<group>"; };
+		5D069ACD1BD727D300285BA6 /* ZUserDefaultCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUserDefaultCache.h; sourceTree = "<group>"; };
+		5D069ACE1BD727D300285BA6 /* ZUserDefaultCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZUserDefaultCache.m; sourceTree = "<group>"; };
 		5D3080351BBCFFBC00EF158E /* ZStretchHeaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZStretchHeaderController.h; sourceTree = "<group>"; };
 		5D3080361BBCFFBC00EF158E /* ZStretchHeaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZStretchHeaderController.m; sourceTree = "<group>"; };
 		5D33BB631BB4CF3300F534DF /* ZFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,8 +186,6 @@
 		5D613C071BC78393008A299F /* ZPullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPullTableView.h; sourceTree = "<group>"; };
 		5D613C081BC78393008A299F /* ZPullTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPullTableView.m; sourceTree = "<group>"; };
 		5D613C161BC78415008A299F /* reading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reading.png; sourceTree = "<group>"; };
-		5D613C5F1BC8D145008A299F /* ListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListModel.h; sourceTree = "<group>"; };
-		5D613C601BC8D145008A299F /* ListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListModel.m; sourceTree = "<group>"; };
 		5D80FC511BCE01D50012E464 /* BarberDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberDetailViewController.h; sourceTree = "<group>"; };
 		5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberDetailViewController.m; sourceTree = "<group>"; };
 		5D80FC541BCE01D50012E464 /* BarberServeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberServeModel.h; sourceTree = "<group>"; };
@@ -186,10 +194,6 @@
 		5D80FC571BCE01D50012E464 /* BarberWorkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberWorkModel.m; sourceTree = "<group>"; };
 		5D80FC581BCE01D50012E464 /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
 		5D80FC591BCE01D50012E464 /* StoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreModel.m; sourceTree = "<group>"; };
-		5D80FC5B1BCE01D50012E464 /* BarberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberRequest.h; sourceTree = "<group>"; };
-		5D80FC5C1BCE01D50012E464 /* BarberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberRequest.m; sourceTree = "<group>"; };
-		5D80FC5D1BCE01D50012E464 /* StoreRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreRequest.h; sourceTree = "<group>"; };
-		5D80FC5E1BCE01D50012E464 /* StoreRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreRequest.m; sourceTree = "<group>"; };
 		5D80FC601BCE01D50012E464 /* BarberHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberHeaderView.h; sourceTree = "<group>"; };
 		5D80FC611BCE01D50012E464 /* BarberHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarberHeaderView.m; sourceTree = "<group>"; };
 		5D80FC621BCE01D50012E464 /* BarberIntroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarberIntroCell.h; sourceTree = "<group>"; };
@@ -214,11 +218,8 @@
 		5D80FC881BCE269F0012E464 /* StoreListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListViewController.m; sourceTree = "<group>"; };
 		5D80FC8A1BCE27710012E464 /* StoreListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListCell.h; sourceTree = "<group>"; };
 		5D80FC8B1BCE27710012E464 /* StoreListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListCell.m; sourceTree = "<group>"; };
-		5D80FC8D1BCE2F310012E464 /* StoreListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListRequest.h; sourceTree = "<group>"; };
-		5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListRequest.m; sourceTree = "<group>"; };
-		5D80FC901BCE2FAB0012E464 /* ZDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDemo.h; sourceTree = "<group>"; };
-		5D80FC961BCE88500012E464 /* chelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = chelper.c; sourceTree = "<group>"; };
-		5D80FC971BCE88500012E464 /* chelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chelper.h; sourceTree = "<group>"; };
+		5D80FC961BCE88500012E464 /* helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = helper.c; sourceTree = "<group>"; };
+		5D80FC971BCE88500012E464 /* helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helper.h; sourceTree = "<group>"; };
 		5D80FCAB1BCF7BA30012E464 /* ZPhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPhotoBrowserController.h; sourceTree = "<group>"; };
 		5D80FCAC1BCF7BA30012E464 /* ZPhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPhotoBrowserController.m; sourceTree = "<group>"; };
 		5D80FCB11BCF7C010012E464 /* ZPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPhoto.h; sourceTree = "<group>"; };
@@ -239,8 +240,6 @@
 		5D80FCC61BCF7E3F0012E464 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
 		5D80FCC71BCF7E3F0012E464 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
 		5D80FCC81BCF7E3F0012E464 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
-		5D80FCC91BCF7E3F0012E464 /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
-		5D80FCCA1BCF7E3F0012E464 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
 		5D80FCCB1BCF7E3F0012E464 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
 		5D80FCCC1BCF7E3F0012E464 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
 		5D80FCCD1BCF7E3F0012E464 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
@@ -262,6 +261,8 @@
 		5D80FCDD1BCF7E3F0012E464 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		5D80FCF31BCF97080012E464 /* ZPhotoInfoBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPhotoInfoBar.h; sourceTree = "<group>"; };
 		5D80FCF41BCF97080012E464 /* ZPhotoInfoBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPhotoInfoBar.m; sourceTree = "<group>"; };
+		5D80FCF71BD0F7240012E464 /* ZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZProgressView.h; sourceTree = "<group>"; };
+		5D80FCF81BD0F7240012E464 /* ZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZProgressView.m; sourceTree = "<group>"; };
 		5D9629DC1BCBFFC000435C5E /* ZHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHelper.h; sourceTree = "<group>"; };
 		5D9629DD1BCBFFC000435C5E /* ZHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHelper.m; sourceTree = "<group>"; };
 		5D9629DF1BCBFFD000435C5E /* ZConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZConstant.h; sourceTree = "<group>"; };
@@ -269,8 +270,6 @@
 		5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		5DB881E21BBBD09B007FFE0A /* ZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLocationManager.h; sourceTree = "<group>"; };
 		5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLocationManager.m; sourceTree = "<group>"; };
-		5DB881E61BBBD09B007FFE0A /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequest.h; sourceTree = "<group>"; };
-		5DB881E71BBBD09B007FFE0A /* LoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRequest.m; sourceTree = "<group>"; };
 		5DB882101BBBD09B007FFE0A /* ZBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBaseModel.h; sourceTree = "<group>"; };
 		5DB882111BBBD09B007FFE0A /* ZBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBaseModel.m; sourceTree = "<group>"; };
 		5DB882151BBBD09B007FFE0A /* ZBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBaseRequest.h; sourceTree = "<group>"; };
@@ -279,8 +278,6 @@
 		5DB882181BBBD09B007FFE0A /* ZRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRequestManager.m; sourceTree = "<group>"; };
 		5DB8821A1BBBD09B007FFE0A /* ZGlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGlobalData.h; sourceTree = "<group>"; };
 		5DB8821B1BBBD09B007FFE0A /* ZGlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGlobalData.m; sourceTree = "<group>"; };
-		5DC70DFC1BBC068000AA5D04 /* ZToastManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZToastManager.h; sourceTree = "<group>"; };
-		5DC70DFD1BBC068000AA5D04 /* ZToastManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZToastManager.m; sourceTree = "<group>"; };
 		5DC70E011BBC124700AA5D04 /* ZToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZToastView.h; sourceTree = "<group>"; };
 		5DC70E021BBC124700AA5D04 /* ZToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZToastView.m; sourceTree = "<group>"; };
 		5DC70E041BBC2C3800AA5D04 /* ZLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLocationView.h; sourceTree = "<group>"; };
@@ -324,6 +321,15 @@
 		5DD24E251BC64BBA0076923D /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		5DE7A3F91BBD633A0065D95C /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		5DE7A3FA1BBD633B0065D95C /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		5DEAB8311BD5330900CDB73F /* ZLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLoadingView.h; sourceTree = "<group>"; };
+		5DEAB8321BD5330900CDB73F /* ZLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLoadingView.m; sourceTree = "<group>"; };
+		5DEAB8351BD5EB2600CDB73F /* barber_detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = barber_detail.json; sourceTree = "<group>"; };
+		5DEAB8371BD5EB2600CDB73F /* barber_works.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = barber_works.json; sourceTree = "<group>"; };
+		5DEAB8381BD5EB2600CDB73F /* shop_detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shop_detail.json; sourceTree = "<group>"; };
+		5DEAB8411BD5F0AA00CDB73F /* barber_serve.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = barber_serve.json; sourceTree = "<group>"; };
+		5DEAB8441BD5F2EC00CDB73F /* shop_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shop_list.json; sourceTree = "<group>"; };
+		5DEAB8461BD60BC100CDB73F /* ZDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDemoViewController.h; sourceTree = "<group>"; };
+		5DEAB8471BD60BC100CDB73F /* ZDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDemoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +343,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D069AC81BD727D300285BA6 /* ZCache */ = {
+			isa = PBXGroup;
+			children = (
+				5D069AC91BD727D300285BA6 /* ZAchiverCache.h */,
+				5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */,
+				5D069ACD1BD727D300285BA6 /* ZUserDefaultCache.h */,
+				5D069ACE1BD727D300285BA6 /* ZUserDefaultCache.m */,
+				5D069ACB1BD727D300285BA6 /* ZAchiverObjectCache.h */,
+				5D069ACC1BD727D300285BA6 /* ZAchiverObjectCache.m */,
+			);
+			path = ZCache;
+			sourceTree = "<group>";
+		};
 		5D3080341BBCFF8B00EF158E /* ZStretchHeaderController */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				5D80FC4F1BCE01D50012E464 /* ZDemo */,
+				5D069AC81BD727D300285BA6 /* ZCache */,
 				5D9629DB1BCBFFC000435C5E /* ZConstant */,
 				5D33BBF81BB4FA2E00F534DF /* ZAdditions */,
 				5DB8821C1BBBD09B007FFE0A /* ZToastView */,
@@ -411,7 +431,6 @@
 		5D33BBB31BB4CFEA00F534DF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5DB881E51BBBD09B007FFE0A /* Request */,
 				5D33BBB41BB4CFEA00F534DF /* ViewController.h */,
 				5D33BBB51BB4CFEA00F534DF /* ViewController.m */,
 			);
@@ -548,9 +567,11 @@
 		5D80FC4F1BCE01D50012E464 /* ZDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5DEAB8341BD5EB2600CDB73F /* LocalDatas */,
 				5D80FC861BCE26860012E464 /* ZPullTableView */,
 				5D80FC501BCE01D50012E464 /* ZStretchHeaderController */,
-				5D80FC901BCE2FAB0012E464 /* ZDemo.h */,
+				5DEAB8461BD60BC100CDB73F /* ZDemoViewController.h */,
+				5DEAB8471BD60BC100CDB73F /* ZDemoViewController.m */,
 			);
 			path = ZDemo;
 			sourceTree = "<group>";
@@ -558,11 +579,10 @@
 		5D80FC501BCE01D50012E464 /* ZStretchHeaderController */ = {
 			isa = PBXGroup;
 			children = (
-				5D80FC811BCE1BD70012E464 /* Resource */,
 				5D80FC511BCE01D50012E464 /* BarberDetailViewController.h */,
 				5D80FC521BCE01D50012E464 /* BarberDetailViewController.m */,
+				5D80FC811BCE1BD70012E464 /* Resource */,
 				5D80FC531BCE01D50012E464 /* Model */,
-				5D80FC5A1BCE01D50012E464 /* Request */,
 				5D80FC5F1BCE01D50012E464 /* View */,
 			);
 			path = ZStretchHeaderController;
@@ -571,46 +591,35 @@
 		5D80FC531BCE01D50012E464 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D80FC581BCE01D50012E464 /* StoreModel.h */,
+				5D80FC591BCE01D50012E464 /* StoreModel.m */,
 				5D80FC7B1BCE02070012E464 /* BarberModel.h */,
 				5D80FC7C1BCE02070012E464 /* BarberModel.m */,
 				5D80FC541BCE01D50012E464 /* BarberServeModel.h */,
 				5D80FC551BCE01D50012E464 /* BarberServeModel.m */,
 				5D80FC561BCE01D50012E464 /* BarberWorkModel.h */,
 				5D80FC571BCE01D50012E464 /* BarberWorkModel.m */,
-				5D80FC581BCE01D50012E464 /* StoreModel.h */,
-				5D80FC591BCE01D50012E464 /* StoreModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5D80FC5A1BCE01D50012E464 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				5D80FC5B1BCE01D50012E464 /* BarberRequest.h */,
-				5D80FC5C1BCE01D50012E464 /* BarberRequest.m */,
-				5D80FC5D1BCE01D50012E464 /* StoreRequest.h */,
-				5D80FC5E1BCE01D50012E464 /* StoreRequest.m */,
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		5D80FC5F1BCE01D50012E464 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5D80FC601BCE01D50012E464 /* BarberHeaderView.h */,
-				5D80FC611BCE01D50012E464 /* BarberHeaderView.m */,
-				5D80FC621BCE01D50012E464 /* BarberIntroCell.h */,
-				5D80FC631BCE01D50012E464 /* BarberIntroCell.m */,
 				5D80FC6C1BCE01D50012E464 /* StoreCell.h */,
 				5D80FC6D1BCE01D50012E464 /* StoreCell.m */,
+				5D80FC621BCE01D50012E464 /* BarberIntroCell.h */,
+				5D80FC631BCE01D50012E464 /* BarberIntroCell.m */,
 				5D80FC661BCE01D50012E464 /* BarberServeCell.h */,
 				5D80FC671BCE01D50012E464 /* BarberServeCell.m */,
-				5D80FC641BCE01D50012E464 /* BarberServeAppointCell.h */,
-				5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */,
 				5D80FC681BCE01D50012E464 /* BarberWorksCell.h */,
 				5D80FC691BCE01D50012E464 /* BarberWorksCell.m */,
 				5D80FC6A1BCE01D50012E464 /* BarberWorkView.h */,
 				5D80FC6B1BCE01D50012E464 /* BarberWorkView.m */,
+				5D80FC601BCE01D50012E464 /* BarberHeaderView.h */,
+				5D80FC611BCE01D50012E464 /* BarberHeaderView.m */,
+				5D80FC641BCE01D50012E464 /* BarberServeAppointCell.h */,
+				5D80FC651BCE01D50012E464 /* BarberServeAppointCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -629,8 +638,6 @@
 			children = (
 				5D80FC8A1BCE27710012E464 /* StoreListCell.h */,
 				5D80FC8B1BCE27710012E464 /* StoreListCell.m */,
-				5D80FC8D1BCE2F310012E464 /* StoreListRequest.h */,
-				5D80FC8E1BCE2F310012E464 /* StoreListRequest.m */,
 				5D80FC871BCE269F0012E464 /* StoreListViewController.h */,
 				5D80FC881BCE269F0012E464 /* StoreListViewController.m */,
 			);
@@ -670,8 +677,6 @@
 				5D80FCC61BCF7E3F0012E464 /* SDWebImageDownloader.m */,
 				5D80FCC71BCF7E3F0012E464 /* SDWebImageDownloaderOperation.h */,
 				5D80FCC81BCF7E3F0012E464 /* SDWebImageDownloaderOperation.m */,
-				5D80FCC91BCF7E3F0012E464 /* SDWebImageManager+MJ.h */,
-				5D80FCCA1BCF7E3F0012E464 /* SDWebImageManager+MJ.m */,
 				5D80FCCB1BCF7E3F0012E464 /* SDWebImageManager.h */,
 				5D80FCCC1BCF7E3F0012E464 /* SDWebImageManager.m */,
 				5D80FCCD1BCF7E3F0012E464 /* SDWebImageOperation.h */,
@@ -698,8 +703,8 @@
 		5D9629DB1BCBFFC000435C5E /* ZConstant */ = {
 			isa = PBXGroup;
 			children = (
-				5D80FC971BCE88500012E464 /* chelper.h */,
-				5D80FC961BCE88500012E464 /* chelper.c */,
+				5D80FC971BCE88500012E464 /* helper.h */,
+				5D80FC961BCE88500012E464 /* helper.c */,
 				5D9629DC1BCBFFC000435C5E /* ZHelper.h */,
 				5D9629DD1BCBFFC000435C5E /* ZHelper.m */,
 				5D9629DF1BCBFFD000435C5E /* ZConstant.h */,
@@ -713,10 +718,10 @@
 				5DC70E071BBC2FC300AA5D04 /* Resource */,
 				5DB881E01BBBD09B007FFE0A /* CLLocation+YCLocation.h */,
 				5DB881E11BBBD09B007FFE0A /* CLLocation+YCLocation.m */,
-				5DB881E21BBBD09B007FFE0A /* ZLocationManager.h */,
-				5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */,
 				5DC70E041BBC2C3800AA5D04 /* ZLocationView.h */,
 				5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */,
+				5DB881E21BBBD09B007FFE0A /* ZLocationManager.h */,
+				5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */,
 			);
 			path = ZLocationManager;
 			sourceTree = "<group>";
@@ -730,18 +735,6 @@
 				5DB882121BBBD09B007FFE0A /* ZBaseRequest */,
 			);
 			path = ZNetworking;
-			sourceTree = "<group>";
-		};
-		5DB881E51BBBD09B007FFE0A /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				5DB881E61BBBD09B007FFE0A /* LoginRequest.h */,
-				5DB881E71BBBD09B007FFE0A /* LoginRequest.m */,
-				5D613C5F1BC8D145008A299F /* ListModel.h */,
-				5D613C601BC8D145008A299F /* ListModel.m */,
-			);
-			name = Request;
-			path = ../ZNetworking/Request;
 			sourceTree = "<group>";
 		};
 		5DB8820F1BBBD09B007FFE0A /* ZBaseModel */ = {
@@ -778,8 +771,10 @@
 			children = (
 				5DC70E011BBC124700AA5D04 /* ZToastView.h */,
 				5DC70E021BBC124700AA5D04 /* ZToastView.m */,
-				5DC70DFC1BBC068000AA5D04 /* ZToastManager.h */,
-				5DC70DFD1BBC068000AA5D04 /* ZToastManager.m */,
+				5DEAB8311BD5330900CDB73F /* ZLoadingView.h */,
+				5DEAB8321BD5330900CDB73F /* ZLoadingView.m */,
+				5D80FCF71BD0F7240012E464 /* ZProgressView.h */,
+				5D80FCF81BD0F7240012E464 /* ZProgressView.m */,
 			);
 			path = ZToastView;
 			sourceTree = "<group>";
@@ -851,6 +846,18 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		5DEAB8341BD5EB2600CDB73F /* LocalDatas */ = {
+			isa = PBXGroup;
+			children = (
+				5DEAB8441BD5F2EC00CDB73F /* shop_list.json */,
+				5DEAB8411BD5F0AA00CDB73F /* barber_serve.json */,
+				5DEAB8351BD5EB2600CDB73F /* barber_detail.json */,
+				5DEAB8371BD5EB2600CDB73F /* barber_works.json */,
+				5DEAB8381BD5EB2600CDB73F /* shop_detail.json */,
+			);
+			path = LocalDatas;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -908,6 +915,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DEAB8431BD5F0C700CDB73F /* barber_serve.json in Resources */,
+				5DEAB83D1BD5EC0A00CDB73F /* barber_detail.json in Resources */,
+				5DEAB83F1BD5EC0A00CDB73F /* barber_works.json in Resources */,
+				5DEAB8401BD5EC0A00CDB73F /* shop_detail.json in Resources */,
 				5DC70E091BBC2FC300AA5D04 /* location_btn@2x.png in Resources */,
 				5D33BC9D1BB97E0400F534DF /* star_light@3x.png in Resources */,
 				5D613BF01BC77F9E008A299F /* header_bg.png in Resources */,
@@ -915,6 +926,7 @@
 				5D33BBF01BB4F37D00F534DF /* tabbar3_sel@2x.png in Resources */,
 				5D33BC531BB6BDC700F534DF /* nav_back@2x.png in Resources */,
 				5D33BC541BB6BDC700F534DF /* nav_bg@2x.png in Resources */,
+				5DEAB8451BD5F2EC00CDB73F /* shop_list.json in Resources */,
 				5D613C0B1BC78393008A299F /* blueArrow.png in Resources */,
 				5D33BBF21BB4F37D00F534DF /* tabbar2_sel@2x.png in Resources */,
 				5D613C171BC78415008A299F /* reading.png in Resources */,
@@ -965,28 +977,28 @@
 				5DD24E331BC64BBA0076923D /* UIImageView+AFNetworking.m in Sources */,
 				5D33BBCD1BB4CFEA00F534DF /* ViewController.m in Sources */,
 				5D80FC7A1BCE01D50012E464 /* StoreCell.m in Sources */,
+				5D069AD11BD727D300285BA6 /* ZUserDefaultCache.m in Sources */,
 				5D80FCED1BCF7E3F0012E464 /* UIImageView+WebCache.m in Sources */,
 				5D80FCDF1BCF7E3F0012E464 /* NSData+ImageContentType.m in Sources */,
 				5D80FC791BCE01D50012E464 /* BarberWorkView.m in Sources */,
 				5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */,
+				5D069ACF1BD727D300285BA6 /* ZAchiverCache.m in Sources */,
+				5DEAB8331BD5330900CDB73F /* ZLoadingView.m in Sources */,
 				5D80FC701BCE01D50012E464 /* BarberWorkModel.m in Sources */,
+				5D069AD01BD727D300285BA6 /* ZAchiverObjectCache.m in Sources */,
 				5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */,
 				5D80FCB61BCF7C1C0012E464 /* ZPhotoView.m in Sources */,
 				5D613C111BC78393008A299F /* EGORefreshTableHeaderView.m in Sources */,
-				5D613C611BC8D145008A299F /* ListModel.m in Sources */,
 				5DD24E311BC64BBA0076923D /* UIAlertView+AFNetworking.m in Sources */,
 				5D80FC751BCE01D50012E464 /* BarberIntroCell.m in Sources */,
 				5DE7A3FB1BBD633B0065D95C /* UIImage+ImageEffects.m in Sources */,
 				5D613C131BC78393008A299F /* ZMessageInterceptor.m in Sources */,
 				5DD24E291BC64BBA0076923D /* AFNetworkReachabilityManager.m in Sources */,
-				5DC70DFE1BBC068000AA5D04 /* ZToastManager.m in Sources */,
 				5D80FCEA1BCF7E3F0012E464 /* UIImage+MultiFormat.m in Sources */,
 				5DD24E361BC64BBA0076923D /* UIWebView+AFNetworking.m in Sources */,
-				5D80FCE51BCF7E3F0012E464 /* SDWebImageManager+MJ.m in Sources */,
 				5D33BC561BB6BDC700F534DF /* ZViewController.m in Sources */,
 				5D80FCB31BCF7C010012E464 /* ZPhoto.m in Sources */,
 				5D80FCEC1BCF7E3F0012E464 /* UIImageView+HighlightedWebCache.m in Sources */,
-				5D80FC731BCE01D50012E464 /* StoreRequest.m in Sources */,
 				5DD24E2E1BC64BBA0076923D /* AFURLSessionManager.m in Sources */,
 				5D80FCAD1BCF7BA30012E464 /* ZPhotoBrowserController.m in Sources */,
 				5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */,
@@ -995,6 +1007,7 @@
 				5DC70E031BBC124700AA5D04 /* ZToastView.m in Sources */,
 				5DC70E061BBC2C3800AA5D04 /* ZLocationView.m in Sources */,
 				5D613C141BC78393008A299F /* ZRefreshTableHeaderView.m in Sources */,
+				5D80FCF91BD0F7240012E464 /* ZProgressView.m in Sources */,
 				5DD24E321BC64BBA0076923D /* UIButton+AFNetworking.m in Sources */,
 				5DB8821F1BBBD09B007FFE0A /* CLLocation+YCLocation.m in Sources */,
 				5D80FCEE1BCF7E3F0012E464 /* UIView+WebCacheOperation.m in Sources */,
@@ -1006,7 +1019,7 @@
 				5DD24E2F1BC64BBA0076923D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5D80FCE61BCF7E3F0012E464 /* SDWebImageManager.m in Sources */,
 				5DD24E2A1BC64BBA0076923D /* AFSecurityPolicy.m in Sources */,
-				5D80FC981BCE88500012E464 /* chelper.c in Sources */,
+				5D80FC981BCE88500012E464 /* helper.c in Sources */,
 				5D80FCE21BCF7E3F0012E464 /* SDWebImageDecoder.m in Sources */,
 				5D80FC771BCE01D50012E464 /* BarberServeCell.m in Sources */,
 				5D80FC8C1BCE27710012E464 /* StoreListCell.m in Sources */,
@@ -1014,20 +1027,18 @@
 				5D80FCE81BCF7E3F0012E464 /* UIButton+WebCache.m in Sources */,
 				5DD24E271BC64BBA0076923D /* AFHTTPRequestOperationManager.m in Sources */,
 				5D80FC6F1BCE01D50012E464 /* BarberServeModel.m in Sources */,
+				5DEAB8481BD60BC100CDB73F /* ZDemoViewController.m in Sources */,
 				5DD24E281BC64BBA0076923D /* AFHTTPSessionManager.m in Sources */,
-				5D80FC8F1BCE2F310012E464 /* StoreListRequest.m in Sources */,
 				5D80FC741BCE01D50012E464 /* BarberHeaderView.m in Sources */,
 				5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */,
 				5D80FC891BCE269F0012E464 /* StoreListViewController.m in Sources */,
 				5D9629DE1BCBFFC000435C5E /* ZHelper.m in Sources */,
 				5D33BB681BB4CF3300F534DF /* main.m in Sources */,
 				5DD24E261BC64BBA0076923D /* AFHTTPRequestOperation.m in Sources */,
-				5D80FC721BCE01D50012E464 /* BarberRequest.m in Sources */,
 				5D3080371BBCFFBC00EF158E /* ZStretchHeaderController.m in Sources */,
 				5D80FCE91BCF7E3F0012E464 /* UIImage+GIF.m in Sources */,
 				5D80FCDE1BCF7E3F0012E464 /* MKAnnotationView+WebCache.m in Sources */,
 				5DD24E2D1BC64BBA0076923D /* AFURLResponseSerialization.m in Sources */,
-				5DB882211BBBD09B007FFE0A /* LoginRequest.m in Sources */,
 				5D80FCE01BCF7E3F0012E464 /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,6 +24,15 @@ typedef enum{
 @property (strong, nonatomic) NSMutableDictionary *parameterDic;// 请求参数
 
 /**
+ *  读取本地json文件返回解析之后的字典
+ *
+ *  @param path 文件路径 需要作为资源文件添加到项目中
+ *
+ *  @return json转化后的dictionary
+ */
++ (NSDictionary *)localDataFromPath:(NSString *)path;
+
+/**
  *  普通GET/POST请求
  *
  *  @param onRequestSuccessBlock 成功block

@@ -11,7 +11,7 @@
 
 #import "StoreModel.h"
 #import "StoreListCell.h"
-#import "StoreListRequest.h"
+#import "ZBaseRequest.h"
 
 @interface StoreListViewController()<UITableViewDelegate, UITableViewDataSource>
 
@@ -40,7 +40,7 @@
 
 - (void)setupViews
 {
-    [self customDismissButton];
+    [self customBackButton];
     [self setTitle:@"门店列表"];
     [self customRightButtonWithTitle:@"刷新" action:@selector(refresh:)];
     
@@ -60,18 +60,12 @@
 
 - (void)sendRequest:(BOOL)refresh
 {
-    StoreListRequest *request = [[StoreListRequest alloc] init];
-    [request requestonSuccess:^(ZBaseRequest *request) {
-        if (refresh) {
-            [_storesArray removeAllObjects];
-        }
-        NSArray *array = [StoreModel objectsArrayWithKeyValuesArray:[[request.resultDic objectForKey:@"data"] objectForKey:@"result"]];
-        [_storesArray addObjectsFromArray:array];
-        [_tableView refreshData];
+    if (refresh) {
+        [_storesArray removeAllObjects];
     }
-                    onFailed:^(ZBaseRequest *request, NSError *error) {
-        
-                    }];
+    NSArray *array = [StoreModel objectsArrayWithKeyValuesArray:[[[ZBaseRequest localDataFromPath:SourcePath(@"shop_list", @"json")] objectForKey:@"data"] objectForKey:@"result"]];
+    [_storesArray addObjectsFromArray:array];
+    [_tableView refreshData];
 }
 
 #pragma mark - UITableViewDelegate

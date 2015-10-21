@@ -9,6 +9,18 @@
 #ifndef ZConstant_h
 #define ZConstant_h
 
+/**
+ *  返回x以内的带有两位小数的浮点数
+ *
+ *  @param x x
+ *
+ *  @return x以内的带有两位小数的浮点数
+ */
+#define fRandom(x)              (arc4random()%x + arc4random()%100/100.f)
+#define iRandom(x)              arc4random()%x
+
+#define SourcePath(n,e)         [[NSBundle mainBundle] pathForResource:n ofType:e]
+
 // 状态栏高度
 #define kStatusBarHeight        20.f
 

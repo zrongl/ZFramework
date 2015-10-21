@@ -1,0 +1,58 @@
+{
+    "code": "200",
+    "msg": "成功",
+    "data": {
+        "total_page": 1,
+        "total_count":3,
+        "result": [
+      {
+                "id": "1",
+                "name": "米娜造型",
+                "address": "北京市朝阳区望京东路一号院",
+                "order_num": "5",
+                "overall": "5",
+                "start_price": "99.00",
+                "distance": 100,
+                "is_go": 1,
+                "is_activity": "1",
+                "path": "http://localhost/meiye/shop.png"
+            },
+                  {
+                "id": "1",
+                "name": "米娜造型",
+                "address": "北京市朝阳区望京东路一号院",
+                "order_num": "5",
+                "overall": "5",
+                "start_price": "99.00",
+                "distance": 100,
+                "is_go": 1,
+                "is_activity": "1",
+                "path": "http://localhost/meiye/shop.png"
+            },
+                  {
+                "id": "1",
+                "name": "米娜造型",
+                "address": "北京市朝阳区望京东路一号院",
+                "order_num": "5",
+                "overall": "5",
+                "start_price": "99.00",
+                "distance": 100,
+                "is_go": 1,
+                "is_activity": "1",
+                "path": "http://localhost/meiye/shop.png"
+            },
+                  {
+                "id": "1",
+                "name": "米娜造型",
+                "address": "北京市朝阳区望京东路一号院",
+                "order_num": "5",
+                "overall": "5",
+                "start_price": "99.00",
+                "distance": 100,
+                "is_go": 1,
+                "is_activity": "1",
+                "path": "http://localhost/meiye/shop.png"
+            },
+        ]
+    }
+}

@@ -46,6 +46,26 @@ static NSString *md5(NSString *stirng)
 
 @implementation ZBaseRequest
 
++ (NSDictionary *)localDataFromPath:(NSString *)path;
+{
+    NSError *error = nil;
+    NSMutableDictionary *resultDic = nil;
+    
+    NSString *jsonString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+    if (!error) {
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        resultDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        if(![resultDic isKindOfClass:[NSDictionary class]] || error != nil){
+            NSLog(@"\n---------------------json格式错误解析失败--------------------\n");
+            resultDic = nil;
+        }
+    }else{
+        NSLog(@"%@", error);
+    }
+    
+    return resultDic;
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -278,4 +298,5 @@ static NSString *md5(NSString *stirng)
 {
     return nil;
 }
+
 @end

@@ -1,0 +1,63 @@
+{
+    "code": "200",
+    "msg": "成功",
+    "data": [
+        {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        },
+         {
+            "id": "1",
+            "remark":"自然，清秀",
+            "path": [
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png",
+            "http://localhost/meiye/item.png"]  
+        }
+        ]
+    
+}

@@ -60,10 +60,3 @@
 
 @end
 
-@interface ZLoadingView : UIView
-
-+ (ZLoadingView *)loadingViewWith:(NSString *)title;
-
-@end
-
-

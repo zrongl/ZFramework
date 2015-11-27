@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZAchiverCache : NSObject
+@interface ZAchiverCache : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *userID;

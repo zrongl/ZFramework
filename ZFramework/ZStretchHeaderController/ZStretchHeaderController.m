@@ -13,7 +13,7 @@
 
 #define kStretchViewHeight  230
 
-@interface ZStretchHeaderController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ZStretchHeaderController ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UITableView *tableView;
@@ -27,6 +27,9 @@
 // 系统navigation bar隐藏及显示操作
 - (void)viewWillAppear:(BOOL)animated
 {
+    // navigationBarHidden = YES的时候
+    // 设置手势的delegate来支持右滑popViewController操作
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -111,8 +114,7 @@
 
 - (void)backButtonClicked:(id)sender
 {
-    [super backButtonClicked:nil];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDeleagte

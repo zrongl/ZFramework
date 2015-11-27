@@ -40,9 +40,8 @@
 
 - (void)setupViews
 {
-    [self customBackButton];
     [self setTitle:@"门店列表"];
-    [self customRightButtonWithTitle:@"刷新" action:@selector(refresh:)];
+    [self rightButtonItemWithTitle:@"刷新" action:@selector(refresh:)];
     
     _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64)];
     _tableView.delegate = self;

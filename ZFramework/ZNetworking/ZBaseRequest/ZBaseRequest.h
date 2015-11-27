@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZAchiverObjectCache.h"
 
-typedef enum{
+typedef NS_ENUM(NSInteger, HttpMethodType){
     HttpMethodGet,
     HttpMethodPost
-}HttpMethodType;
+};
 
 @protocol AFMultipartFormData;
 
 @interface ZBaseRequest : NSObject
+
+@property (assign, nonatomic) BOOL isCached;
 
 @property (strong, nonatomic) NSString *urlHost;                // 请求基地址
 @property (strong, nonatomic) NSString *urlAction;              // 请求行为

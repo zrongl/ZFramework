@@ -63,6 +63,7 @@ typedef void (^calculateSizeBlock)(NSUInteger fileCount, NSUInteger totalSize);
  *  @return 存储的对象
  */
 - (id)objectFromCacheForKey:(NSString *)key;
+- (id)objectFromDiskCacheForKey:(NSString *)key;
 
 /**
  *  从内存中移除存储对象

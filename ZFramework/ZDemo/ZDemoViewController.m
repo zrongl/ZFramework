@@ -10,7 +10,7 @@
 #import "ZDemoViewController.h"
 #import "ZPhotoBrowserController.h"
 #import "StoreListViewController.h"
-#import "BarberDetailViewController.h"
+#import "ReactiveController.h"
 
 @interface ZDemoViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,14 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dataSource = [NSArray arrayWithObjects:@"PullTableView", @"StretchHeaderController", @"PhotoBrowserController",  nil];
+    _dataSource = [NSArray arrayWithObjects:@"PullTableView", @"PhotoBrowserController", @"ReactiveController", nil];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.backgroundColor = [UIColor clearColor];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.separatorColor = kMainColor;
+    _tableView.tableFooterView = [[UIView alloc] init];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.view addSubview:_tableView];
 }
 
@@ -53,9 +55,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:[ZHelper seperateLineWithY:39 color:kMainColor]];
     }
     
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
@@ -74,12 +73,6 @@
             break;
         }
         case 1:
-        {
-            BarberDetailViewController* vc = [[BarberDetailViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-            break;
-        }
-        case 2:
         {
             NSArray *networkImages= @[@"http://ww3.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg",
                                       @"http://ww4.sinaimg.cn/bmiddle/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg",
@@ -102,10 +95,15 @@
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
+        case 2:
+        {
+            ReactiveController *vc = [[ReactiveController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
         case 3:
         {
-
-            break;
+            
         }
         case 4:
         {

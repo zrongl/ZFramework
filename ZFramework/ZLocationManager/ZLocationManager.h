@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 
-typedef void (^ LocationErrorBlock)(NSError *error);
-typedef void (^ LocationInfoBlock)(NSString *locationInfo);
-typedef void (^ LocationCoordinateBlock)(CLLocationCoordinate2D locationCorrrdinate);
+typedef void (^ LocationFailedBlock)(NSError *error);
+typedef void (^ LocationSuccessBlock)(CLLocationCoordinate2D corrrdinate, NSString *info);
 
 @interface ZLocationManager : NSObject <CLLocationManagerDelegate>
 
@@ -29,6 +28,6 @@ typedef void (^ LocationCoordinateBlock)(CLLocationCoordinate2D locationCorrrdin
  *  @param infoBlock       位置信息block
  *  @param errorBlock      定位失败错误信息block
  */
-- (void)getLocationCoordinate:(LocationCoordinateBlock)coordianteBlock locationInfo:(LocationInfoBlock)infoBlock locationError:(LocationErrorBlock)errorBlock;
+- (void)locationOnSuccess:(LocationSuccessBlock)successBlock onFailed:(LocationFailedBlock)failedBlock;
 
 @end

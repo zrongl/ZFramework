@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSInteger, ButtonImageLayout){
+    ButtonImageLayoutLeft,
+    ButtonImageLayoutRight,
+    ButtonImageLayoutUp,
+    ButtonImageLayoutDown
+};
+
 
 @interface ZTabBarItem : UIButton
 
@@ -20,6 +27,6 @@
  *
  *  @return 自定义的tabBarItem
  */
-- (id)initWithFrame:(CGRect)frame title:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage;
+- (id)initWithFrame:(CGRect)frame title:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage imageLayoutType:(ButtonImageLayout)layoutType;
 
 @end

@@ -7,28 +7,69 @@
 //
 
 #import "ZViewController.h"
-#import "UIView+ZAddition.h"
-#import "NSString+ZAddition.h"
 #import <Availability.h>
-#import "ZConstant.h"
 
 #define kLoaddingViewWidth  120.f
 #define kIndicatorViewSide  37.f
 
 @implementation ZNavigationController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg"] forBarMetrics:UIBarMetricsDefault];
-}
-
+// push之后底部导航栏消失
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count >= 1) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
     [super pushViewController:viewController animated:animated];
+}
+
++ (void)customizeAppearanceForiOS7
+{
+    // status bar
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    // Navigation
+    // [[UINavigationBar appearance] setBarTintColor:];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    //    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    
+    //  Navigation background
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg"] forBarMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:18.f],
+                                                           NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    // [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    // [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UITextAttributeTextColor,[UIColor whiteColor], nil] forState:UIControlStateNormal];
+    
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
+     setTitleTextAttributes: @{NSFontAttributeName : [UIFont systemFontOfSize:16.f],
+                               NSForegroundColorAttributeName : [UIColor whiteColor]}
+     forState:UIControlStateNormal];
+    // backButton
+    // UIImage *backBarBtnImage = [[UIImage imageNamed:@"back_button_bg"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    
+    // [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsCompact];
+    UIImage *backBarBtnImage = [[UIImage imageNamed:@"nav_back"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsCompact];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
+    
+    
+    // Tabbar
+    // [[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab_bg"]stretchableImageWithLeftCapWidth:5 topCapHeight:5]];
+    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x999999), UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+    //
+    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:kJiaYuanColor, UITextAttributeTextColor,nil] forState:UIControlStateSelected];
+    
+    // 定制tableView的分割线的颜色 (236, 236, 236)
+    // [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]];
 }
 
 @end
@@ -80,39 +121,6 @@
     return nil;
 }
 
-- (void)setNavigationTitle:(NSString *)title
-{
-    self.title = title;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName : kNavigationTitleFont,
-                                                                    NSForegroundColorAttributeName : kNavigationTitleColor};
-}
-
-- (void)customBackButton
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    // 禁止事件向同一视图内的其它子视图传递
-    button.exclusiveTouch = YES;
-    button.frame = CGRectMake(0, 0, 50, 40);
-    button.backgroundColor = [UIColor clearColor];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
-    [button setImage:[UIImage imageNamed:@"nav_back"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-    self.navigationItem.leftBarButtonItem = backItem;
-}
-
-/**
- *  在一些特殊情况需要捕捉navigation back button事件
- *  如：timer的释放需要提前于view controller的dealloc方法，此时可以在该方法中提前释放timer，防止循环引用引起的内存不释放
- *
- *  @param sender back button
- */
-- (void)backButtonClicked:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)customDismissButton
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -124,7 +132,6 @@
     [button setImage:[UIImage imageNamed:@"nav_dismiss"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(dismissButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
@@ -133,35 +140,44 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)customRightButtonWithTitle:(NSString *)title action:(SEL)action
+- (void)rightButtonItemWithTitle:(NSString *)title action:(SEL)action
 {
-    CGSize navbarSize = self.navigationController.navigationBar.bounds.size;
-    CGRect frame = CGRectMake(0, 0, navbarSize .height, navbarSize.height - 3);
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.exclusiveTouch = YES;
-    CGFloat titleWidth = [title widthWithFont:[UIFont boldSystemFontOfSize:16.f] height:21.f];
-    frame.size.width = MAX(titleWidth, titleWidth + 20);
-    button.frame = frame;
-    [button setTitle:title forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleColor:RGBA(100, 100, 100, 1) forState:UIControlStateHighlighted];
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:title
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:action];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
-- (void)customRightButtonWithNormalImage:(NSString *)nImage highlightedImage:(NSString *)hImage action:(SEL)action
+- (void)rightButtonItemWithImage:(NSString *)image action:(SEL)action
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.exclusiveTouch = YES;
-    CGSize navbarSize = self.navigationController.navigationBar.bounds.size;
-    [button setFrame:CGRectMake(0, 0, navbarSize .height, navbarSize.height - 3)];
-    [button setImage:[UIImage imageNamed:nImage] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:hImage] forState:UIControlStateHighlighted];
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:image]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:action];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItem = buttonItem;
+}
+
+- (void)showLoadingViewWithTitle:(NSString *)title
+{
+    _loadingShowCount ++;
+    if (!_loadingView) {
+        _loadingView = [self createLoadingViewWith:title];
+        [self.view addSubview:_loadingView];
+    }
+    _loadingView.hidden = NO;
+}
+
+- (void)hideLoadingView
+{
+    _loadingShowCount --;
+    if (_loadingShowCount == 0) {
+        _loadingView.hidden = YES;
+    }
 }
 
 - (UIView *)createLoadingViewWith:(NSString *)title
@@ -197,22 +213,5 @@
     return view;
 }
 
-- (void)showLoadingViewWithTitle:(NSString *)title
-{
-    _loadingShowCount ++;
-    if (!_loadingView) {
-        _loadingView = [self createLoadingViewWith:title];
-        [self.view addSubview:_loadingView];
-    }
-    _loadingView.hidden = NO;
-}
-
-- (void)hideLoadingView
-{
-    _loadingShowCount --;
-    if (_loadingShowCount == 0) {
-        _loadingView.hidden = YES;
-    }
-}
 
 @end

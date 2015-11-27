@@ -26,7 +26,7 @@
         _addressLabel.backgroundColor = [UIColor clearColor];
         _addressLabel.font = [UIFont systemFontOfSize:13.f];
         _addressLabel.textColor = [UIColor blackColor];
-        _addressLabel.text = @"当前：望京摩托罗拉大厦";
+        _addressLabel.text = @"当前：";
         [self addSubview:_addressLabel];
         _locationButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _locationButton.frame = CGRectMake(frame.size.width - 48.f, 0, 48.f, frame.size.height);
@@ -45,14 +45,13 @@
 - (void)locationClicked:(UIButton *)sender
 {
     [self startRotation];
-    [[ZLocationManager shareManager] getLocationCoordinate:^(CLLocationCoordinate2D locationCorrrdinate) {
+    _addressLabel.text = @"当前：";
+    [[ZLocationManager shareManager] locationOnSuccess:^(CLLocationCoordinate2D orrrdinate, NSString *info) {
+        _addressLabel.text = [NSString stringWithFormat:@"当前:%@", info];
         [self stopRotation];
-        
     }
-                                              locationInfo:^(NSString *locationInfo) {
-                                                  _addressLabel.text = [NSString stringWithFormat:@"当前:%@", locationInfo];
-                                                  [self stopRotation];
-                                              } locationError:^(NSError *error) {
+                                              onFailed:^(NSError *error) {
+                                                  _addressLabel.text = @"定位失败";
                                                   [self stopRotation];
                                               }];
 }

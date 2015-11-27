@@ -6,17 +6,17 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
+#import <Availability.h>
 #import "ZLocationManager.h"
 #import "CLLocation+YCLocation.h"
-#import <Availability.h>
+
 @interface ZLocationManager()
 {
     CLLocationManager *_manager;
 }
 
-@property (copy, nonatomic) LocationInfoBlock infoBlock;
-@property (copy, nonatomic) LocationErrorBlock errorBlock;
-@property (copy, nonatomic) LocationCoordinateBlock coordinateBlock;
+@property (copy, nonatomic) LocationSuccessBlock successBlock;
+@property (copy, nonatomic) LocationFailedBlock failedBlock;
 
 @end
 
@@ -32,11 +32,10 @@
     return _shareManager;
 }
 
-- (void)getLocationCoordinate:(LocationCoordinateBlock)coordianteBlock locationInfo:(LocationInfoBlock)infoBlock locationError:(LocationErrorBlock)errorBlock
+- (void)locationOnSuccess:(LocationSuccessBlock)successBlock onFailed:(LocationFailedBlock)failedBlock
 {
-    self.infoBlock = infoBlock;
-    self.errorBlock = errorBlock;
-    self.coordinateBlock = coordianteBlock;
+    self.successBlock = successBlock;
+    self.failedBlock = failedBlock;
     
     if([CLLocationManager locationServicesEnabled] &&
        [CLLocationManager authorizationStatus] != kCLAuthorizationStatusDenied){
@@ -60,8 +59,6 @@
             [_manager requestAlwaysAuthorization];
         }
         [_manager startUpdatingLocation];
-    }else{
-
     }
 }
 
@@ -71,18 +68,15 @@
     CLLocation * location = [[CLLocation alloc]initWithLatitude:newLocation.coordinate.latitude longitude:newLocation.coordinate.longitude];
     CLLocation * marsLoction =   [location locationMarsFromEarth];
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(marsLoction.coordinate.latitude ,marsLoction.coordinate.longitude);
-    if (_coordinateBlock) {
-        _coordinateBlock(coordinate);
-    }
     
     CLGeocoder *geocoder=[[CLGeocoder alloc]init];
     [geocoder reverseGeocodeLocation:marsLoction
                    completionHandler:^(NSArray *placemarks,NSError *error){
          if (placemarks.count > 0) {
              CLPlacemark *placemark = [placemarks objectAtIndex:0];
-             NSString *locationInfo = [NSString stringWithFormat:@"%@%@%@", placemark.locality, placemark.thoroughfare, placemark.name];
-             if (_infoBlock) {
-                 _infoBlock(locationInfo);
+             NSString *locationInfo = [NSString stringWithFormat:@"%@%@%@", placemark.locality, placemark.subLocality, placemark.thoroughfare];
+             if (_successBlock) {
+                 _successBlock(coordinate, locationInfo);
              }
          }
      }];
@@ -91,8 +85,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    if (_errorBlock) {
-        _errorBlock(error);
+    if (_failedBlock) {
+        _failedBlock(error);
     }
     [_manager stopUpdatingHeading];
 }

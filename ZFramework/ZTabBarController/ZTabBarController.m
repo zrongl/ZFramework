@@ -78,7 +78,8 @@
         ZTabBarItem *item = [[ZTabBarItem alloc] initWithFrame:CGRectMake(i*itemWidth, 0, itemWidth, kTabBarHeight)
                                                          title:[titles objectAtIndex:i]
                                                          image:[UIImage imageNamed:[images objectAtIndex:i]]
-                                                 selectedImage:[UIImage imageNamed:[selectedImages objectAtIndex:i]]];
+                                                 selectedImage:[UIImage imageNamed:[selectedImages objectAtIndex:i]]
+                                               imageLayoutType:ButtonImageLayoutUp];
         [item addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
         item.tag = i + TABBAR_BASE_TAG;
         if (i == self.selectedIndex) {

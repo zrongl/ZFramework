@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "AFURLRequestSerialization.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, AFParameterEncoding) {
     AFFormURLParameterEncoding,
     AFJSONParameterEncoding,
     AFPropertyListParameterEncoding,
     AFJSONDesParameterEncoding,
-} AFParameterEncoding;
+} ;
 
 @class AFHTTPRequestOperation;
 @protocol AFMultipartFormData;

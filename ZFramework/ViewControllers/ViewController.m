@@ -16,15 +16,86 @@
 
 #import "ZDemoViewController.h"
 
+@interface ViewController()
+
+@property (strong, nonatomic) UIView *btn_1;
+@property (strong, nonatomic) UIView *btn_2;
+@property (strong, nonatomic) UIView *btn_3;
+@property (strong, nonatomic) UIView *btn_4;
+
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavigationTitle:@"统计"];
+    [self setTitle:@"统计"];
     
     UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
+    
+    
+    _btn_1 = [UIView new];
+    _btn_1.backgroundColor = kMainColor;
+    [self.view addSubview:_btn_1];
+    _btn_2 = [UIView new];
+    _btn_2.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_btn_2];
+    _btn_3 = [UIView new];
+    _btn_3.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_btn_3];
+    _btn_4 = [UIView new];
+    _btn_4.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:_btn_4];
+    
+    [_btn_1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_btn_2 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_btn_3 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_btn_4 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    CGSize winSize = CGSizeMake(kMainBoundsWidth, kMainBoundsHeight);
+    CGFloat tpo = 100;
+    CGFloat hpod = 100;
+    CGFloat btnH = 40;
+    CGFloat vpod = winSize.width*0.15-btnH;
+    
+    NSNumber* tp = [NSNumber numberWithFloat:tpo];
+    NSNumber* hd = [NSNumber numberWithFloat:hpod];
+    NSNumber* vd = [NSNumber numberWithFloat:vpod];
+    NSNumber* bh = [NSNumber numberWithFloat:btnH];
+    NSNumber* btm = [NSNumber numberWithFloat:vpod*2];
+    
+    NSDictionary *dict1 = NSDictionaryOfVariableBindings(_btn_1,_btn_2,_btn_3,_btn_4);
+    NSDictionary *metrics = @{@"hPadding":hd,@"vPadding":vd,@"top":tp,@"btm":btm,@"btnHeight":bh};
+    NSString *vfl1 = @"|-[_btn_1]-|";
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:dict1]];
+    NSString *vfl2 = @"|-hPadding-[_btn_2]-hPadding-|";
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:dict1]];
+    NSString *vfl3 = @"|-hPadding-[_btn_3]-hPadding-|";
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:dict1]];
+    NSString *vfl4 = @"|-hPadding-[_btn_4]-hPadding-|";
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:dict1]];
+    NSString *vfl5 = @"V:|-(<=top)-[_btn_1(btnHeight)][_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
+    if (_btn_1.hidden) {
+        vfl5 = @"V:|-(<=top)-[_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
+    }
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:dict1]];
     
 }
 
@@ -41,7 +112,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavigationTitle:@"清算"];
+    [self setTitle:@"清算"];
     [self showLoadingViewWithTitle:@"正在加载..."];
     
     for (NSInteger i = 0; i < 3; i++) {
@@ -62,7 +133,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNavigationTitle:@"我的"];
+    [self setTitle:@"我的"];
     
     _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kMainBoundsWidth - 200)/2, 100, 200, 25)
                                                            grayImage:[UIImage imageNamed:@"star_gray.png"]
@@ -120,8 +191,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self customBackButton];
-    [self setNavigationTitle:@"推视图"];
+    [self setTitle:@"推视图"];
     UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"弹出" action:@selector(popTo) target:self];
     [self.view addSubview:button];
 }
@@ -143,8 +213,8 @@
 {
     [super viewDidLoad];
     [self customDismissButton];
-    [self setNavigationTitle:@"弹视图"];
-    [self customRightButtonWithTitle:@"发送" action:nil];
+    [self setTitle:@"弹视图"];
+    [self rightButtonItemWithTitle:@"发送" action:nil];
 }
 
 @end

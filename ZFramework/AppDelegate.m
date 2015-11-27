@@ -9,13 +9,14 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "ZTabBarController.h"
-#import "BarberWorkModel.h"
+#import "ZViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [ZNavigationController customizeAppearanceForiOS7];
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.rootViewController = [[ZTabBarController alloc] init];
     [_window makeKeyAndVisible];

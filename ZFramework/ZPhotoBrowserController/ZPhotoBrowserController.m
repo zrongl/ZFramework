@@ -12,7 +12,6 @@
 #import "ZPhotoBrowserController.h"
 
 @interface ZPhotoBrowserController() <UIScrollViewDelegate, ZPhotoViewDelegate>
-
 {
     ZPhotoInfoBar           *_photoInfoBar;
     UIScrollView            *_scrollView;
@@ -205,6 +204,7 @@
     if (_isInfoShow) {
         [UIView animateWithDuration:0.5 animations:^{
             _statusBarHidden = YES;
+            [[UIApplication sharedApplication] setStatusBarHidden:_statusBarHidden withAnimation:UIStatusBarAnimationFade];
             [self setNeedsStatusBarAppearanceUpdate];
             _navigationView.alpha = 0;
             _photoInfoBar.alpha = 0;
@@ -214,6 +214,7 @@
     }else{
         [UIView animateWithDuration:0.5 animations:^{
             _statusBarHidden = NO;
+            [[UIApplication sharedApplication] setStatusBarHidden:_statusBarHidden withAnimation:UIStatusBarAnimationFade];
             [self setNeedsStatusBarAppearanceUpdate];
             _navigationView.alpha = 1;
             _photoInfoBar.alpha = 1;

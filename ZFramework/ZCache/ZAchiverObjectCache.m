@@ -45,6 +45,11 @@ typedef void (^obtainObjectBlock)(id object, ZObjectCacheType type);
     return instance;
 }
 
+- (id)init
+{
+    return [self initWithFileExtension:@"default"];
+}
+
 - (id)initWithFileExtension:(NSString *)extension
 {
     if ((self = [super init])) {
@@ -63,6 +68,9 @@ typedef void (^obtainObjectBlock)(id object, ZObjectCacheType type);
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
         _cachePath = [paths[0] stringByAppendingPathComponent:fullNamespace];
+        if(![[NSFileManager defaultManager] fileExistsAtPath:_cachePath isDirectory:nil]){
+            [[NSFileManager defaultManager] createDirectoryAtPath:_cachePath withIntermediateDirectories:NO attributes:nil error:nil];
+        }
         
         dispatch_sync(_ioQueue, ^{
             _fileManager = [NSFileManager new];
@@ -103,7 +111,13 @@ typedef void (^obtainObjectBlock)(id object, ZObjectCacheType type);
     [_memoryCache setObject:object forKey:key cost:data.length];
     if (toDisk) {
         dispatch_async(_ioQueue, ^{
-            [NSKeyedArchiver archiveRootObject:object toFile:[self defaultCachePathForKey:key]]; 
+            NSLog(@"cache object at:%@\n", [self defaultCachePathForKey:key]);
+            BOOL success = [NSKeyedArchiver archiveRootObject:object toFile:[self defaultCachePathForKey:key]];
+            if (success) {
+                
+            }else{
+                NSLog(@"cash disk failed!!!\n");
+            }
         });
     }
 }
@@ -152,7 +166,7 @@ typedef void (^obtainObjectBlock)(id object, ZObjectCacheType type);
     if (object) {
         return object;
     }
-    
+    NSLog(@"cache object at:%@\n", [self defaultCachePathForKey:key]);
     object = [self objectFromDiskCacheForKey:key];
     if (object) {
         return object;
@@ -273,6 +287,7 @@ typedef void (^obtainObjectBlock)(id object, ZObjectCacheType type);
     [self cleanCacheWithCompletionBlock:nil];
 }
 
+// 清除过期或超过大小限制的文件
 - (void)cleanCacheWithCompletionBlock:(cleanObjectBlock)completion
 {
     dispatch_async(_ioQueue, ^{

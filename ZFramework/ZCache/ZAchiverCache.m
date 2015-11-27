@@ -20,7 +20,7 @@ static NSString *AchiverCacheFilerPath()
         [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:nil];
     }
     
-    return [dirPath stringByAppendingString:kCacheFileName];
+    return [dirPath stringByAppendingPathComponent:kCacheFileName];
 }
 
 @implementation ZAchiverCache
@@ -52,6 +52,21 @@ static NSString *AchiverCacheFilerPath()
         self.userName = nil;
         self.userID = nil;
     }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.userID forKey:@"userId"];
+    [aCoder encodeObject:self.userName forKey:@"userName"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    self.userID = [aDecoder decodeObjectForKey:@"userId"];
+    self.userName = [aDecoder decodeObjectForKey:@"userName"];
     
     return self;
 }

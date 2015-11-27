@@ -36,6 +36,8 @@ static NSString *md5(NSString *stirng)
 
 @interface ZBaseRequest()
 
+@property (strong, nonatomic) ZAchiverObjectCache *objectCache;
+
 @property (strong, nonatomic) NSString *localUrl;
 @property (strong, nonatomic) AFHTTPRequestOperation *requestOperation;
 
@@ -70,6 +72,7 @@ static NSString *md5(NSString *stirng)
 {
     self = [super init];
     if (self) {
+        _isCached = NO;
         _urlHost = kURLHost;
         _methodType = HttpMethodGet;
         _resultDic = [[NSMutableDictionary alloc] init];
@@ -110,7 +113,7 @@ static NSString *md5(NSString *stirng)
                                      [self notifyRequestSuccess];
                                  }
                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [self notifyRequestFailed:error];
+                                     [self handleRequestFailureWithError:error];
                                  }];
     }else if (_methodType == HttpMethodPost){
         ZRequestManager *manager = [ZRequestManager manager];
@@ -126,7 +129,7 @@ static NSString *md5(NSString *stirng)
                                       [self notifyRequestSuccess];
                                   }
                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      [self notifyRequestFailed:error];
+                                      [self handleRequestFailureWithError:error];
                                   }];
     }
 }
@@ -263,9 +266,26 @@ static NSString *md5(NSString *stirng)
             NSLog(@"\n---------------------json格式错误解析失败--------------------\n");
             resultDic = nil;
         }else{
+            if (_isCached) {
+                NSString *urlKey = _localUrl ? _localUrl : [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+                [[ZAchiverObjectCache sharedFileCache] storeObject:resultDic forKey:urlKey];
+                NSLog(@"%@", [[ZAchiverObjectCache sharedFileCache] objectFromDiskCacheForKey:urlKey]);
+            }
             _resultDic = resultDic;
         }
         [self preprocessResult];
+    }
+}
+
+- (void)handleRequestFailureWithError:(NSError *)error
+{
+    if (_isCached) {
+        NSString *urlKey = _localUrl ? _localUrl : [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+        _resultDic = [[ZAchiverObjectCache sharedFileCache] objectFromDiskCacheForKey:urlKey];
+        [self preprocessResult];
+        [self notifyRequestSuccess];
+    }else{
+        [self notifyRequestFailed:error];
     }
 }
 

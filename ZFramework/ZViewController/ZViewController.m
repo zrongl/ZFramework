@@ -8,6 +8,8 @@
 
 #import "ZViewController.h"
 #import <Availability.h>
+#import "ZRequestManager.h"
+#import <libkern/OSAtomic.h>
 
 #define kLoaddingViewWidth  120.f
 #define kIndicatorViewSide  37.f
@@ -26,50 +28,25 @@
 {
     // status bar
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    // Navigation
-    // [[UINavigationBar appearance] setBarTintColor:];
+    
+    // navigation background
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    //    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
-    
-    //  Navigation background
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bg"] forBarMetrics:UIBarMetricsDefault];
-    
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:18.f],
                                                            NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    // [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
-    
-    // [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UITextAttributeTextColor,[UIColor whiteColor], nil] forState:UIControlStateNormal];
-    
-    
+    // navigation title
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.f],
+                                                                                                       NSForegroundColorAttributeName : [UIColor whiteColor]}
+                                                                                            forState:UIControlStateNormal];
     
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil]
-     setTitleTextAttributes: @{NSFontAttributeName : [UIFont systemFontOfSize:16.f],
-                               NSForegroundColorAttributeName : [UIColor whiteColor]}
-     forState:UIControlStateNormal];
-    // backButton
-    // UIImage *backBarBtnImage = [[UIImage imageNamed:@"back_button_bg"] stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-    
-    // [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsCompact];
+    // navigation back button
     UIImage *backBarBtnImage = [[UIImage imageNamed:@"nav_back"] stretchableImageWithLeftCapWidth:20 topCapHeight:0];
-    
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backBarBtnImage forState:UIControlStateNormal barMetrics:UIBarMetricsCompact];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
-    
-    
-    // Tabbar
-    // [[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab_bg"]stretchableImageWithLeftCapWidth:5 topCapHeight:5]];
-    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:UIColorFromRGB(0x999999), UITextAttributeTextColor,nil] forState:UIControlStateNormal];
-    //
-    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:kJiaYuanColor, UITextAttributeTextColor,nil] forState:UIControlStateSelected];
-    
-    // 定制tableView的分割线的颜色 (236, 236, 236)
-    // [[UITableView appearance] setSeparatorColor:[UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-1000, 0) forBarMetrics:UIBarMetricsDefault];
 }
 
 @end
@@ -77,18 +54,34 @@
 @interface ZViewController ()
 {
     UIView      *_loadingView;
-    NSInteger   *_loadingShowCount;
 }
+
+@property (atomic, assign) int32_t loadingShowCount;
 
 @end
 
 @implementation ZViewController
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // 取消全部请求
+    [ZRequestManager cancelAllRequest];
+#if 0
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kViewControllerHideLoadingViewNotify];
+#endif
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _loadingShowCount = 0;
+#if 0 // 隐藏loadingView
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(hideLoadingView)
+                                                     name:kViewControllerHideLoadingViewNotify object:nil];
+#endif
     }
     
     return self;
@@ -164,7 +157,7 @@
 
 - (void)showLoadingViewWithTitle:(NSString *)title
 {
-    _loadingShowCount ++;
+    OSAtomicIncrement32(&_loadingShowCount);
     if (!_loadingView) {
         _loadingView = [self createLoadingViewWith:title];
         [self.view addSubview:_loadingView];
@@ -172,9 +165,19 @@
     _loadingView.hidden = NO;
 }
 
+- (void)showLoadingView
+{
+    OSAtomicIncrement32(&_loadingShowCount);
+    if (!_loadingView) {
+        _loadingView = [self createLoadingViewWith:@"正在加载..."];
+        [self.view addSubview:_loadingView];
+    }
+    _loadingView.hidden = NO;
+}
+
 - (void)hideLoadingView
 {
-    _loadingShowCount --;
+    OSAtomicDecrement32(&_loadingShowCount);
     if (_loadingShowCount == 0) {
         _loadingView.hidden = YES;
     }
@@ -182,9 +185,9 @@
 
 - (UIView *)createLoadingViewWith:(NSString *)title
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
+    UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
     view.alpha = 1.f;
-    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kLoaddingViewWidth, 100)];
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake((kMainBoundsWidth-kLoaddingViewWidth)/2.f, (kMainBoundsHeight - kNavgationBarHeight  - 100)/2, kLoaddingViewWidth, 100)];
     loadingView.backgroundColor = [UIColor darkGrayColor];
     loadingView.layer.cornerRadius = 10.f;
     
@@ -194,6 +197,7 @@
     if (title) {
         CGFloat titleWidth = [title widthWithFont:[UIFont boldSystemFontOfSize:17.f] height:21.f];
         loadingView.width = MIN(MAX((titleWidth + 16.f), kLoaddingViewWidth), kMainBoundsWidth - 16);
+        loadingView.left = (view.width - loadingView.width)/2.f;
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 62, loadingView.width - 16, 21.f)];
         titleLabel.text = title;
         titleLabel.textColor = [UIColor whiteColor];
@@ -201,17 +205,14 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:17.f];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         [loadingView addSubview:titleLabel];
-        indicatorView.frame = CGRectMake(loadingView.center.x - kIndicatorViewSide/2, 14, kIndicatorViewSide, kIndicatorViewSide);
+        indicatorView.frame = CGRectMake((loadingView.width - kIndicatorViewSide)/2, 14, kIndicatorViewSide, kIndicatorViewSide);
     }else{
-        indicatorView.frame = CGRectMake(loadingView.center.x - kIndicatorViewSide/2, loadingView.center.y - kIndicatorViewSide/2, kIndicatorViewSide, kIndicatorViewSide);
+        indicatorView.frame = CGRectMake((loadingView.width - kIndicatorViewSide)/2, (loadingView.height - kIndicatorViewSide)/2, kIndicatorViewSide, kIndicatorViewSide);
     }
-    
     [loadingView addSubview:indicatorView];
     [view addSubview:loadingView];
-    [view setFrame:CGRectMake((kMainBoundsWidth-loadingView.width)/2.f, ((kMainBoundsHeight - kNavgationBarHeight) - loadingView.height)/2 - kNavgationBarHeight/2, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
     
     return view;
 }
-
 
 @end

@@ -179,7 +179,17 @@ NSData *desEncode(NSData *data, NSString *key)
 
 + (instancetype)manager
 {
-    return [[self alloc] init];
+    static dispatch_once_t oncePredicate;
+    static ZRequestManager* manager;
+    dispatch_once(&oncePredicate, ^{
+        manager = [[ZRequestManager alloc] init];
+    });
+    return manager;
+}
+
++ (void)cancelAllRequest
+{
+    [[[ZRequestManager manager] operationQueue] cancelAllOperations];
 }
 
 - (instancetype)init
@@ -279,14 +289,14 @@ NSData *desEncode(NSData *data, NSString *key)
                     [mutableRequest setHTTPBody:[NSPropertyListSerialization dataWithPropertyList:parameters format:NSPropertyListXMLFormat_v1_0 options:0 error:&error]];
                     break;
                 case AFJSONDesParameterEncoding:
-                    //Http Request Header
+                    // Http Request Header
                     [mutableRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
                     [mutableRequest setValue:@"iphone" forHTTPHeaderField:@"User-Agent"];
                     
                     // traceinfo 可以包含服务器需要统计的信息比如：系统信息或设备信息
                     [mutableRequest setValue:@"" forHTTPHeaderField:@"traceinfo"];
                     
-                    //paramdic->jsonData->des加密
+                    // paramdic->jsonData->des加密
                     NSData* paramData = [NSJSONSerialization dataWithJSONObject:parameters options: (NSJSONWritingOptions)0 error:&error];
                     NSData* encyptData = desEncode(paramData, kEncryptOrDecryptKey);
                     [mutableRequest setHTTPBody:encyptData];
@@ -369,6 +379,55 @@ NSData *desEncode(NSData *data, NSString *key)
     [self.operationQueue addOperation:operation];
     
     return operation;
+}
+
+- (void)batchOfRequestOperations:(NSArray *)operations
+                   progressBlock:(void (^)(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations))progressBlock
+                 completionBlock:(void (^)(NSArray *operations))completionBlock
+{
+    NSParameterAssert(operations || operations.count < 0);
+    
+    __block dispatch_group_t group = dispatch_group_create();
+    NSBlockOperation *batchedOperation = [NSBlockOperation blockOperationWithBlock:^{
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            if (completionBlock) {
+                completionBlock(operations);
+            }
+        });
+    }];
+    
+    for (AFURLConnectionOperation *operation in operations) {
+        operation.completionGroup = group;
+        void (^originalCompletionBlock)(void) = [operation.completionBlock copy];
+        __weak __typeof(operation)weakOperation = operation;
+        operation.completionBlock = ^{
+            __strong __typeof(weakOperation)strongOperation = weakOperation;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+            dispatch_queue_t queue = strongOperation.completionQueue ?: dispatch_get_main_queue();
+#pragma clang diagnostic pop
+            dispatch_group_async(group, queue, ^{
+                if (originalCompletionBlock) {
+                    originalCompletionBlock();
+                }
+                
+                NSUInteger numberOfFinishedOperations = [[operations indexesOfObjectsPassingTest:^BOOL(id op, NSUInteger __unused idx,  BOOL __unused *stop) {
+                    return [op isFinished];
+                }] count];
+                
+                if (progressBlock) {
+                    progressBlock(numberOfFinishedOperations, [operations count]);
+                }
+                
+                dispatch_group_leave(group);
+            });
+        };
+        
+        dispatch_group_enter(group);
+        [batchedOperation addDependency:operation];
+    }
+    
+    [self.operationQueue addOperations:[operations arrayByAddingObject:batchedOperation] waitUntilFinished:YES];
 }
 
 - (void)setValue:(id)value forHTTPHeaderField:(NSString *)key

@@ -10,4 +10,7 @@
 
 @interface ZLoadingView : UIView
 
++ (void)show;
++ (void)hide;
+
 @end

@@ -43,7 +43,7 @@
     [self setTitle:@"门店列表"];
     [self rightButtonItemWithTitle:@"刷新" action:@selector(refresh:)];
     
-    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64)];
+    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64) style:UITableViewStylePlain headerHidden:NO footerHidden:NO];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = kBackgroundColor;
@@ -64,7 +64,7 @@
     }
     NSArray *array = [StoreModel objectsArrayWithKeyValuesArray:[[[ZBaseRequest localDataFromPath:SourcePath(@"shop_list", @"json")] objectForKey:@"data"] objectForKey:@"result"]];
     [_storesArray addObjectsFromArray:array];
-    [_tableView refreshData];
+    [_tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate

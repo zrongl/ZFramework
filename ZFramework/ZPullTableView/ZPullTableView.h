@@ -17,7 +17,7 @@
  */
 @property (assign, nonatomic) NSInteger totalCount;
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style;
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style headerHidden:(BOOL)headerHidden footerHidden:(BOOL)footerHidden;
 
 /**
  *  按钮触发的请求之前调用，设置refreshHeaderView的状态
@@ -29,9 +29,14 @@
  *  之所以不用重载tableView的reloadData方法：
  *  为了避免刚进入界面后，设置完tableView后系统会自动调用reloadData方法，
  *  此前如果调用了refreshTableAction方法，会将refreshHeaderView设为normal状态
- *  所以重新定义了一个refreshData，此方法与reloadData方法作用一样
+ *  所以重写了reloadData方法
  */
-- (void)refreshData;
+- (void)reloadData;
+
+/**
+ *  请求失败时 重置headerView状态
+ */
+- (void)resetHeaderView;
 
 @end
 

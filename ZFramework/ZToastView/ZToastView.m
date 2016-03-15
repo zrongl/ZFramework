@@ -32,6 +32,11 @@
     return shareToastView;
 }
 
++ (void)toastWithMessage:(NSString *)message
+{
+    [[ZToastView sharedToastView] toastWithMessage:message stady:2.f];
+}
+
 + (void)toastWithMessage:(NSString *)message stady:(float)second
 {
     [[ZToastView sharedToastView] toastWithMessage:message stady:second];

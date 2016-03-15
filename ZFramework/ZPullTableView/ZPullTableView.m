@@ -6,51 +6,55 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
-#import "ZConstant.h"
 #import "ZPullTableView.h"
-#import "UIView+ZAddition.h"
+#import "FBKVOController.h"
 #import "ZLoadMoreTableFooterView.h"
 #import "EGORefreshTableHeaderView.h"
 
 @interface ZPullTableView()<EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
-    EGORefreshTableHeaderView   *_refreshHeaderView;
-    ZLoadMoreTableFooterView    *_loadMoreFooterView;
-    NSSet                       *_interceptSelectors;
+    NSInteger                   _loadedCount;
+    id                          _pullDelegate;
+    FBKVOController             *_KVOController;
     BOOL                        _isPullRefreshing;
     BOOL                        _isPullLoadingMore;
-    id                          _realDelegate;
-    
-    NSInteger                   _loadedCount;
+    EGORefreshTableHeaderView   *_refreshHeaderView;
+    ZLoadMoreTableFooterView    *_loadMoreFooterView;
 }
 
 @end
 
 @implementation ZPullTableView
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style headerHidden:(BOOL)headerHidden footerHidden:(BOOL)footerHidden
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
         
-        _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.height, self.width, self.height)];
-        _refreshHeaderView.delegate = self;
-        [self addSubview:_refreshHeaderView];
+        if (!headerHidden) {
+            _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.height, self.width, self.height)];
+            _refreshHeaderView.delegate = self;
+            [self addSubview:_refreshHeaderView];
+        }
         
-        _loadMoreFooterView = [[ZLoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, 0, self.width, 48)];
-        self.tableFooterView = _loadMoreFooterView;
+        if (!footerHidden) {
+            _loadMoreFooterView = [[ZLoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, 0, self.width, 48)];
+            self.tableFooterView = _loadMoreFooterView;
+        }
         
-        // 拦截代理消息集合 存储本类(UITableView)拦截父类(UIScrollView)的协议列表
-        _interceptSelectors = [[NSSet alloc] initWithObjects:NSStringFromSelector(@selector(scrollViewDidScroll:)),
-                                                             NSStringFromSelector(@selector(scrollViewDidEndDragging:willDecelerate:)), nil];
-        
-        self.totalCount = 0;    // 调用setter方法 设置footerView状态
+        _totalCount = 0;    // 调用setter方法 设置footerView状态
         _loadedCount = 0;
         _isPullRefreshing = NO;
         _isPullLoadingMore = NO;
         
-        // 拦截父类(UIScrollView)的代理方法 所以将super.delegate赋值为self
-        super.delegate = (id)self;
+        _KVOController = [FBKVOController controllerWithObserver:self];
+        __weak typeof (self) weakSelf = self;
+        [_KVOController observe:self
+                        keyPath:@"contentOffset"
+                        options:NSKeyValueObservingOptionNew
+                        block:^(id observer, id object, NSDictionary *change) {
+                            [weakSelf scrollViewScrolling];
+                        }];
     }
     
     return self;
@@ -59,8 +63,8 @@
 - (void)setDelegate:(id<UITableViewDelegate>)delegate
 {
     // 对拦截的消息进行响应后 再将该消息传递给该delegate
-    _realDelegate = delegate;
-    super.delegate = (id)self;
+    _pullDelegate = delegate;
+    super.delegate = delegate;
 }
 
 - (void)setTotalCount:(NSInteger)totalCount
@@ -68,6 +72,8 @@
     _totalCount = totalCount;
     if (_totalCount == 0) {
         [_loadMoreFooterView setState:ZPullLoadNoData];
+    }else{
+        [_loadMoreFooterView setState:ZPullLoadNormal];
     }
 }
 
@@ -77,13 +83,13 @@
     if (!_isPullLoadingMore && !_isPullRefreshing) {
         _isPullRefreshing = YES;
         [_refreshHeaderView  egoRefreshScrollViewDataSourceDidBeginLoading:self];
-        if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
-            [_realDelegate refreshTableView:self];
+        if (_pullDelegate && [_pullDelegate respondsToSelector:@selector(refreshTableView:)]) {
+            [_pullDelegate refreshTableView:self];
         }
     }
 }
 
-- (void)refreshData
+- (void)reloadData
 {
     if (_isPullRefreshing) {
         [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
@@ -96,11 +102,16 @@
     [super reloadData];
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)resetHeaderView
 {
-    if (scrollView.isDragging) {
-        CGFloat offsetY = scrollView.contentOffset.y;
+    _isPullRefreshing = NO;
+    [_refreshHeaderView  egoRefreshScrollViewDataSourceDidFinishedLoading:self];
+}
+
+- (void)scrollViewScrolling
+{
+    if (self.isDragging) {
+        CGFloat offsetY = self.contentOffset.y;
         if (offsetY < 0) {
             [_refreshHeaderView egoRefreshScrollViewDidScroll:self];
         }else{
@@ -114,33 +125,22 @@
              */
             if (_loadedCount < _totalCount) {
                 if (!_isPullLoadingMore &&!_isPullRefreshing && totalOffsetY + 100 > self.contentSize.height) {
-                    if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
+                    if (_pullDelegate && [_pullDelegate respondsToSelector:@selector(refreshTableView:)]) {
                         _isPullLoadingMore = YES;
                         [_loadMoreFooterView setState:ZPullLoading];
-                        [_realDelegate loadMoreTableView:self];
+                        [_pullDelegate loadMoreTableView:self];
                     }
                 }
             }else{
                 [_loadMoreFooterView setState:ZPullLoadNormal];
             }
         }
-        
-        // transform the message to the real delegate
-        if ([_realDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
-            [_realDelegate scrollViewDidScroll:scrollView];
+    }else{
+        if (self.decelerating) {
+            if (self.contentOffset.y <= 0) {
+                [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self];
+            }
         }
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (scrollView.contentOffset.y <= 0) {
-        [_refreshHeaderView egoRefreshScrollViewDidEndDragging:self];
-    }
-    
-    // transform the message to the real delegate
-    if ([_realDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
-        [_realDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
 }
 
@@ -148,8 +148,8 @@
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     _isPullRefreshing = YES;
-    if (_realDelegate && [_realDelegate respondsToSelector:@selector(refreshTableView:)]) {
-        [_realDelegate refreshTableView:self];
+    if (_pullDelegate && [_pullDelegate respondsToSelector:@selector(refreshTableView:)]) {
+        [_pullDelegate refreshTableView:self];
     }
 }
 
@@ -161,44 +161,6 @@
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {
     return [NSDate date];
-}
-
-
-//-----------------------------UITableView拦截父类UIScrollView代理方法-----------------------------//
-/**
- *  如果包含指定消息 返回YES 进行拦截
- *
- *  @param aSelector 消息名称
- *
- *  @return 包含指定消息则返回YES
- */
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-    if ([_interceptSelectors containsObject:NSStringFromSelector(aSelector)]) {
-        return YES;
-    } else if ([_realDelegate respondsToSelector:aSelector]) {
-        return YES;
-    }
-    
-    return [super respondsToSelector:aSelector];
-}
-
-/**
- *  消息重定向 如果包含指定消息 指定self为消息的接收者
- *
- *  @param aSelector 消息名称
- *
- *  @return 指定消息的接收者
- */
-- (id)forwardingTargetForSelector:(SEL)aSelector
-{
-    if ([_interceptSelectors containsObject:NSStringFromSelector(aSelector)]) {
-        return self;
-    } else if ([_realDelegate respondsToSelector:aSelector]) {
-        return _realDelegate;
-    }
-    
-    return [super forwardingTargetForSelector:aSelector];
 }
 
 @end

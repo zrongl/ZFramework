@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
 };
 
 @protocol AFMultipartFormData;
+@class AFHTTPRequestOperation;
 
 @interface ZBaseRequest : NSObject
 
@@ -26,6 +27,10 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
 @property (strong, nonatomic) NSMutableDictionary *resultDic;   // 请求返回json转换为dictionary
 @property (strong, nonatomic) NSMutableDictionary *parameterDic;// 请求参数
 
+// 返回
+- (AFHTTPRequestOperation *)generateOperationOnSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                                              onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock;
+
 /**
  *  读取本地json文件返回解析之后的字典
  *
@@ -34,6 +39,13 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
  *  @return json转化后的dictionary
  */
 + (NSDictionary *)localDataFromPath:(NSString *)path;
+
+/**
+ *
+ *  为了使得开发更加便捷，只对请求成功并且code==200的情况，进行处理
+ *
+ */
+- (void)resultonSuccess:(void(^)(id result))onResultSuccessBlock;
 
 /**
  *  普通GET/POST请求

@@ -30,11 +30,11 @@
     // navigationBarHidden = YES的时候
     // 设置手势的delegate来支持右滑popViewController操作
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewDidLoad

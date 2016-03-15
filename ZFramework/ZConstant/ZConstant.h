@@ -50,4 +50,6 @@
 #define kTextDarkColor          [UIColor darkGrayColor]
 #define kTextLightColor         [UIColor lightGrayColor]
 
+#define kViewControllerHideLoadingViewNotify @"request.finied.hide.loading.view"
+
 #endif /* ZConstant_h */

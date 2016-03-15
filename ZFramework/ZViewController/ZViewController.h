@@ -44,6 +44,7 @@
  *  @param title 加载框标题
  */
 - (void)showLoadingViewWithTitle:(NSString *)title;
+- (void)showLoadingView;
 - (void)hideLoadingView;
 
 @end

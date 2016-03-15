@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 ronglei. All rights reserved.
 //
 
+#import "ZToastView.h"
 #import "ZGlobalData.h"
 #import "ZBaseRequest.h"
 #import "ZRequestManager.h"
@@ -14,6 +15,10 @@
 
 #define kURLHost  @"http://meiye.test.lashou.com/index.php"
 
+#define kIndicatorViewSide  37.f
+#define kLoaddingViewWidth  120.f
+
+typedef void (^ ResultSuccessBlock)(NSDictionary *);
 typedef void (^ RequestSuccessBlock)(ZBaseRequest *);
 typedef void (^ RequestFailedBlock)(ZBaseRequest*, NSError *);
 typedef void (^ RequestProgressBlock)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected);
@@ -36,12 +41,15 @@ static NSString *md5(NSString *stirng)
 
 @interface ZBaseRequest()
 
-@property (strong, nonatomic) ZAchiverObjectCache *objectCache;
-
-@property (strong, nonatomic) NSString *localUrl;
-@property (strong, nonatomic) AFHTTPRequestOperation *requestOperation;
+{
+    NSString                *_localUrl;;
+    ZAchiverObjectCache     *_objectCache;
+    AFHTTPRequestOperation  *_requestOperation;
+    
+}
 
 @property (copy, nonatomic) RequestFailedBlock onRequestFailedBlock;
+@property (copy, nonatomic) ResultSuccessBlock onResultSuccessBlock;
 @property (copy, nonatomic) RequestSuccessBlock onRequestSuccessBlock;
 
 @end
@@ -72,13 +80,41 @@ static NSString *md5(NSString *stirng)
 {
     self = [super init];
     if (self) {
-        _isCached = NO;
-        _urlHost = kURLHost;
+        _isCached   = NO;
+        _urlHost    = kURLHost;
         _methodType = HttpMethodGet;
-        _resultDic = [[NSMutableDictionary alloc] init];
+        _resultDic  = [[NSMutableDictionary alloc] init];
         _parameterDic = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)resultonSuccess:(void(^)(id result))onResultSuccessBlock
+{
+    _onResultSuccessBlock = onResultSuccessBlock;
+    [self requestonSuccess:^(ZBaseRequest *request) {
+#if 0 // 隐藏loadingView
+        [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerHideLoadingViewNotify
+                                                            object:nil];
+#endif
+        if ([[request.resultDic objectForKey:@"code"] integerValue] == 200) {
+            if (_onResultSuccessBlock) {
+                _onResultSuccessBlock([request.resultDic objectForKey:@"data"]);
+            }
+        }else{
+            [ZToastView toastWithMessage:[request.resultDic objectForKey:@"msg"]];
+        }
+    }
+                  onFailed:^(ZBaseRequest *request, NSError *error) {
+#if 0 // 隐藏loadingView
+                      [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerHideLoadingViewNotify
+                                                                          object:nil];
+#endif
+                      // 取消请求导致的请求失败，不弹出toast
+                      if (error.code != -999) {
+                          [self handleRequestFailureWithError:error];
+                      }
+                  }];
 }
 
 - (void)requestonSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
@@ -88,12 +124,12 @@ static NSString *md5(NSString *stirng)
     _onRequestFailedBlock = onRequestFailedBlock;
     
     // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *URLString = nil;
+    NSString *urlString = nil;
     _localUrl = [self localServerURL];
     if (_localUrl == nil) {
-        URLString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
     }else{
-        URLString = _localUrl;
+        urlString = _localUrl;
     }
     
     // 设置与服务器协商好的全局参数
@@ -105,7 +141,7 @@ static NSString *md5(NSString *stirng)
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
         // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager GET:URLString
+        _requestOperation = [manager GET:urlString
                               parameters:_parameterDic
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
@@ -119,9 +155,9 @@ static NSString *md5(NSString *stirng)
         ZRequestManager *manager = [ZRequestManager manager];
         
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
-        // [manager setValue:(id) forKey:(NSString *)];
+        // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager POST:URLString
+        _requestOperation = [manager POST:urlString
                                parameters:_parameterDic
                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                       [self handleHttpHeaderField:operation.response.allHeaderFields];
@@ -129,9 +165,64 @@ static NSString *md5(NSString *stirng)
                                       [self notifyRequestSuccess];
                                   }
                                   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      [self handleRequestFailureWithError:error];
+                                      [ZToastView toastWithMessage:@"请求失败"];
                                   }];
     }
+}
+
+- (AFHTTPRequestOperation *)generateOperationOnSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                                              onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
+{
+    _onRequestSuccessBlock = onRequestSuccessBlock;
+    _onRequestFailedBlock = onRequestFailedBlock;
+    
+    // 如果设置了本地请求路径 则不请求远程服务器
+    NSString *urlString = nil;
+    _localUrl = [self localServerURL];
+    if (_localUrl == nil) {
+        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+    }else{
+        urlString = _localUrl;
+    }
+    
+    // 设置与服务器协商好的全局参数
+    // [self appendGlobalParameters];
+    
+    if (_methodType == HttpMethodGet) {
+        ZRequestManager *manager = [ZRequestManager manager];
+        
+        // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
+        // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
+        
+        _requestOperation = [manager GET:urlString
+                              parameters:_parameterDic
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                     [self handleHttpHeaderField:operation.response.allHeaderFields];
+                                     [self handleResultObject:responseObject];
+                                     [self notifyRequestSuccess];
+                                 }
+                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                     [self handleRequestFailureWithError:error];
+                                 }];
+    }else if (_methodType == HttpMethodPost){
+        ZRequestManager *manager = [ZRequestManager manager];
+        
+        // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
+        // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
+        
+        _requestOperation = [manager POST:urlString
+                               parameters:_parameterDic
+                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
+                                      [self handleResultObject:responseObject];
+                                      [self notifyRequestSuccess];
+                                  }
+                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                      [ZToastView toastWithMessage:@"请求失败"];
+                                  }];
+    }
+    
+    return _requestOperation;
 }
 
 - (void)uploadRequestOnConstructingBody:(void(^)(id <AFMultipartFormData> formData))onConstrctBlock
@@ -143,19 +234,19 @@ static NSString *md5(NSString *stirng)
     _onRequestFailedBlock = onRequestFailedBlock;
     
     // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *URLString = nil;
+    NSString *urlString = nil;
     _localUrl = [self localServerURL];
     if (_localUrl == nil) {
-        URLString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
     }else{
-        URLString = _localUrl;
+        urlString = _localUrl;
     }
     
     // 设置与服务器协商好的全局参数
     // [self appendGlobalParameters];
     
     ZRequestManager *manager = [ZRequestManager manager];
-    _requestOperation = [manager UPLOAD:URLString
+    _requestOperation = [manager UPLOAD:urlString
                              parameters:_parameterDic
                        constructingBody:^(id<AFMultipartFormData> formData) {
                            onConstrctBlock(formData);
@@ -182,19 +273,19 @@ static NSString *md5(NSString *stirng)
     _onRequestFailedBlock = onRequestFailedBlock;
     
     // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *URLString = nil;
+    NSString *urlString = nil;
     _localUrl = [self localServerURL];
     if (_localUrl == nil) {
-        URLString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
     }else{
-        URLString = _localUrl;
+        urlString = _localUrl;
     }
     
     // 设置与服务器协商好的全局参数
     // [self appendGlobalParameters];
     
     ZRequestManager *manager = [ZRequestManager manager];
-    _requestOperation = [manager DOWNLOAD:URLString
+    _requestOperation = [manager DOWNLOAD:urlString
                                parameters:_parameterDic
                                  filePath:filePath
                           downloadProcess:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
@@ -209,6 +300,7 @@ static NSString *md5(NSString *stirng)
                                       [self notifyRequestFailed:error];
                                   }];
 }
+
 
 #pragma mark - global parameter
 /**

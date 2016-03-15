@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, AFParameterEncoding) {
  *  @return 返回LSHttpRequestManager实例
  */
 + (instancetype)manager;
++ (void)cancelAllRequest;
 /**
  *  添加http header信息
  */
@@ -63,4 +64,9 @@ typedef NS_ENUM(NSInteger, AFParameterEncoding) {
                      downloadProcess:(void (^) (NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))successBlock
                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failureBlock;
+
+// 多个请求执行完成后，执行completionBlock中的内容
+- (void)batchOfRequestOperations:(NSArray *)operations
+                   progressBlock:(void (^)(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations))progressBlock
+                 completionBlock:(void (^)(NSArray *operations))completionBlock;
 @end

@@ -10,17 +10,6 @@
 
 #define kToastHideDelay     0.3f
 
-typedef NS_ENUM(NSInteger, ZToastMode)  {
-    ZToastSerialMode,
-    ZToastUniqueMode
-};
-
-typedef NS_ENUM(NSInteger, ZToastStyle) {
-    ZToastLoadingStyle,
-    ZToastMessageStyle,
-    ZToastProgressStyle
-};
-
 @interface ZToastView : UIView
 
 /**
@@ -36,6 +25,7 @@ typedef NS_ENUM(NSInteger, ZToastStyle) {
  *  @param message 提示信息
  *  @param second  显示时间
  */
++ (void)toastWithMessage:(NSString *)message;
 + (void)toastWithMessage:(NSString *)message stady:(float)second;
 
 + (void)serialToastWithMessage:(NSString *)message stady:(float)second;

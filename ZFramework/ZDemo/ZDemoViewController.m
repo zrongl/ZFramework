@@ -10,7 +10,7 @@
 #import "ZDemoViewController.h"
 #import "ZPhotoBrowserController.h"
 #import "StoreListViewController.h"
-#import "ReactiveController.h"
+#import "ZStretchHeaderController.h"
 
 @interface ZDemoViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dataSource = [NSArray arrayWithObjects:@"PullTableView", @"PhotoBrowserController", @"ReactiveController", nil];
+    _dataSource = [NSArray arrayWithObjects:@"刷新TableView", @"图片浏览", @"头部拉伸效果", nil];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -97,13 +97,13 @@
         }
         case 2:
         {
-            ReactiveController *vc = [[ReactiveController alloc] init];
+            ZStretchHeaderController *vc = [[ZStretchHeaderController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
         case 3:
         {
-            
+
         }
         case 4:
         {

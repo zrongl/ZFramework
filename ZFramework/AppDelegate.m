@@ -15,8 +15,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
     
     [ZNavigationController customizeAppearanceForiOS7];
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -24,7 +22,6 @@
     [_window makeKeyAndVisible];
     
     return YES;
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

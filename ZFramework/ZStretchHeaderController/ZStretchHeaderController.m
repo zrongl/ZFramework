@@ -133,8 +133,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.layer.borderWidth = 0.5f;
-        cell.layer.borderColor = kMainColor.CGColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     

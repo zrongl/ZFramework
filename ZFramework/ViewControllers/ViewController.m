@@ -149,6 +149,7 @@
     // location view
     if(![CLLocationManager locationServicesEnabled] ||
        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
         UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示"
                                                                            message:@"需要开启定位服务,请到设置->隐私,打开定位服务"
@@ -169,6 +170,7 @@
                                                  otherButtonTitles: nil];
         [alvertView show];
 #endif
+        
     }
     ZLocationView *loactionView = [[ZLocationView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 28)];
     [self.view addSubview:loactionView];

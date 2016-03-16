@@ -17,7 +17,6 @@
 {
     NSArray     *_dataSource;
     UITableView *_tableView;
-    
 }
 
 @end

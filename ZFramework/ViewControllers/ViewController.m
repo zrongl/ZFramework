@@ -115,7 +115,7 @@
     [self setTitle:@"清算"];
     [self showLoadingViewWithTitle:@"正在加载..."];
     
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 0; i < 4; i++) {
         [ZToastView serialToastWithMessage:@"请稍候" stady:2];
     }
 }

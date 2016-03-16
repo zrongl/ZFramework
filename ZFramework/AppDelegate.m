@@ -17,6 +17,7 @@
 {
     // Override point for customization after application launch.
     
+    
     [ZNavigationController customizeAppearanceForiOS7];
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.rootViewController = [[ZTabBarController alloc] init];

@@ -166,4 +166,16 @@
     }
 }
 
++ (id)loadViewFromNib
+{
+    id view = nil;
+    NSString *xibName = NSStringFromClass([self class]);
+    NSArray *objects = [[NSBundle mainBundle] loadNibNamed:xibName owner:nil options:nil];
+    if (objects) {
+        view = objects[0];
+        return view;
+    }
+    return nil;
+}
+
 @end

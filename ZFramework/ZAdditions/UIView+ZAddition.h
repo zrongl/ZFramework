@@ -34,5 +34,6 @@
 
 // 输出view的subviews
 - (void)outputSubViews;
++ (id)loadViewFromNib;
 
 @end

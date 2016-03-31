@@ -12,11 +12,13 @@
 #import "ZToastView.h"
 #import "ZStarGradeView.h"
 #import "ZPullTableView.h"
+#import "UIView+ZAddition.h"
 #import <CoreLocation/CoreLocation.h>
 
 #import "ZDemoViewController.h"
+#import "CollectionViewCell.h"
 
-@interface ViewController()
+@interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) UIView *btn_1;
 @property (strong, nonatomic) UIView *btn_2;
@@ -35,67 +37,84 @@
     UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
     
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    _btn_1 = [UIView new];
-    _btn_1.backgroundColor = kMainColor;
-    [self.view addSubview:_btn_1];
-    _btn_2 = [UIView new];
-    _btn_2.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_btn_2];
-    _btn_3 = [UIView new];
-    _btn_3.backgroundColor = [UIColor redColor];
-    [self.view addSubview:_btn_3];
-    _btn_4 = [UIView new];
-    _btn_4.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:_btn_4];
+    // 每行内部cell item的间距
+    flowLayout.minimumInteritemSpacing = 1;
+    //     //每行的间距
+    flowLayout.minimumLineSpacing = 1;
+    // 布局方式改为从上至下，默认从左到右
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    // Section Inset就是某个section中cell的边界范围
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 124) collectionViewLayout:flowLayout];
+    collectionView.delegate = self;
+    collectionView.dataSource = self;
+    [self.view addSubview:collectionView];
     
-    [_btn_1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_btn_2 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_btn_3 setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_btn_4 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    UINib *nib = [UINib nibWithNibName:@"CollectionViewCell" bundle:nil];
+    [collectionView registerNib:nib forCellWithReuseIdentifier:@"CollectionViewCell"];
     
-    CGSize winSize = CGSizeMake(kMainBoundsWidth, kMainBoundsHeight);
-    CGFloat tpo = 100;
-    CGFloat hpod = 100;
-    CGFloat btnH = 40;
-    CGFloat vpod = winSize.width*0.15-btnH;
-    
-    NSNumber* tp = [NSNumber numberWithFloat:tpo];
-    NSNumber* hd = [NSNumber numberWithFloat:hpod];
-    NSNumber* vd = [NSNumber numberWithFloat:vpod];
-    NSNumber* bh = [NSNumber numberWithFloat:btnH];
-    NSNumber* btm = [NSNumber numberWithFloat:vpod*2];
-    
-    NSDictionary *dict1 = NSDictionaryOfVariableBindings(_btn_1,_btn_2,_btn_3,_btn_4);
-    NSDictionary *metrics = @{@"hPadding":hd,@"vPadding":vd,@"top":tp,@"btm":btm,@"btnHeight":bh};
-    NSString *vfl1 = @"|-[_btn_1]-|";
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1
-                                                                      options:0
-                                                                      metrics:metrics
-                                                                        views:dict1]];
-    NSString *vfl2 = @"|-hPadding-[_btn_2]-hPadding-|";
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2
-                                                                      options:0
-                                                                      metrics:metrics
-                                                                        views:dict1]];
-    NSString *vfl3 = @"|-hPadding-[_btn_3]-hPadding-|";
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3
-                                                                      options:0
-                                                                      metrics:metrics
-                                                                        views:dict1]];
-    NSString *vfl4 = @"|-hPadding-[_btn_4]-hPadding-|";
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4
-                                                                      options:0
-                                                                      metrics:metrics
-                                                                        views:dict1]];
-    NSString *vfl5 = @"V:|-(<=top)-[_btn_1(btnHeight)][_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
-    if (_btn_1.hidden) {
-        vfl5 = @"V:|-(<=top)-[_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
-    }
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5
-                                                                      options:0
-                                                                      metrics:metrics
-                                                                        views:dict1]];
+//    _btn_1 = [UIView new];
+//    _btn_1.backgroundColor = kMainColor;
+//    [self.view addSubview:_btn_1];
+//    _btn_2 = [UIView new];
+//    _btn_2.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:_btn_2];
+//    _btn_3 = [UIView new];
+//    _btn_3.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:_btn_3];
+//    _btn_4 = [UIView new];
+//    _btn_4.backgroundColor = [UIColor greenColor];
+//    [self.view addSubview:_btn_4];
+//    
+//    [_btn_1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [_btn_2 setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [_btn_3 setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [_btn_4 setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    
+//    CGSize winSize = CGSizeMake(kMainBoundsWidth, kMainBoundsHeight);
+//    CGFloat tpo = 100;
+//    CGFloat hpod = 100;
+//    CGFloat btnH = 40;
+//    CGFloat vpod = winSize.width*0.15-btnH;
+//    
+//    NSNumber* tp = [NSNumber numberWithFloat:tpo];
+//    NSNumber* hd = [NSNumber numberWithFloat:hpod];
+//    NSNumber* vd = [NSNumber numberWithFloat:vpod];
+//    NSNumber* bh = [NSNumber numberWithFloat:btnH];
+//    NSNumber* btm = [NSNumber numberWithFloat:vpod*2];
+//    
+//    NSDictionary *dict1 = NSDictionaryOfVariableBindings(_btn_1,_btn_2,_btn_3,_btn_4);
+//    NSDictionary *metrics = @{@"hPadding":hd,@"vPadding":vd,@"top":tp,@"btm":btm,@"btnHeight":bh};
+//    NSString *vfl1 = @"|-[_btn_1]-|";
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1
+//                                                                      options:0
+//                                                                      metrics:metrics
+//                                                                        views:dict1]];
+//    NSString *vfl2 = @"|-hPadding-[_btn_2]-hPadding-|";
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2
+//                                                                      options:0
+//                                                                      metrics:metrics
+//                                                                        views:dict1]];
+//    NSString *vfl3 = @"|-hPadding-[_btn_3]-hPadding-|";
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3
+//                                                                      options:0
+//                                                                      metrics:metrics
+//                                                                        views:dict1]];
+//    NSString *vfl4 = @"|-hPadding-[_btn_4]-hPadding-|";
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4
+//                                                                      options:0
+//                                                                      metrics:metrics
+//                                                                        views:dict1]];
+//    NSString *vfl5 = @"V:|-(<=top)-[_btn_1(btnHeight)][_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
+//    if (_btn_1.hidden) {
+//        vfl5 = @"V:|-(<=top)-[_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
+//    }
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5
+//                                                                      options:0
+//                                                                      metrics:metrics
+//                                                                        views:dict1]];
     
 }
 
@@ -103,6 +122,36 @@
 {
     ZDemoViewController *vc = [[ZDemoViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
+    if (!cell){
+        cell = [CollectionViewCell loadViewFromNib];
+    }
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#define kCellWidth 100
+#define kCellHeight 62
+#pragma mark - UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize CellSize ;
+    CellSize = CGSizeMake((kMainBoundsWidth - 3) / 4, kCellHeight);
+    return CellSize;
 }
 
 @end

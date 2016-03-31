@@ -44,7 +44,7 @@
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor clearColor];
         
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont systemFontOfSize:12.0f];
 		label.textColor = textColor;
@@ -78,7 +78,7 @@
 #endif
 		
 		[[self layer] addSublayer:layer];
-		_arrowImage=layer;
+		_arrowImage = layer;
 		
 		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		view.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
@@ -98,7 +98,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame  {
-  return [self initWithFrame:frame arrowImageName:@"blackArrow.png" textColor:TEXT_COLOR];
+  return [self initWithFrame:frame arrowImageName:@"arrow.png" textColor:TEXT_COLOR];
 }
 
 #pragma mark -
@@ -132,7 +132,8 @@
 	switch (aState) {
 		case EGOPullRefreshPulling:
 			
-			_statusLabel.text = NSLocalizedString(@"松开刷新...", @"Release to refresh status");
+//			_statusLabel.text = NSLocalizedString(@"松开刷新...", @"Release to refresh status");
+            _statusLabel.text = @"一起装修网,省钱有保障";
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
 			_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
@@ -148,7 +149,8 @@
 				[CATransaction commit];
 			}
 			
-			_statusLabel.text = NSLocalizedString(@"下拉刷新...", @"Pull down to refresh status");
+//			_statusLabel.text = NSLocalizedString(@"下拉刷新...", @"Pull down to refresh status");
+            _statusLabel.text = @"一起装修网,省钱有保障";
 			[_activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 

@@ -47,14 +47,14 @@
     switch (state) {
         case ZPullLoading:{
             [_activityView startAnimating];
-            [_stateLabel setText:@"加载中 ..."];
+            [_stateLabel setText:@"正在加载更多数据..."];
             [_stateLabel sizeToFit];
             _stateLabel.centerX = _contentView.width/2+20;
             break;
         }
         case ZPullLoadNormal:{
             [_activityView stopAnimating];
-            [_stateLabel setText:@"已显示全部"];
+            [_stateLabel setText:@"没有更多内容了"];
             [_stateLabel sizeToFit];
             _stateLabel.centerX = _contentView.width/2;
             break;

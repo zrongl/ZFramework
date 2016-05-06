@@ -424,6 +424,7 @@ NSData *desEncode(NSData *data, NSString *key)
         };
         
         dispatch_group_enter(group);
+        
         [batchedOperation addDependency:operation];
     }
     

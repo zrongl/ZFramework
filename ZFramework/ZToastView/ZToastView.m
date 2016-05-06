@@ -154,10 +154,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [[ZToastView sharedToastView] toastWithMessage:_message];
     });
-    
-    [NSThread sleepForTimeInterval:_stadySecond];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, _stadySecond);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
         [[ZToastView sharedToastView] hide];
     });
     

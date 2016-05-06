@@ -7,9 +7,12 @@
 //
 
 #import "ZStretchHeaderController.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 #import "UIImage+ImageEffects.h"
 #import "UIView+ZAddition.h"
 #import "ZConstant.h"
+
+#import "ViewController.h"
 
 #define kStretchViewHeight  230
 
@@ -24,27 +27,14 @@
 
 @implementation ZStretchHeaderController
 
-// 系统navigation bar隐藏及显示操作
-- (void)viewWillAppear:(BOOL)animated
-{
-    // navigationBarHidden = YES的时候
-    // 设置手势的delegate来支持右滑popViewController操作
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // 滑动切换时 navigationBar正常显示
+    self.fd_prefersNavigationBarHidden = YES;
     
     [self customStretchImageView];
-    
     [self setupTableView];
-
     [self customNavigationBar];
 }
 
@@ -139,6 +129,13 @@
     cell.textLabel.text = @"TableView";
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    ViewController *vc = [[ViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

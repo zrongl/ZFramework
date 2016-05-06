@@ -41,7 +41,7 @@
     
     // 每行内部cell item的间距
     flowLayout.minimumInteritemSpacing = 1;
-    //     //每行的间距
+    // 每行的间距
     flowLayout.minimumLineSpacing = 1;
     // 布局方式改为从上至下，默认从左到右
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -144,13 +144,14 @@
     
 }
 
-#define kCellWidth 100
-#define kCellHeight 62
+const CGFloat   kCellHeight = 62;
+const NSInteger kItemSpacing = 1;
+const NSInteger kNumberPerRow = 4;
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize CellSize ;
-    CellSize = CGSizeMake((kMainBoundsWidth - 3) / 4, kCellHeight);
+    CellSize = CGSizeMake((kMainBoundsWidth - kItemSpacing*kNumberPerRow-1) / kNumberPerRow, kCellHeight);
     return CellSize;
 }
 

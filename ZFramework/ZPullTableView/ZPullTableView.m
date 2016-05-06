@@ -108,6 +108,27 @@
     [_refreshHeaderView  egoRefreshScrollViewDataSourceDidFinishedLoading:self];
 }
 
+- (void)disablePullAction
+{
+    [_KVOController unobserveAll];
+    _refreshHeaderView.hidden = YES;
+    _loadMoreFooterView.hidden = YES;
+}
+
+- (void)enablePullAction
+{
+    __weak typeof (self) weakSelf = self;
+    [_KVOController observe:self
+                    keyPath:@"contentOffset"
+                    options:NSKeyValueObservingOptionNew
+                      block:^(id observer, id object, NSDictionary *change) {
+                          [weakSelf scrollViewScrolling];
+                      }];
+    _refreshHeaderView.hidden = NO;
+    _loadMoreFooterView.hidden = NO;
+}
+
+#pragma mark - UIScrollViewDelegate
 - (void)scrollViewScrolling
 {
     if (self.isDragging) {

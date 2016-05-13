@@ -12,6 +12,7 @@
 #import "ZToastView.h"
 #import "ZStarGradeView.h"
 #import "ZPullTableView.h"
+#import "ZTextAttributes.h"
 #import "UIView+ZAddition.h"
 #import <CoreLocation/CoreLocation.h>
 
@@ -55,66 +56,24 @@
     UINib *nib = [UINib nibWithNibName:@"CollectionViewCell" bundle:nil];
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"CollectionViewCell"];
     
-//    _btn_1 = [UIView new];
-//    _btn_1.backgroundColor = kMainColor;
-//    [self.view addSubview:_btn_1];
-//    _btn_2 = [UIView new];
-//    _btn_2.backgroundColor = [UIColor blackColor];
-//    [self.view addSubview:_btn_2];
-//    _btn_3 = [UIView new];
-//    _btn_3.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:_btn_3];
-//    _btn_4 = [UIView new];
-//    _btn_4.backgroundColor = [UIColor greenColor];
-//    [self.view addSubview:_btn_4];
-//    
-//    [_btn_1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [_btn_2 setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [_btn_3 setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [_btn_4 setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    
-//    CGSize winSize = CGSizeMake(kMainBoundsWidth, kMainBoundsHeight);
-//    CGFloat tpo = 100;
-//    CGFloat hpod = 100;
-//    CGFloat btnH = 40;
-//    CGFloat vpod = winSize.width*0.15-btnH;
-//    
-//    NSNumber* tp = [NSNumber numberWithFloat:tpo];
-//    NSNumber* hd = [NSNumber numberWithFloat:hpod];
-//    NSNumber* vd = [NSNumber numberWithFloat:vpod];
-//    NSNumber* bh = [NSNumber numberWithFloat:btnH];
-//    NSNumber* btm = [NSNumber numberWithFloat:vpod*2];
-//    
-//    NSDictionary *dict1 = NSDictionaryOfVariableBindings(_btn_1,_btn_2,_btn_3,_btn_4);
-//    NSDictionary *metrics = @{@"hPadding":hd,@"vPadding":vd,@"top":tp,@"btm":btm,@"btnHeight":bh};
-//    NSString *vfl1 = @"|-[_btn_1]-|";
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1
-//                                                                      options:0
-//                                                                      metrics:metrics
-//                                                                        views:dict1]];
-//    NSString *vfl2 = @"|-hPadding-[_btn_2]-hPadding-|";
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2
-//                                                                      options:0
-//                                                                      metrics:metrics
-//                                                                        views:dict1]];
-//    NSString *vfl3 = @"|-hPadding-[_btn_3]-hPadding-|";
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3
-//                                                                      options:0
-//                                                                      metrics:metrics
-//                                                                        views:dict1]];
-//    NSString *vfl4 = @"|-hPadding-[_btn_4]-hPadding-|";
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4
-//                                                                      options:0
-//                                                                      metrics:metrics
-//                                                                        views:dict1]];
-//    NSString *vfl5 = @"V:|-(<=top)-[_btn_1(btnHeight)][_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
-//    if (_btn_1.hidden) {
-//        vfl5 = @"V:|-(<=top)-[_btn_2(btnHeight)]-vPadding-[_btn_3(btnHeight)]-vPadding-[_btn_4(btnHeight)]-(>=btm)-|";
-//    }
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5
-//                                                                      options:0
-//                                                                      metrics:metrics
-//                                                                        views:dict1]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 200, kMainBoundsWidth-30, 0)];
+    label.backgroundColor = [UIColor lightGrayColor];
+    NSString *string = @"大家好：我是谁";
+    NSString *substring = @"大家好：";
+    
+    label.attributedText =  ZTextAttributes
+                            .string(string)
+                            .font([UIFont systemFontOfSize:16])
+                            .lineSpace(7)
+                            .subcolor([UIColor orangeColor], substring)
+                            .attributeString(CGFLOAT_MAX);
+    label.height =  ZTextAttributes
+                    .string(string)
+                    .font([UIFont systemFontOfSize:16])
+                    .lineSpace(7)
+                    .subcolor([UIColor orangeColor], substring)
+                    .attributeStringHeight(CGFLOAT_MAX);
+    [self.view addSubview:label];
     
 }
 

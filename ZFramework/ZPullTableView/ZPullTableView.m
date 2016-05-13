@@ -30,7 +30,9 @@
 {
     self = [super initWithFrame:frame style:style];
     if (self) {
-        
+        self.backgroundColor = kBackgroundColor;
+        self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.separatorInset = UIEdgeInsetsMake(self.separatorInset.top, 15, self.separatorInset.bottom, 15);
         if (!headerHidden) {
             _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.height, self.width, self.height)];
             _refreshHeaderView.delegate = self;

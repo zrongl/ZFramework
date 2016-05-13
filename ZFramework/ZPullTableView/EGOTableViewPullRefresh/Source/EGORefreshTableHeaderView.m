@@ -37,14 +37,13 @@
 
 @implementation EGORefreshTableHeaderView
 
-
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor  {
     if((self = [super initWithFrame:frame])) {
 		
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor clearColor];
         
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont systemFontOfSize:12.0f];
 		label.textColor = textColor;
@@ -67,7 +66,7 @@
 		_statusLabel=label;
 		
 		CALayer *layer = [CALayer layer];
-		layer.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
+		layer.frame = CGRectMake(60.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
 		layer.contentsGravity = kCAGravityResizeAspect;
 		layer.contents = (id)[UIImage imageNamed:arrow].CGImage;
 		
@@ -81,7 +80,7 @@
 		_arrowImage = layer;
 		
 		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-		view.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
+		view.frame = CGRectMake(65.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
 		[self addSubview:view];
 		_activityView = view;
 		
@@ -132,8 +131,8 @@
 	switch (aState) {
 		case EGOPullRefreshPulling:
 			
-//			_statusLabel.text = NSLocalizedString(@"松开刷新...", @"Release to refresh status");
-            _statusLabel.text = @"一起装修网,省钱有保障";
+			_statusLabel.text = NSLocalizedString(@"松开刷新...", @"Release to refresh status");
+//            _statusLabel.text = @"一起装修网,省钱有保障";
 			[CATransaction begin];
 			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
 			_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
@@ -149,8 +148,8 @@
 				[CATransaction commit];
 			}
 			
-//			_statusLabel.text = NSLocalizedString(@"下拉刷新...", @"Pull down to refresh status");
-            _statusLabel.text = @"一起装修网,省钱有保障";
+			_statusLabel.text = NSLocalizedString(@"下拉刷新...", @"Pull down to refresh status");
+//            _statusLabel.text = @"一起装修网,省钱有保障";
 			[_activityView stopAnimating];
 			[CATransaction begin];
 			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 

@@ -27,11 +27,16 @@
 
 @implementation ZStretchHeaderController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // animated设置为YES使得手势滑动正常
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // 滑动切换时 navigationBar正常显示
-    self.fd_prefersNavigationBarHidden = YES;
     
     [self customStretchImageView];
     [self setupTableView];

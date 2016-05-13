@@ -19,6 +19,8 @@
 #define fRandom(x)              (arc4random()%x + arc4random()%100/100.f)
 #define iRandom(x)              arc4random()%x
 
+#define kWeakSelf_SS            __weak __typeof(self) weakSelf = self;
+
 #define SourcePath(n,e)         [[NSBundle mainBundle] pathForResource:n ofType:e]
 
 // 状态栏高度

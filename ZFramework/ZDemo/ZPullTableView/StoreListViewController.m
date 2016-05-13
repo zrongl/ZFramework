@@ -9,8 +9,6 @@
 #import "StoreListViewController.h"
 #import "ZPullTableView.h"
 
-#import "StoreModel.h"
-#import "StoreListCell.h"
 #import "ZBaseRequest.h"
 
 @interface StoreListViewController()<UITableViewDelegate, UITableViewDataSource>
@@ -36,6 +34,9 @@
 - (void)setupDatas
 {
     _storesArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 20; i ++) {
+        [_storesArray addObject:@([[NSDate date] timeIntervalSince1970]).stringValue];
+    }
 }
 
 - (void)setupViews
@@ -43,12 +44,13 @@
     [self setTitle:@"门店列表"];
     [self rightButtonItemWithTitle:@"刷新" action:@selector(refresh:)];
     
-    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64) style:UITableViewStylePlain headerHidden:NO footerHidden:NO];
+    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64)
+                                                 style:UITableViewStylePlain
+                                          headerHidden:NO
+                                          footerHidden:NO];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.backgroundColor = kBackgroundColor;
     _tableView.totalCount = 1000;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
 }
 
@@ -59,12 +61,15 @@
 
 - (void)sendRequest:(BOOL)refresh
 {
-    if (refresh) {
-        [_storesArray removeAllObjects];
-    }
-    NSArray *array = [StoreModel objectsArrayWithKeyValuesArray:[[[ZBaseRequest localDataFromPath:SourcePath(@"shop_list", @"json")] objectForKey:@"data"] objectForKey:@"result"]];
-    [_storesArray addObjectsFromArray:array];
-    [_tableView reloadData];
+    kWeakSelf_SS
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (!refresh) {
+            [weakSelf.storesArray addObject:@([[NSDate date] timeIntervalSince1970]).stringValue];
+        }
+        [weakSelf.tableView reloadData];
+    });
 }
 
 #pragma mark - UITableViewDelegate
@@ -75,17 +80,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return kHairSalonImageHeight*kMainBoundsWidth/320 + 75;
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StoreListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StoreListCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITVC"];
     if (!cell) {
-        cell = [[StoreListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StoreListCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITVC"];
     }
     
-    [cell setModel:[_storesArray objectAtIndex:indexPath.row]];
+    cell.textLabel.text = _storesArray[indexPath.row];
     
     return cell;
 }

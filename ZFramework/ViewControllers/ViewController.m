@@ -6,10 +6,10 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
-#import "ViewController.h"
 #import "stdlib.h"
-#import "ZLocationView.h"
 #import "ZToastView.h"
+#import "ZLocationView.h"
+#import "ViewController.h"
 #import "ZStarGradeView.h"
 #import "ZPullTableView.h"
 #import "ZTextAttributes.h"
@@ -20,11 +20,6 @@
 #import "CollectionViewCell.h"
 
 @interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
-
-@property (strong, nonatomic) UIView *btn_1;
-@property (strong, nonatomic) UIView *btn_2;
-@property (strong, nonatomic) UIView *btn_3;
-@property (strong, nonatomic) UIView *btn_4;
 
 @end
 
@@ -122,11 +117,6 @@ const NSInteger kNumberPerRow = 4;
 {
     [super viewDidLoad];
     [self setTitle:@"清算"];
-    [self showLoadingViewWithTitle:@"正在加载..."];
-    
-    for (NSInteger i = 0; i < 4; i++) {
-        [ZToastView serialToastWithMessage:@"请稍候" stady:2];
-    }
 }
 
 @end
@@ -143,6 +133,11 @@ const NSInteger kNumberPerRow = 4;
 {
     [super viewDidLoad];
     [self setTitle:@"我的"];
+    [self showLoadingViewWithTitle:@"正在加载..."];
+    
+    for (NSInteger i = 0; i < 4; i++) {
+        [ZToastView serialToastWithMessage:@"请稍候" stady:2];
+    }
     
     _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kMainBoundsWidth - 200)/2, 100, 200, 25)
                                                            grayImage:[UIImage imageNamed:@"star_gray.png"]
@@ -202,14 +197,6 @@ const NSInteger kNumberPerRow = 4;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"推视图"];
-    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"弹出" action:@selector(popTo) target:self];
-    [self.view addSubview:button];
-}
-
-- (void)popTo
-{
-
 }
 
 @end
@@ -223,8 +210,8 @@ const NSInteger kNumberPerRow = 4;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self customDismissButton];
     [self setTitle:@"弹视图"];
+    [self customDismissButton];
     [self rightButtonItemWithTitle:@"发送" action:nil];
 }
 

@@ -44,7 +44,7 @@
     [self setTitle:@"门店列表"];
     [self rightButtonItemWithTitle:@"刷新" action:@selector(refresh:)];
     
-    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight - 64)
+    _tableView = [[ZPullTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 64)
                                                  style:UITableViewStylePlain
                                           headerHidden:NO
                                           footerHidden:NO];
@@ -61,14 +61,15 @@
 
 - (void)sendRequest:(BOOL)refresh
 {
-    kWeakSelf_SS
+    @weakify(self)
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        @strongify(self)
         if (!refresh) {
-            [weakSelf.storesArray addObject:@([[NSDate date] timeIntervalSince1970]).stringValue];
+            [self.storesArray addObject:@([[NSDate date] timeIntervalSince1970]).stringValue];
         }
-        [weakSelf.tableView reloadData];
+        [self.tableView reloadData];
     });
 }
 

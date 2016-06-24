@@ -411,7 +411,7 @@ NSData *desEncode(NSData *data, NSString *key)
                     originalCompletionBlock();
                 }
                 
-                NSUInteger numberOfFinishedOperations = [[operations indexesOfObjectsPassingTest:^BOOL(id op, NSUInteger __unused idx,  BOOL __unused *stop) {
+                NSUInteger numberOfFinishedOperations = [[operations indexesOfObjectsPassingTest:^BOOL(id op, NSUInteger __unused idx,  BOOL __unused *stop) { 
                     return [op isFinished];
                 }] count];
                 

@@ -20,7 +20,7 @@
 @property (nonatomic,assign) CGFloat width;
 @property (nonatomic,assign) CGFloat height;
 
-@property (nonatomic,assign) CGSize size;
+@property (nonatomic,assign) CGSize  size;
 @property (nonatomic,assign) CGPoint origin;
 
 @property (nonatomic,assign) CGFloat left;
@@ -32,8 +32,12 @@
 @property (nonatomic,assign) CGFloat centerX;
 @property (nonatomic,assign) CGFloat centerY;
 
-// 输出view的subviews
-- (void)outputSubViews;
-+ (id)loadViewFromNib;
++ (id)loadFromNib;
+- (void)removeAllSubviews;
+- (UIViewController*)viewController;
++ (instancetype)cellForTableView:(UITableView *)tableView;
 
+
+- (UIImage *)snapshotImage;
+- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
 @end

@@ -12,15 +12,15 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-//extern int kMainBoundsWidth;
-//extern int kMainBoundsHeight;
+//extern int kScreenWidth;
+//extern int kScreenHeight;
 
 /**
  *  如果引用C语言头文件，必须加此宏判断
  */
 #ifdef __OBJC__
 
-#import "helper.h"
+#import "ZMacro.h"
 #import "ZHelper.h"
 #import "ZConstant.h"
 #import "ZAdditions.h"

@@ -56,7 +56,7 @@ static NSString *title = @"正在加载...";
         [indicatorView startAnimating];
         
         CGFloat titleWidth = [title widthWithFont:[UIFont boldSystemFontOfSize:17.f] height:21.f];
-        loadingView.width = MIN(MAX((titleWidth + 16.f), loadingViewWidth), kMainBoundsWidth - 16);
+        loadingView.width = MIN(MAX((titleWidth + 16.f), loadingViewWidth), kScreenWidth - 16);
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 62, loadingView.width - 16, 21.f)];
         titleLabel.text = title;
         titleLabel.textColor = [UIColor whiteColor];
@@ -68,7 +68,7 @@ static NSString *title = @"正在加载...";
         
         [loadingView addSubview:indicatorView];
         [self addSubview:loadingView];
-        [self setFrame:CGRectMake((kMainBoundsWidth-loadingView.width)/2.f, ((kMainBoundsHeight - kNavgationBarHeight) - loadingView.height)/2 - kNavgationBarHeight/2, kMainBoundsWidth, kMainBoundsHeight - kNavgationBarHeight)];
+        [self setFrame:CGRectMake((kScreenWidth-loadingView.width)/2.f, ((kScreenHeight - kNavgationBarHeight) - loadingView.height)/2 - kNavgationBarHeight/2, kScreenWidth, kScreenHeight - kNavgationBarHeight)];
     }
     
     return self;

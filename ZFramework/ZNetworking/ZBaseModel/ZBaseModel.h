@@ -29,7 +29,6 @@ typedef enum: NSUInteger{
 @protocol ZBaseModel <NSObject, NSCopying>
 
 + (NSSet *)propertyKeys;
-+ (ZPropertyStorage)propertyStorageWithName:(NSString *)propertyName;
 
 + (instancetype)objectWithKeyValues:(NSDictionary *)keyValues;
 + (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray;
@@ -41,8 +40,7 @@ typedef enum: NSUInteger{
 
 @interface ZBaseModel : NSObject <ZBaseModel>
 
-+ (NSSet *)propertyKeys;
-+ (ZPropertyStorage)propertyStorageWithName:(NSString *)propertyName;
+//+ (NSSet *)propertyKeys;
 
 /**
  *  将服务端的字典转换为model
@@ -51,9 +49,9 @@ typedef enum: NSUInteger{
  *
  *  @return 填充数据的model
  */
-+ (instancetype)objectWithKeyValues:(NSDictionary *)keyValues;
-+ (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray;
-- (instancetype)initWithDictionary:(NSDictionary *)keyValues error:(NSError **)error;
+//+ (instancetype)objectWithKeyValues:(NSDictionary *)keyValues;
+//+ (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray;
+//- (instancetype)initWithDictionary:(NSDictionary *)keyValues error:(NSError **)error;
 
 /**
  *  返回model自定义字符名称与服务端字段名称之间的映射字典

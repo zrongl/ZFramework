@@ -44,28 +44,30 @@
         ZModelEncodingBehavior behavior = (attributes->weak ? ZModelEncodingBehaviorConditional : ZModelEncodingBehaviorUnconditional);
         behaviors[key] = @(behavior);
     }
-    for (NSString *key in behaviors.allKeys) {
-        // Skip nil values.
-        id value = behaviors[key];
-        if ([value isEqual:NSNull.null]) return;
-        
-        switch ([behaviors[key] unsignedIntegerValue]) {
-                // This will also match a nil behavior.
-            case ZModelEncodingBehaviorExcluded:
-                break;
-                
-            case ZModelEncodingBehaviorUnconditional:
-                [coder encodeObject:value forKey:key];
-                break;
-                
-            case ZModelEncodingBehaviorConditional:
-                [coder encodeConditionalObject:value forKey:key];
-                break;
-                
-            default:
-                NSAssert(NO, @"Unrecognized encoding behavior %@ on class %@ for key \"%@\"", self.class, behaviors[key], key);
+    [self.dictionaryValue enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        @try {
+            if ([obj isEqual:NSNull.null]) return;
+            switch ([behaviors[key] unsignedIntegerValue]) {
+                    // This will also match a nil behavior.
+                case ZModelEncodingBehaviorExcluded:
+                    break;
+                    
+                case ZModelEncodingBehaviorUnconditional:
+                    [coder encodeObject:obj forKey:key];
+                    break;
+                    
+                case ZModelEncodingBehaviorConditional:
+                    [coder encodeConditionalObject:obj forKey:key];
+                    break;
+                    
+                default:
+                    NSAssert(NO, @"Unrecognized encoding behavior %@ on class %@ for key \"%@\"", self.class, behaviors[key], key);
+            }
+        } @catch (NSException *exception) {
+            NSLog(@"*** Caught exception encoding value for key \"%@\" on class %@: %@", key, self.class, exception);
+            @throw exception;
         }
-    }
+    }];
 }
 
 @end

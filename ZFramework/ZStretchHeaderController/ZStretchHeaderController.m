@@ -11,7 +11,7 @@
 #import "UIImage+ImageEffects.h"
 #import "UIView+ZAddition.h"
 #import "ZConstant.h"
-
+#import "ZStretchCell.h"
 #import "ViewController.h"
 
 #define kStretchViewHeight  230
@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *dataSource;
 @property (strong, nonatomic) UIImageView *stretchImageView;
 @property (strong, nonatomic) UIImageView *navigationBackgoundView;
 
@@ -38,9 +39,22 @@
 {
     [super viewDidLoad];
     
+    [self generateDataSource];
     [self customStretchImageView];
     [self setupTableView];
     [self customNavigationBar];
+}
+
+- (void)generateDataSource
+{
+    _dataSource = [NSMutableArray array];
+    for (int i = 0; i < 300; i++) {
+        NSString *str = [NSString stringWithFormat:@"%d Async Display Test ✺◟(∗❛ัᴗ❛ั∗)◞✺ ✺◟(∗❛ัᴗ❛ั∗)◞✺ 😀😖😐😣😡🚖🚌🚋🎊💖💗💛💙🏨🏦🏫 Async Display Test ✺◟(∗❛ัᴗ❛ั∗)◞✺ ✺◟(∗❛ัᴗ❛ั∗)◞✺ 😀😖😐😣😡🚖🚌🚋🎊💖💗💛💙🏨🏦🏫",i];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:str];
+        [_dataSource addObject:text];
+    }
+    
+    [_tableView reloadData];
 }
 
 /**
@@ -48,7 +62,7 @@
  */
 - (void)customStretchImageView
 {
-    _stretchImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kStretchViewHeight)];
+    _stretchImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kStretchViewHeight)];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"header_bg" ofType:@"png"];
     UIImage *headerImage = [UIImage imageWithContentsOfFile:path];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -63,14 +77,14 @@
  */
 - (void)setupTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.clipsToBounds = YES;
     _tableView.backgroundColor = [UIColor clearColor];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kStretchViewHeight)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kStretchViewHeight)];
     headerView.backgroundColor = [UIColor clearColor];
     UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((headerView.width - 70)/2, 84, 70, 70)];
     headerImageView.image = [UIImage imageNamed:@"header.png"];
@@ -85,13 +99,13 @@
  */
 - (void)customNavigationBar
 {
-    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 64)];
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
     navigationView.backgroundColor = [UIColor clearColor];
     _navigationBackgoundView = [[UIImageView alloc] initWithFrame:navigationView.bounds];
     _navigationBackgoundView.backgroundColor = [UIColor clearColor];
     _navigationBackgoundView.image = [UIImage imageNamed:@"nav_bg.png"];
     _navigationBackgoundView.alpha = 0;
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 19, kMainBoundsWidth, 44)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 19, kScreenWidth, 44)];
     titleLabel.text = @"我的";
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -120,19 +134,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return _dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
     
-    cell.textLabel.text = @"TableView";
-    
+    ZStretchCell *cell = [ZStretchCell cellForTableView:tableView];
+//    cell.label.attributedText = _dataSource[indexPath.row];
+    [cell setTextString:_dataSource[indexPath.row]];
     return cell;
 }
 
@@ -152,11 +162,11 @@
         _stretchImageView.y = -offsetY;
     }else{
         CGRect frame = _stretchImageView.frame;
-        CGFloat widthOffset = kMainBoundsWidth*offsetY/kStretchViewHeight;
+        CGFloat widthOffset = kScreenWidth*offsetY/kStretchViewHeight;
         frame.origin.y = 0;
         frame.origin.x = widthOffset/2;
         frame.size.height = kStretchViewHeight - offsetY;
-        frame.size.width =  kMainBoundsWidth - widthOffset;
+        frame.size.width =  kScreenWidth - widthOffset;
         _stretchImageView.frame = frame;
     }
 }

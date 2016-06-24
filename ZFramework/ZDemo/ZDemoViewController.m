@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     _dataSource = [NSArray arrayWithObjects:@"刷新TableView", @"图片浏览", @"头部拉伸效果", nil];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, kMainBoundsHeight)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

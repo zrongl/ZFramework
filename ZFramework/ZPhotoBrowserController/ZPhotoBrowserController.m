@@ -72,7 +72,7 @@
 - (void)setupViews
 {
     self.view.backgroundColor = [UIColor blackColor];
-    // 如果不设置此项，状态栏隐藏时，视图会向上便宜20像素
+    // 如果不设置此项，状态栏隐藏时，视图会向上偏移20像素
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
@@ -89,7 +89,7 @@
     [self.view addSubview:_scrollView];
     
     // 自定义navigatinBar
-    _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 64)];
+    _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setFrame:CGRectMake(10, 27, 30, 30)];
     [backButton setImage:[UIImage imageNamed:@"nav_back.png"] forState:UIControlStateNormal];
@@ -98,7 +98,7 @@
     [self.view addSubview:_navigationView];
     
     // 底部信息栏
-    _photoInfoBar = [[ZPhotoInfoBar alloc] initWithFrame:CGRectMake(0, kMainBoundsHeight-140, kMainBoundsWidth, 140)];
+    _photoInfoBar = [[ZPhotoInfoBar alloc] initWithFrame:CGRectMake(0, kScreenHeight-140, kScreenWidth, 140)];
     [_photoInfoBar setPhotos:_photosArray];
     [self.view addSubview:_photoInfoBar];
     

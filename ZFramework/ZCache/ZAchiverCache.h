@@ -6,13 +6,20 @@
 //  Copyright (c) 2015年 ronglei. All rights reserved.
 //
 
+//#import "ZBaseModel.h"
 #import <Foundation/Foundation.h>
+#import "ZDemoModel.h"
 
-@interface ZAchiverCache : NSObject <NSCoding>
+#define mAchiverCache [ZAchiverCache shareInstance]
 
-@property (strong, nonatomic) NSString *userName;
-@property (strong, nonatomic) NSString *userID;
+@interface ZAchiverCache : NSObject
+
+@property (nonatomic, strong) ZDemoModel *model;
 
 + (ZAchiverCache *)shareInstance;
+
+- (void)saveAvhiverCache;
+- (void)resetAchiverCache;
+- (void)clearAchiverCache;
 
 @end

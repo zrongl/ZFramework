@@ -38,7 +38,14 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
         @throw ex;
 #else
         if (error != NULL) {
-            *error = [NSError mtl_modelErrorWithException:ex];
+            NSParameterAssert(ex != nil);
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: ex.description,
+                                       NSLocalizedFailureReasonErrorKey: ex.reason,
+                                       MTLModelThrownExceptionErrorKey: ex
+                                       };
+            
+            *error = [NSError errorWithDomain:@"ZBaseModelDomain" code:@"ZBaseModelException" userInfo:userInfo];
         }
         
         return NO;
@@ -118,18 +125,12 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
 {
     self = [super init];
     if (self) {
-        NSSet *properties = [self.class propertyKeys];
-        NSMutableDictionary *mappingTable = [NSMutableDictionary dictionaryWithDictionary:[self fieldMappingTable]];
-        for (NSString *propertyName in properties) {
-            if (![mappingTable.allKeys containsObject:propertyName]) {
-                [mappingTable setValue:propertyName forKey:propertyName];
-            }
-        }
         
-        NSEnumerator *keyEnum = [mappingTable keyEnumerator];
-        id key;
-        while ((key = [keyEnum nextObject])) {
-            __autoreleasing id value = [mappingTable objectForKey:key];
+        for (NSString *key in keyValues) {
+            // Mark this as being autoreleased, because validateValue may return
+            // a new object to be stored in this variable (and we don't want ARC to
+            // double-free or leak the old or new values).
+            __autoreleasing id value = [keyValues objectForKey:key];
             
             if ([value isEqual:NSNull.null]) value = nil;
             
@@ -152,12 +153,14 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
         unsigned int count = 0;
         objc_property_t *properties = class_copyPropertyList(cls, &count);
         
+        cls = cls.superclass;
+        if (properties == NULL) continue;
         for (int i = 0; i < count; i ++) {
             objc_property_t property = properties[i];
-            NSString *propertyName = @(property_getName(property));
+            NSString *name = @(property_getName(property));
             // 过滤掉那些未使用默认getter/setter方法的属性
-            if ([self propertyStorageWithName:propertyName] != ZPropertyStorageNone) {
-                [keys addObject:propertyName];
+            if ([self propertyStorageWithName:name] != ZPropertyStorageNone) {
+                [keys addObject:name];
             }
         }
     }
@@ -198,7 +201,28 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
 
 + (instancetype)objectWithKeyValues:(NSDictionary *)keyValues
 {
-    return [[self alloc] initWithDictionary:keyValues error:NULL];
+    if (![keyValues isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    id object = [[self alloc] init];
+    NSSet *properties = self.class.propertyKeys;
+    NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:[object fieldMappingTable]];
+    for (NSString *name in properties) {
+        if (![mapping.allKeys containsObject:name]) {
+            [mapping setValue:name forKey:name];
+        }
+    }
+    
+    NSEnumerator *keyEnum = [mapping keyEnumerator];
+    id key;
+    while ((key = [keyEnum nextObject])) {
+        __autoreleasing id value = [keyValues objectForKey:mapping[key]];
+        if ([value isEqual:NSNull.null]) value = nil;
+        BOOL success = ZValidateAndSetValue(object, key, value, YES, nil);
+        if (!success) return nil;
+    }
+    
+    return object;
 }
 
 + (NSArray *)objectsArrayWithKeyValuesArray:(NSArray *)keyValuesArray
@@ -210,13 +234,6 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
     
     return objects;
 }
-//
-//- (SEL)setterSelectorFrom:(NSString *)propertyName
-//{
-//    NSString *capitalInital = [[propertyName substringToIndex:1] uppercaseString];
-//    NSString *selectorString = [NSString stringWithFormat:@"set%@%@:",capitalInital,[propertyName substringFromIndex:1]];
-//    return NSSelectorFromString(selectorString);
-//}
 
 - (NSDictionary*)fieldMappingTable
 {

@@ -13,6 +13,7 @@
 
 #import "ZViewController.h"
 #import "ViewController.h"
+#import "ViewController5.h"
 
 #define TABBAR_COUNT    3
 #define TABBAR_BASE_TAG 238
@@ -38,7 +39,7 @@
     ZNavigationController *nav = [[ZNavigationController alloc] initWithRootViewController:vc];
     [viewControllers addObject:nav];
     
-    ViewController1 *vc1 = [[ViewController1 alloc] init];
+    ViewController5 *vc1 = [[ViewController5 alloc] init];
     ZNavigationController *nav1 = [[ZNavigationController alloc] initWithRootViewController:vc1];
     [viewControllers addObject:nav1];
     
@@ -73,7 +74,7 @@
     NSArray *images =           [NSArray arrayWithObjects:@"tabbar1", @"tabbar2", @"tabbar3", nil];
     NSArray *selectedImages =   [NSArray arrayWithObjects:@"tabbar1_sel", @"tabbar2_sel", @"tabbar3_sel", nil];
     
-    CGFloat itemWidth = kMainBoundsWidth/TABBAR_COUNT;
+    CGFloat itemWidth = kScreenWidth/TABBAR_COUNT;
     for (int i = 0; i < TABBAR_COUNT; i ++) {
         ZTabBarItem *item = [[ZTabBarItem alloc] initWithFrame:CGRectMake(i*itemWidth, 0, itemWidth, kTabBarHeight)
                                                          title:[titles objectAtIndex:i]

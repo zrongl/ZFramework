@@ -157,16 +157,7 @@
     return self.center.y;
 }
 
-
-- (void)outputSubViews
-{
-    for (UIView *subview in self.subviews) {
-        NSLog(@"%@\n----------\n", subview);
-        [subview outputSubViews];
-    }
-}
-
-+ (id)loadViewFromNib
++ (id)loadFromNib
 {
     id view = nil;
     NSString *xibName = NSStringFromClass([self class]);
@@ -176,6 +167,59 @@
         return view;
     }
     return nil;
+}
+
+- (void)removeAllSubviews
+{
+    while (self.subviews.count) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
+}
+
+- (UIViewController*)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+- (UIImage *)snapshotImage
+{
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
+}
+
+- (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates
+{
+    if (![self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+        return [self snapshotImage];
+    }
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdates];
+    UIImage *snap = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return snap;
+}
+
++ (instancetype)cellForTableView:(UITableView *)tableView
+{
+    static NSString *identifier;
+    identifier = NSStringFromClass([self class]);
+    UITableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (nil == cell) {
+        UINib *nib = [UINib nibWithNibName:identifier bundle:[NSBundle mainBundle]];
+        [tableView registerNib:nib forCellReuseIdentifier:identifier];
+        cell = [self loadFromNib];
+    }
+    return cell;
 }
 
 @end

@@ -19,6 +19,8 @@
 #import "ZDemoViewController.h"
 #import "CollectionViewCell.h"
 
+#import "ZAchiverCache.h"
+
 @interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
@@ -30,7 +32,9 @@
     [super viewDidLoad];
     [self setTitle:@"统计"];
     
-    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
+    
+    
+    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
     [self.view addSubview:button];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -43,7 +47,7 @@
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     // Section Inset就是某个section中cell的边界范围
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 124) collectionViewLayout:flowLayout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 124) collectionViewLayout:flowLayout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [self.view addSubview:collectionView];
@@ -51,7 +55,7 @@
     UINib *nib = [UINib nibWithNibName:@"CollectionViewCell" bundle:nil];
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"CollectionViewCell"];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 200, kMainBoundsWidth-30, 0)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 200, kScreenWidth-30, 0)];
     label.backgroundColor = [UIColor lightGrayColor];
     NSString *string = @"大家好：我是谁";
     NSString *substring = @"大家好：";
@@ -87,7 +91,7 @@
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
     if (!cell){
-        cell = [CollectionViewCell loadViewFromNib];
+        cell = [CollectionViewCell loadFromNib];
     }
     
     return cell;
@@ -95,7 +99,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    CGPoint point = [cell convertPoint:cell.origin toView:mKeyWindow];
+    NSLog(@"");
 }
 
 const CGFloat   kCellHeight = 62;
@@ -105,7 +111,7 @@ const NSInteger kNumberPerRow = 4;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize CellSize ;
-    CellSize = CGSizeMake((kMainBoundsWidth - kItemSpacing*kNumberPerRow-1) / kNumberPerRow, kCellHeight);
+    CellSize = CGSizeMake((kScreenWidth - kItemSpacing*kNumberPerRow-1) / kNumberPerRow, kCellHeight);
     return CellSize;
 }
 
@@ -117,6 +123,10 @@ const NSInteger kNumberPerRow = 4;
 {
     [super viewDidLoad];
     [self setTitle:@"清算"];
+    self.navigationController.navigationItem.hidesBackButton = YES;
+    
+    printf ("%lld\n", get_micro_time());
+    printf("%llu\n", dispatch_walltime_date([NSDate date]));
 }
 
 @end
@@ -139,14 +149,20 @@ const NSInteger kNumberPerRow = 4;
         [ZToastView serialToastWithMessage:@"请稍候" stady:2];
     }
     
-    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kMainBoundsWidth - 200)/2, 100, 200, 25)
-                                                           grayImage:[UIImage imageNamed:@"star_gray.png"]
-                                                          lightImage:[UIImage imageNamed:@"star_light"]];
+    _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kScreenWidth - 200)/2, 100, 200, 25)
+                                            grayImage:[UIImage imageNamed:@"star_gray.png"]
+                                           lightImage:[UIImage imageNamed:@"star_light"]];
     [self.view addSubview:_starView];
     
-    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"评分" action:@selector(scoreChange) target:self];
+    UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.6, 120, 30)
+                                          title:@"评分"
+                                         action:@selector(scoreChange)
+                                         target:self];
     [self.view addSubview:button];
-    UIButton *pushButton = [ZHelper buttonWithFrame:CGRectMake((kMainBoundsWidth - 120)/2, kMainBoundsHeight*0.6, 120, 30) title:@"推出" action:@selector(pushViewController) target:self];
+    UIButton *pushButton = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.6, 120, 30)
+                                              title:@"推出"
+                                             action:@selector(pushViewController)
+                                             target:self];
     pushButton.y = button.bottom + 20.f;
     [self.view addSubview:pushButton];
     
@@ -176,7 +192,7 @@ const NSInteger kNumberPerRow = 4;
 #endif
         
     }
-    ZLocationView *loactionView = [[ZLocationView alloc] initWithFrame:CGRectMake(0, 0, kMainBoundsWidth, 28)];
+    ZLocationView *loactionView = [[ZLocationView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 28)];
     [self.view addSubview:loactionView];
 }
 

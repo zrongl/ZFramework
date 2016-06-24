@@ -18,10 +18,10 @@
 // push之后底部导航栏消失
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
+    [super pushViewController:viewController animated:animated];
     if (self.viewControllers.count >= 1) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
-    [super pushViewController:viewController animated:animated];
 }
 
 + (void)customizeAppearanceForiOS7
@@ -187,7 +187,7 @@
 {
     UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
     view.alpha = 1.f;
-    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake((kMainBoundsWidth-kLoaddingViewWidth)/2.f, (kMainBoundsHeight - kNavgationBarHeight  - 100)/2, kLoaddingViewWidth, 100)];
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth-kLoaddingViewWidth)/2.f, (kScreenHeight - kNavgationBarHeight  - 100)/2, kLoaddingViewWidth, 100)];
     loadingView.backgroundColor = [UIColor darkGrayColor];
     loadingView.layer.cornerRadius = 10.f;
     
@@ -196,7 +196,7 @@
     
     if (title) {
         CGFloat titleWidth = [title widthWithFont:[UIFont boldSystemFontOfSize:17.f] height:21.f];
-        loadingView.width = MIN(MAX((titleWidth + 16.f), kLoaddingViewWidth), kMainBoundsWidth - 16);
+        loadingView.width = MIN(MAX((titleWidth + 16.f), kLoaddingViewWidth), kScreenWidth - 16);
         loadingView.left = (view.width - loadingView.width)/2.f;
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 62, loadingView.width - 16, 21.f)];
         titleLabel.text = title;

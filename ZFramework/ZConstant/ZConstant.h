@@ -19,10 +19,6 @@
 #define fRandom(x)              (arc4random()%x + arc4random()%100/100.f)
 #define iRandom(x)              arc4random()%x
 
-#define kWeakSelf_SS            __weak __typeof(self) weakSelf = self;
-
-#define SourcePath(n,e)         [[NSBundle mainBundle] pathForResource:n ofType:e]
-
 // 状态栏高度
 #define kStatusBarHeight        20.f
 
@@ -35,8 +31,12 @@
 #define kNavigationTitleColor   [UIColor blackColor]
 #define kNavigationTitleFont    [UIFont boldSystemFontOfSize:20.f]
 
-#define kMainBoundsWidth        [UIScreen mainScreen].bounds.size.width
-#define kMainBoundsHeight       [UIScreen mainScreen].bounds.size.height
+#define kScreenWidth        [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight       [UIScreen mainScreen].bounds.size.height
+
+#define mKeyWindow              [[UIApplication sharedApplication] keyWindow]
+#define mAppDelegate            (AppDelegate *)[[UIApplication sharedApplication] delegate]
+
 
 #define SYSTEM_VERSION          [[[UIDevice currentDevice] systemVersion] floatValue]
 #define RGBA(r,g,b,a)           [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:a]
@@ -51,7 +51,5 @@
 #define kTextBlackColor         [UIColor blackColor]
 #define kTextDarkColor          [UIColor darkGrayColor]
 #define kTextLightColor         [UIColor lightGrayColor]
-
-#define kViewControllerHideLoadingViewNotify @"request.finied.hide.loading.view"
 
 #endif /* ZConstant_h */

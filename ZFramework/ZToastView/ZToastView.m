@@ -102,14 +102,14 @@
     [super layoutSubviews];
     
     CGFloat width = [_message widthWithFont:[UIFont systemFontOfSize:14] height:30];
-    if (width > kMainBoundsWidth*kToastWidthScale - 20 && width < kMainBoundsWidth - 20) {
-        self.frame = CGRectMake((kMainBoundsWidth - width - 20)/2, kMainBoundsHeight - 130, width + 20, 30);
+    if (width > kScreenWidth*kToastWidthScale - 20 && width < kScreenWidth - 20) {
+        self.frame = CGRectMake((kScreenWidth - width - 20)/2, kScreenHeight - 130, width + 20, 30);
         _messageLabel.frame = CGRectMake(10, 0, width, 30);
-    }else if (width > kMainBoundsWidth - 20){
-        self.frame = CGRectMake(10, kMainBoundsHeight - 130, kMainBoundsWidth - 20, 30);
-        _messageLabel.frame = CGRectMake(10, 0, kMainBoundsWidth - 40, 30);
+    }else if (width > kScreenWidth - 20){
+        self.frame = CGRectMake(10, kScreenHeight - 130, kScreenWidth - 20, 30);
+        _messageLabel.frame = CGRectMake(10, 0, kScreenWidth - 40, 30);
     }else{
-        self.frame = CGRectMake(kMainBoundsWidth*(1 - kToastWidthScale)/2, kMainBoundsHeight - 130, kMainBoundsWidth*kToastWidthScale, 30.f);
+        self.frame = CGRectMake(kScreenWidth*(1 - kToastWidthScale)/2, kScreenHeight - 130, kScreenWidth*kToastWidthScale, 30.f);
         _messageLabel.frame = self.bounds;
     }
     self.alpha = 1.f;

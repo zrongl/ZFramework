@@ -37,11 +37,13 @@
     return ^NSAttributedString *(CGFloat width){
         
         UIFont *font = _wholeAttributeDictionary[NSFontAttributeName];
-        CGFloat height = [_string heightWithFont:font width:width];
-        if (height < font.pointSize*2) {
-            // 如果一行将行间距置为0
-            [_paragraphStryle setLineSpacing:0];
-            _wholeAttributeDictionary[NSParagraphStyleAttributeName] = _paragraphStryle;
+        if (font) {
+            CGFloat height = [_string heightWithFont:font width:width];
+            if (height < font.pointSize*2) {
+                // 如果一行将行间距置为0
+                [_paragraphStryle setLineSpacing:0];
+                _wholeAttributeDictionary[NSParagraphStyleAttributeName] = _paragraphStryle;
+            }
         }
         
         _attributeString = [[NSMutableAttributedString alloc] initWithString:_string

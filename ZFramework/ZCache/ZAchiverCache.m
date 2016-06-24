@@ -7,13 +7,14 @@
 //
 
 #import "ZAchiverCache.h"
+#import "WZLSerializeKit.h"
 
 #define kCacheFileName        @"com.lashou.cache.file"
 #define kCacheDirectory       @"Caches/LaShouCache"
 
 static ZAchiverCache *shareInstance = nil;
 
-static NSString *AchiverCacheFilerPath()
+static NSString *achiverCacheFilerPath()
 {
     NSString *dirPath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:kCacheDirectory];
     if(![[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:nil]){
@@ -23,18 +24,25 @@ static NSString *AchiverCacheFilerPath()
     return [dirPath stringByAppendingPathComponent:kCacheFileName];
 }
 
+static void clearAchiverCache()
+{
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:achiverCacheFilerPath()]) {
+        [manager removeItemAtPath:achiverCacheFilerPath() error:nil];
+    }
+}
+
 @implementation ZAchiverCache
+
+WZLSERIALIZE_CODER_DECODER() // NSCoding
 
 + (ZAchiverCache *)shareInstance
 {
     if (shareInstance == nil) {
-        shareInstance = [NSKeyedUnarchiver unarchiveObjectWithFile:AchiverCacheFilerPath()];
-        if (shareInstance == nil) {
-            static dispatch_once_t onceToken;
-            dispatch_once(&onceToken, ^{
-                shareInstance = [[ZAchiverCache alloc] init];
-            });
-        }
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            shareInstance = [[ZAchiverCache alloc] init];
+        });
     }
     
     return shareInstance;
@@ -45,42 +53,33 @@ static NSString *AchiverCacheFilerPath()
  *  程序再次启动，unarchive文件时返回上次运行存储的对象，则不会调用init进行初始化
  *  可以添加自定义类，需要在init方法中进行初始化
  */
-- (id)init
+
+- (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.userName = nil;
-        self.userID = nil;
+        _model = [[ZDemoModel alloc] init];
     }
     
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (void)resetAchiverCache
 {
-    [aCoder encodeObject:self.userID forKey:@"userId"];
-    [aCoder encodeObject:self.userName forKey:@"userName"];
+    ZAchiverCache *cache = [NSKeyedUnarchiver unarchiveObjectWithFile:achiverCacheFilerPath()];
+    if (!cache) return;
+    mAchiverCache.model = cache.model;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)saveAvhiverCache
 {
-    self = [super init];
-    self.userID = [aDecoder decodeObjectForKey:@"userId"];
-    self.userName = [aDecoder decodeObjectForKey:@"userName"];
-    
-    return self;
+    [NSKeyedArchiver archiveRootObject:mAchiverCache toFile:achiverCacheFilerPath()];
 }
 
-- (void)setUserName:(NSString *)userName
+- (void)clearAchiverCache
 {
-    _userName = userName;
-    [NSKeyedArchiver archiveRootObject:shareInstance toFile:AchiverCacheFilerPath()];
-}
-
-- (void)setUserID:(NSString *)userID
-{
-    _userID = userID;
-    [NSKeyedArchiver archiveRootObject:shareInstance toFile:AchiverCacheFilerPath()];
+    clearAchiverCache();
+    mAchiverCache.model = nil;
 }
 
 @end

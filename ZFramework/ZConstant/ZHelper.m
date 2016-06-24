@@ -18,7 +18,7 @@
 
 + (UIView *)seperateCellWithY:(CGFloat)y color:(UIColor *)color
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kMainBoundsWidth, 8)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, 8)];
     view.backgroundColor = color ? color : kBackgroundColor;
     return view;
 }
@@ -30,7 +30,7 @@
 
 + (UIView *)seperateLineWithY:(CGFloat)y color:(UIColor *)color
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kMainBoundsWidth, 0.5)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, 0.5)];
     view.backgroundColor = color ? color : kBackgroundColor;
     return view;
 }

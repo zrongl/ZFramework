@@ -40,4 +40,6 @@
 
 - (UIImage *)snapshotImage;
 - (UIImage *)snapshotImageAfterScreenUpdates:(BOOL)afterUpdates;
+
+- (void)popUpAnimation;
 @end

@@ -10,7 +10,7 @@
 
 @interface NSObject (ZAddition)
 
-- (id)deepCopy;
+- (id)deepArchiverCopy;
 
 /**
  *  Associate  Property

@@ -15,7 +15,7 @@
 #import "ViewController.h"
 #import "ViewController5.h"
 
-#define TABBAR_COUNT    3
+#define TABBAR_COUNT    4
 #define TABBAR_BASE_TAG 238
 
 @implementation ZTabBarController
@@ -39,13 +39,19 @@
     ZNavigationController *nav = [[ZNavigationController alloc] initWithRootViewController:vc];
     [viewControllers addObject:nav];
     
-    ViewController5 *vc1 = [[ViewController5 alloc] init];
+    ViewController1 *vc1 = [[ViewController1 alloc] init];
     ZNavigationController *nav1 = [[ZNavigationController alloc] initWithRootViewController:vc1];
     [viewControllers addObject:nav1];
+    
+    
     
     ViewController2 *vc2 = [[ViewController2 alloc] init];
     ZNavigationController *nav2 = [[ZNavigationController alloc] initWithRootViewController:vc2];
     [viewControllers addObject:nav2];
+    
+    ViewController5 *vc3 = [[ViewController5 alloc] init];
+    ZNavigationController *nav3 = [[ZNavigationController alloc] initWithRootViewController:vc3];
+    [viewControllers addObject:nav3];
     
     self.viewControllers = [NSArray arrayWithArray:viewControllers];
     self.selectedIndex = 0;
@@ -70,9 +76,9 @@
 - (void)customTabBarView
 {
     // 自定义tabbar的标题，正常状态图片及选中状态图片的名称
-    NSArray *titles =           [NSArray arrayWithObjects:@"统计",@"清算", @"我的", nil];
-    NSArray *images =           [NSArray arrayWithObjects:@"tabbar1", @"tabbar2", @"tabbar3", nil];
-    NSArray *selectedImages =   [NSArray arrayWithObjects:@"tabbar1_sel", @"tabbar2_sel", @"tabbar3_sel", nil];
+    NSArray *titles =           [NSArray arrayWithObjects:@"统计",@"清算", @"我的", @"我的",nil];
+    NSArray *images =           [NSArray arrayWithObjects:@"tabbar1", @"tabbar2", @"tabbar3", @"tabbar3", nil];
+    NSArray *selectedImages =   [NSArray arrayWithObjects:@"tabbar1_sel", @"tabbar2_sel", @"tabbar3_sel", @"tabbar3_sel", nil];
     
     CGFloat itemWidth = kScreenWidth/TABBAR_COUNT;
     for (int i = 0; i < TABBAR_COUNT; i ++) {

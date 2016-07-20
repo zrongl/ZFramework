@@ -17,6 +17,7 @@
     UILabel     *_messageLabel;
     NSString    *_message;
     NSOperationQueue *_queue;
+    
 }
 @end
 

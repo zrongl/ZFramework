@@ -123,7 +123,6 @@ const NSInteger kNumberPerRow = 4;
 {
     [super viewDidLoad];
     [self setTitle:@"清算"];
-    self.navigationController.navigationItem.hidesBackButton = YES;
     
     printf ("%lld\n", get_micro_time());
     printf("%llu\n", dispatch_walltime_date([NSDate date]));

@@ -84,6 +84,7 @@ static dispatch_queue_t ZAsyncLayerGetReleaseQueue() {
     self.contentsScale = scale;
     _sentinel = [ZSentinel new];
     _displaysAsynchronously = YES;
+    
     return self;
 }
 

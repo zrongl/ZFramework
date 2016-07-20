@@ -65,6 +65,7 @@
  *      WZLSERIALIZE_UNARCHIVE(thePerson, @"Person", [self filePath]);
  */
 
+// nscoding
 #define WZLSERIALIZE_CODER_DECODER()     \
 \
 - (id)initWithCoder:(NSCoder *)coder    \
@@ -125,7 +126,7 @@
     }   \
 }
 
-
+// nscoping
 #define WZLSERIALIZE_COPY_WITH_ZONE()  \
 \
 /*如果不实现copyWithZone:方法，则[personObject copy]时会崩溃*/   \
@@ -194,7 +195,6 @@
     return despStr; \
 }
 
-
 /* 封装归档keyedArchiver操作 */
 #define WZLSERIALIZE_ARCHIVE(__objToBeArchived__, __key__, __filePath__)    \
 \
@@ -211,7 +211,6 @@ NSMutableData *dedata = [NSMutableData dataWithContentsOfFile:__filePath__]; \
 NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:dedata];  \
 __objToStoreData__ = [unarchiver decodeObjectForKey:__key__];  \
 [unarchiver finishDecoding]
-
 
 
 #endif

@@ -6,13 +6,11 @@
 //  Copyright © 2016年 ronglei. All rights reserved.
 //
 
-#import "ViewController5.h"
 #import "ZAchiverCache.h"
+#import "ViewController5.h"
 #import "ZKeyboardManager.h"
-#import "ViewController.h"
-#import "PopAnimation.h"
 
-@interface ViewController5 ()<ZKeyboardObserver, UINavigationControllerDelegate>
+@interface ViewController5 ()<ZKeyboardObserver>
 
 @property (nonatomic, weak) IBOutlet UITextField *textFiled;
 
@@ -23,21 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.delegate = self;
     [[ZKeyboardManager defaultManager] addObserver:self];
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    
-}
-
-- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                            animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                         fromViewController:(UIViewController *)fromVC
-                                                           toViewController:(UIViewController *)toVC
-{
-    return [[PopAnimation alloc] init];
 }
 
 - (void)keyboardWillChangeFrame:(CGRect)frame duration:(CGFloat)duration
@@ -48,12 +32,6 @@
 - (void)keyboardWillHide
 {
 
-}
-
-- (IBAction)onPushAction:(id)sender
-{
-    ViewController *vc = [[ViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)save:(id)sender
@@ -74,11 +52,9 @@
     [mAchiverCache clearAchiverCache];
 }
 
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }
-
 
 @end

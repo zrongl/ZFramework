@@ -18,10 +18,10 @@
 // push之后底部导航栏消失
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [super pushViewController:viewController animated:animated];
     if (self.viewControllers.count >= 1) {
         viewController.hidesBottomBarWhenPushed = YES;
     }
+    [super pushViewController:viewController animated:animated];
 }
 
 + (void)customizeAppearanceForiOS7

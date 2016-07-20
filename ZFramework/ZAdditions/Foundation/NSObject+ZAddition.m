@@ -30,7 +30,7 @@
     return objc_getAssociatedObject(self, key);
 }
 
-- (id)deepCopy
+- (id)deepArchiverCopy
 {
     id obj = nil;
     @try {

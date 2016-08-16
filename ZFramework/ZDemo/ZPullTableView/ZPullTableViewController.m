@@ -6,26 +6,25 @@
 //  Copyright © 2015年 ronglei. All rights reserved.
 //
 
-#import "StoreListViewController.h"
+#import "ZPullTableViewController.h"
 #import "ZPullTableView.h"
 
 #import "ZBaseRequest.h"
 
-@interface StoreListViewController()<UITableViewDelegate, UITableViewDataSource>
+@interface ZPullTableViewController()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) ZPullTableView *tableView;
 @property (strong, nonatomic) NSMutableArray *storesArray;
 
 @end
 
-@implementation StoreListViewController
+@implementation ZPullTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setupDatas];
     [self setupViews];
-
 
     [self sendRequest:YES];
     [_tableView refreshTableAction];
@@ -67,7 +66,16 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         @strongify(self)
         if (!refresh) {
-            [self.storesArray addObject:@([[NSDate date] timeIntervalSince1970]).stringValue];
+            [self.storesArray addObjectsFromArray:@[@([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue,
+                                                    @([[NSDate date] timeIntervalSince1970]).stringValue]];
         }
         [self.tableView reloadData];
     });

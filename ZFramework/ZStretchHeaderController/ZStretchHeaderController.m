@@ -39,10 +39,11 @@
 {
     [super viewDidLoad];
     
-    [self generateDataSource];
-    [self customStretchImageView];
     [self setupTableView];
+    [self customStretchImageView];
     [self customNavigationBar];
+    
+    [self generateDataSource];
 }
 
 - (void)generateDataSource
@@ -51,6 +52,14 @@
     for (int i = 0; i < 300; i++) {
         NSString *str = [NSString stringWithFormat:@"%d Async Display Test ✺◟(∗❛ัᴗ❛ั∗)◞✺ ✺◟(∗❛ัᴗ❛ั∗)◞✺ 😀😖😐😣😡🚖🚌🚋🎊💖💗💛💙🏨🏦🏫 Async Display Test ✺◟(∗❛ัᴗ❛ั∗)◞✺ ✺◟(∗❛ัᴗ❛ั∗)◞✺ 😀😖😐😣😡🚖🚌🚋🎊💖💗💛💙🏨🏦🏫",i];
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:str];
+        text.font = [UIFont systemFontOfSize:10];
+        text.lineSpacing = 0;
+        text.strokeWidth = @(-3);
+//        text.strokeColor = [UIColor redColor];
+//        text.lineHeightMultiple = 1;
+//        text.maximumLineHeight = 12;
+//        text.minimumLineHeight = 12;
+        
         [_dataSource addObject:text];
     }
     
@@ -141,7 +150,6 @@
 {
     
     ZStretchCell *cell = [ZStretchCell cellForTableView:tableView];
-//    cell.label.attributedText = _dataSource[indexPath.row];
     [cell setTextString:_dataSource[indexPath.row]];
     return cell;
 }

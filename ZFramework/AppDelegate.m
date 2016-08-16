@@ -21,10 +21,8 @@
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.rootViewController = [[ZTabBarController alloc] init];
     [_window makeKeyAndVisible];
-    
     [_window addSubview:[ZFPSLabel new]];
     
-    return YES;
     return YES;
 }
 

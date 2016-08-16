@@ -13,9 +13,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _label.layer.shadowRadius = 1;
-    _label.layer.shadowOffset = CGSizeMake(0, 1);
-    _label.layer.shadowColor = [UIColor redColor].CGColor;
+    _layerLabel = [[ZLayerLabel alloc] initWithFrame:self.contentView.bounds];
+    [self.contentView addSubview:_layerLabel];
     // Initialization code
 }
 
@@ -26,25 +25,8 @@
 }
 - (void)setTextString:(NSAttributedString *)string
 {
-    _label.attributedText = string;
-    [self.layer setNeedsDisplay];
-}
-
-- ( ZAsyncLayerDisplayTask * _Nullable )newAsyncDisplayTask
-{
-    ZAsyncLayerDisplayTask *task = [ZAsyncLayerDisplayTask new];
-    task.willDisplay = ^(CALayer *layer) {
-        
-    };
-    task.display = ^(CGContextRef context, CGSize size, BOOL (^isCancelled)(void)) {
-        
-    };
-    return task;
-}
-
-+ (Class)layerClass
-{
-    return [ZAsyncLayer class];
+//    _label.attributedText = string;
+    _layerLabel.attributedText = string;
 }
 
 @end

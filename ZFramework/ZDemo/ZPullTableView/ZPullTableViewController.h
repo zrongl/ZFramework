@@ -8,6 +8,6 @@
 
 #import "ZViewController.h"
 
-@interface StoreListViewController : ZViewController
+@interface ZPullTableViewController : ZViewController
 
 @end

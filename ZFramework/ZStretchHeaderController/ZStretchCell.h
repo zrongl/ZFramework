@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ZAsyncLayer.h"
+#import "ZLayerLabel.h"
 
 @interface ZStretchCell : UITableViewCell<ZAsyncLayerDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *label;
+@property (nonatomic, strong) ZLayerLabel *layerLabel;
 
 - (void)setTextString:(NSAttributedString *)string;
 

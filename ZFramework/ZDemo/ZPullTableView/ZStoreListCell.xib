@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ZStoreListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="而一般情况" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHb-iS-VuY">
+                        <rect key="frame" x="13" y="12" width="85" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijN-AU-HU5">
+                        <rect key="frame" x="118" y="13" width="20" height="20"/>
+                        <color key="backgroundColor" red="0.0" green="0.62745098040000002" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="IMl-zm-tnj"/>
+                            <constraint firstAttribute="height" constant="20" id="LBw-zw-rbS"/>
+                        </constraints>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="而一般情况下而而" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boQ-he-wKJ">
+                        <rect key="frame" x="169" y="12" width="136" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="boQ-he-wKJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ijN-AU-HU5" secondAttribute="trailing" constant="20" id="AoB-3Q-EY1"/>
+                    <constraint firstItem="ijN-AU-HU5" firstAttribute="leading" secondItem="RHb-iS-VuY" secondAttribute="trailing" constant="20" id="tvY-ms-aDc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="RHb-iS-VuY" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="13" id="5TJ-xZ-I9T"/>
+                <constraint firstAttribute="trailing" secondItem="boQ-he-wKJ" secondAttribute="trailing" constant="15" id="IlQ-1u-ssL"/>
+                <constraint firstItem="boQ-he-wKJ" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="gxp-Ei-DDJ"/>
+                <constraint firstItem="RHb-iS-VuY" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="l5J-6h-iBQ"/>
+                <constraint firstItem="ijN-AU-HU5" firstAttribute="centerY" secondItem="KGk-i7-Jjw" secondAttribute="centerY" id="lPh-wN-8Ej"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="round">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="317" y="218.5"/>
+        </tableViewCell>
+    </objects>
+</document>

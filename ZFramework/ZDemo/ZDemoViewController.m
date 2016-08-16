@@ -9,7 +9,7 @@
 #import "ZPhoto.h"
 #import "ZDemoViewController.h"
 #import "ZPhotoBrowserController.h"
-#import "StoreListViewController.h"
+#import "ZPullTableViewController.h"
 #import "ZStretchHeaderController.h"
 
 @interface ZDemoViewController() <UITableViewDelegate, UITableViewDataSource>
@@ -70,7 +70,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            StoreListViewController* vc = [[StoreListViewController alloc] init];
+            ZPullTableViewController* vc = [[ZPullTableViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }

@@ -13,6 +13,7 @@
 #import "NSObject+ZAddition.h"
 #import "NSString+ZAddition.h"
 #import "CAAnimation+ZAddition.h"
+#import "NSAttributedString+ZAddition.h"
 
 #import "UIView+ZAddition.h"
 #import "UIDevice+ZAddition.h"

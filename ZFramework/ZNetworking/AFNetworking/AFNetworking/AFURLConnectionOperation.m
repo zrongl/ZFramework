@@ -536,16 +536,6 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
     }
 
     __block dispatch_group_t group = dispatch_group_create();
-    // 当最后一个operation请求返回后
-    // 异步的执行targetBlock与batchedOperation轮询到最后一个operation已经执行完成后执行batchedOperation的block之间存在竞争关系
-    
-    // 当targetBlock先执行后，加入group中的最后一个block调用dispatch_group_leave
-    // 之后batchedOperation轮询到最后一个operation已经执行完成，执行batchedOperation的block
-    // 执行dispatch_group_notify时，不会阻塞直接执行
-    
-    // 当batchedOperation先轮询到最后一个operation完成，会立即执行下面的block
-    // 执行dispatch_group_notify时，由于batchedOperation未执行，会阻塞再此等待batchedOperation执行完dispatch_group_leave后
-    // 才会继续执行completionBlock
     NSBlockOperation *batchedOperation = [NSBlockOperation blockOperationWithBlock:^{
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
             if (completionBlock) {
@@ -564,15 +554,11 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 #pragma clang diagnostic ignored "-Wgnu"
             dispatch_queue_t queue = strongOperation.completionQueue ?: dispatch_get_main_queue();
 #pragma clang diagnostic pop
-            // 暂且把下面dispatch_group_async中的block称之为targetBlock
-            // 请求返回后operation的completionBlock会立即返回
-            // 异步的去执行targetBlock的内容
             dispatch_group_async(group, queue, ^{
                 if (originalCompletionBlock) {
                     originalCompletionBlock();
                 }
-                
-                // 由于operation的completionBlock立即返回它的isFinished标识已标记为YES
+
                 NSUInteger numberOfFinishedOperations = [[operations indexesOfObjectsPassingTest:^BOOL(id op, NSUInteger __unused idx,  BOOL __unused *stop) {
                     return [op isFinished];
                 }] count];

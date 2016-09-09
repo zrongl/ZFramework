@@ -7,6 +7,7 @@
 //
 
 #import "ZPhoto.h"
+#import "ZRequestDemo.h"
 #import "ZDemoViewController.h"
 #import "ZPhotoBrowserController.h"
 #import "ZPullTableViewController.h"
@@ -39,6 +40,13 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.separatorInset = UIEdgeInsetsMake(_tableView.separatorInset.top, 15, _tableView.separatorInset.bottom, 15);
     [self.view addSubview:_tableView];
+    
+    ZRequestDemo *request = [[ZRequestDemo alloc] initWithId:@"1"];
+    [request sessionRequestSuccess:^(ZBaseRequest *request) {
+        
+    } failure:^(ZBaseRequest *request, NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

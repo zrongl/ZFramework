@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSAttributedString (ZAddition)
 
 /**
@@ -446,14 +448,6 @@
 
 
 @interface NSMutableAttributedString (ZAddition)
-
-- (void)setAttributes:(nullable NSDictionary<NSString *, id> *)attributes;
-
-- (void)setAttribute:(NSString *)name value:(nullable id)value;
-
-- (void)setAttribute:(NSString *)name value:(nullable id)value range:(NSRange)range;
-
-- (void)removeAttributesInRange:(NSRange)range;
 
 #pragma mark - Set character attribute
 ///=============================================================================
@@ -942,3 +936,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END

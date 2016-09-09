@@ -484,7 +484,6 @@ forHTTPHeaderField:(NSString *)field
         // 如果是HTTPMethod是GET HEAD DELETE中的一种 则直接在URL中拼接参数
         // 如果是其他类型HTTPMehtod则将参数封装在HTTPBody中
         if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]]) {
-            
             mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
         } else {
             if (![mutableRequest valueForHTTPHeaderField:@"Content-Type"]) {

@@ -7,163 +7,8 @@
 //
 
 #import "AFNetworking.h"
+#import "ZRequestUtil.h"
 #import "ZRequestManager.h"
-#import <CommonCrypto/CommonCryptor.h>
-
-#define kEncryptOrDecryptKey  @"z&-ls0n!"
-
-// 将参数转换为get请求的字符串形式
-static NSString *GETQueryStringFrom(NSDictionary *parameters, NSStringEncoding stringEncoding)
-{
-    NSMutableString *queryString = [[NSMutableString alloc] init];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSString *key in [parameters allKeys]) {
-        id value = [parameters objectForKey:key];
-        
-        if ([value isKindOfClass:[NSString class]]) {
-            [array addObject:[NSString stringWithFormat:@"%@=%@",key,value]];
-        }
-        else if ([value isKindOfClass:[NSNumber class]]) {
-            NSNumber *number = (NSNumber *)value;
-            [array addObject:[NSString stringWithFormat:@"%@=%@",key,number.stringValue]];
-        }
-    }
-    [queryString appendFormat:@"?%@",[array componentsJoinedByString:@"&"]];
-    
-    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)queryString, (CFStringRef)@"%", NULL, kCFStringEncodingUTF8));
-}
-
-// 将参数转换为post请求的字符串形式
-static NSString *POSTQueryStringFrom(NSDictionary *parameters)
-{
-    NSArray* allKey = parameters.allKeys;
-    NSMutableString* queryString = [[NSMutableString alloc]initWithString:@""];
-    for (NSString* key in allKey) {
-        [queryString appendString:key];
-        [queryString appendString:@"="];
-        [queryString appendFormat:@"%@",parameters[key]];
-        [queryString appendString:@"&"];
-    }
-    [queryString deleteCharactersInRange:NSMakeRange(queryString.length-1, 1)];
-    
-    return queryString;
-}
-
-// 字节数组转化16进制数
-NSString *parseByteArray2HexString(Byte* bytes, NSInteger length)
-{
-    NSMutableString *hexStr = [[NSMutableString alloc]init];
-    int i = 0;
-    if(bytes){
-        while (i < length){
-            
-            NSString *hexByte = [NSString stringWithFormat:@"%x",bytes[i] & 0xff];///16进制数
-            
-            if([hexByte length]==1)
-                [hexStr appendFormat:@"0%@", hexByte];
-            else
-                [hexStr appendFormat:@"%@", hexByte];
-            i++;
-        }
-    }
-    return [hexStr uppercaseString];
-}
-
-// des解码函数
-NSData *desDecode(NSData *textData, NSString *key)
-{
-    NSData *cipherData = nil;
-    NSUInteger dataLength = [textData length];
-    unsigned int bufferPtrSize = ((int)dataLength + kCCBlockSizeDES) & ~(kCCBlockSizeDES - 1);
-    unsigned char buffer[bufferPtrSize];
-    memset(buffer, 0, sizeof(char));
-    size_t numBytesEncrypted = 0;
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
-                                          [key UTF8String], kCCKeySizeDES,
-                                          NULL,
-                                          [textData bytes],dataLength,
-                                          buffer, bufferPtrSize,
-                                          &numBytesEncrypted);
-    if (cryptStatus == kCCSuccess) {
-        NSLog(@"DES加密成功");
-        NSData *data = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
-        Byte* bb = (Byte*)[data bytes];
-        NSString* dataString = parseByteArray2HexString(bb, numBytesEncrypted);
-        NSLog(@"密文:%@", dataString);
-        cipherData = [dataString dataUsingEncoding:NSUTF8StringEncoding];
-    }else{
-        NSLog(@"DES加密失败");
-    }
-    return cipherData;
-}
-
-// 将16进制数据转化成NSData 数组
-NSData *hexToByteArray(NSString *hexString)
-{
-    /*参考网上例子:http://blog.csdn.net/dwarven/article/details/8350951*/
-    
-    hexString=[[hexString uppercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([hexString length]%2!=0) {
-        return nil;
-    }
-    Byte tempbyt[1]={0};
-    NSMutableData* bytes=[NSMutableData data];
-    for(int i=0;i<[hexString length];i++)
-    {
-        unichar hex_char1 = [hexString characterAtIndex:i]; ////两位16进制数中的第一位(高位*16)
-        int int_ch1;
-        if(hex_char1 >= '0' && hex_char1 <='9')
-            int_ch1 = (hex_char1-48)*16;   //// 0 的Ascll - 48
-        else if(hex_char1 >= 'A' && hex_char1 <='F')
-            int_ch1 = (hex_char1-55)*16; //// A 的Ascll - 65
-        else
-            return nil;
-        i++;
-        
-        unichar hex_char2 = [hexString characterAtIndex:i]; ///两位16进制数中的第二位(低位)
-        int int_ch2;
-        if(hex_char2 >= '0' && hex_char2 <='9')
-            int_ch2 = (hex_char2-48); //// 0 的Ascll - 48
-        else if(hex_char2 >= 'A' && hex_char2 <='F')
-            int_ch2 = hex_char2-55; //// A 的Ascll - 65
-        else
-            return nil;
-        
-        tempbyt[0] = int_ch1+int_ch2;  ///将转化后的数放入Byte数组里
-        [bytes appendBytes:tempbyt length:1];
-    }
-    return bytes;
-}
-
-// DES加密
-NSData *desEncode(NSData *data, NSString *key)
-{
-    NSData *clearData = nil;
-    NSString* plainText = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"解密密文:%@", plainText);
-    NSData *textData = hexToByteArray(plainText);
-    NSUInteger dataLength = [textData length];
-    unsigned int bufferPtrSize = ((int)dataLength + kCCBlockSizeDES) & ~(kCCBlockSizeDES - 1);
-    unsigned char buffer[bufferPtrSize];
-    memset(buffer, 0, sizeof(char));
-    size_t numBytesEncrypted = 0;
-    
-    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmDES,
-                                          kCCOptionPKCS7Padding | kCCOptionECBMode,
-                                          [key UTF8String], kCCKeySizeDES,
-                                          NULL,
-                                          [textData bytes] ,dataLength,
-                                          buffer, bufferPtrSize,
-                                          &numBytesEncrypted);
-    if (cryptStatus == kCCSuccess){
-        NSLog(@"DES解密成功");
-        clearData = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
-    }else{
-        NSLog(@"DES解密失败");
-    }
-    return clearData;
-}
 
 @interface ZRequestManager()
 
@@ -172,6 +17,7 @@ NSData *desEncode(NSData *data, NSString *key)
 @property (assign, nonatomic) AFParameterEncoding parameterEncoding;
 @property (strong, nonatomic) NSOperationQueue *operationQueue;
 @property (strong, nonatomic) NSMutableDictionary *httpRequestHeaders;
+@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
 
 @end
 
@@ -368,7 +214,6 @@ NSData *desEncode(NSData *data, NSString *key)
 {
     NSMutableURLRequest *originRequest = [self requestWithMethod:@"POST" URLString:URLString parameters:parameters];
 
-    
     NSMutableURLRequest *request = [self.requestSerializer requestWithMultipartFormRequest:originRequest
                                                                writingStreamContentsToFile:[NSURL URLWithString:filePath]
                                                                          completionHandler:nil];

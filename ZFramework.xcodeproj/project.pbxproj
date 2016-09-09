@@ -80,6 +80,9 @@
 		5D613C141BC78393008A299F /* ZRefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C061BC78393008A299F /* ZRefreshTableHeaderView.m */; };
 		5D613C151BC78393008A299F /* ZPullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D613C081BC78393008A299F /* ZPullTableView.m */; };
 		5D613C171BC78415008A299F /* reading.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D613C161BC78415008A299F /* reading.png */; };
+		5D6CE08B1D8105600000432A /* ZRequestOperationMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6CE08A1D8105600000432A /* ZRequestOperationMananger.m */; };
+		5D6CE08E1D8105820000432A /* ZRequestSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6CE08D1D8105820000432A /* ZRequestSessionManager.m */; };
+		5D6CE0A71D816EF60000432A /* ZRequestDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6CE0A61D816EF60000432A /* ZRequestDemo.m */; };
 		5D79EBE51CDAE26500C64609 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D79EBE41CDAE26500C64609 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		5D7B23931BF9B21D0003F8F0 /* ZPullTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B238C1BF9B21D0003F8F0 /* ZPullTableViewController.m */; };
 		5D80C5B61C2016A9007D2232 /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D80C5B31C2016A9007D2232 /* FBKVOController.m */; };
@@ -120,12 +123,12 @@
 		5DB882201BBBD09B007FFE0A /* ZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB881E31BBBD09B007FFE0A /* ZLocationManager.m */; };
 		5DB882331BBBD09B007FFE0A /* ZBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882111BBBD09B007FFE0A /* ZBaseModel.m */; };
 		5DB882351BBBD09B007FFE0A /* ZBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882161BBBD09B007FFE0A /* ZBaseRequest.m */; };
-		5DB882361BBBD09B007FFE0A /* ZRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB882181BBBD09B007FFE0A /* ZRequestManager.m */; };
 		5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8821B1BBBD09B007FFE0A /* ZGlobalData.m */; };
 		5DC70E031BBC124700AA5D04 /* ZToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E021BBC124700AA5D04 /* ZToastView.m */; };
 		5DC70E061BBC2C3800AA5D04 /* ZLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */; };
 		5DC70E091BBC2FC300AA5D04 /* location_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */; };
 		5DC8A6E11C9BA4BA008FB20C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DC8A6E01C9BA4BA008FB20C /* arrow@2x.png */; };
+		5DCE9BA11D802C6200232D4D /* ZHTTPRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCE9BA01D802C6200232D4D /* ZHTTPRequestSerializer.m */; };
 		5DD24E261BC64BBA0076923D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD24E021BC64BBA0076923D /* AFHTTPRequestOperation.m */; };
 		5DD24E271BC64BBA0076923D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD24E041BC64BBA0076923D /* AFHTTPRequestOperationManager.m */; };
 		5DD24E281BC64BBA0076923D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD24E061BC64BBA0076923D /* AFHTTPSessionManager.m */; };
@@ -274,6 +277,12 @@
 		5D613C071BC78393008A299F /* ZPullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPullTableView.h; sourceTree = "<group>"; };
 		5D613C081BC78393008A299F /* ZPullTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZPullTableView.m; sourceTree = "<group>"; };
 		5D613C161BC78415008A299F /* reading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reading.png; sourceTree = "<group>"; };
+		5D6CE0891D81055F0000432A /* ZRequestOperationMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRequestOperationMananger.h; sourceTree = "<group>"; };
+		5D6CE08A1D8105600000432A /* ZRequestOperationMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRequestOperationMananger.m; sourceTree = "<group>"; };
+		5D6CE08C1D8105820000432A /* ZRequestSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRequestSessionManager.h; sourceTree = "<group>"; };
+		5D6CE08D1D8105820000432A /* ZRequestSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRequestSessionManager.m; sourceTree = "<group>"; };
+		5D6CE0A51D816EF60000432A /* ZRequestDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRequestDemo.h; sourceTree = "<group>"; };
+		5D6CE0A61D816EF60000432A /* ZRequestDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRequestDemo.m; sourceTree = "<group>"; };
 		5D79EBE31CDAE26500C64609 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		5D79EBE41CDAE26500C64609 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
 		5D7B238B1BF9B21D0003F8F0 /* ZPullTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZPullTableViewController.h; sourceTree = "<group>"; };
@@ -355,8 +364,6 @@
 		5DB882111BBBD09B007FFE0A /* ZBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBaseModel.m; sourceTree = "<group>"; };
 		5DB882151BBBD09B007FFE0A /* ZBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBaseRequest.h; sourceTree = "<group>"; };
 		5DB882161BBBD09B007FFE0A /* ZBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBaseRequest.m; sourceTree = "<group>"; };
-		5DB882171BBBD09B007FFE0A /* ZRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRequestManager.h; sourceTree = "<group>"; };
-		5DB882181BBBD09B007FFE0A /* ZRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRequestManager.m; sourceTree = "<group>"; };
 		5DB8821A1BBBD09B007FFE0A /* ZGlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGlobalData.h; sourceTree = "<group>"; };
 		5DB8821B1BBBD09B007FFE0A /* ZGlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGlobalData.m; sourceTree = "<group>"; };
 		5DC70E011BBC124700AA5D04 /* ZToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZToastView.h; sourceTree = "<group>"; };
@@ -365,6 +372,8 @@
 		5DC70E051BBC2C3800AA5D04 /* ZLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLocationView.m; sourceTree = "<group>"; };
 		5DC70E081BBC2FC300AA5D04 /* location_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_btn@2x.png"; sourceTree = "<group>"; };
 		5DC8A6E01C9BA4BA008FB20C /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
+		5DCE9B9F1D802C6200232D4D /* ZHTTPRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTTPRequestSerializer.h; sourceTree = "<group>"; };
+		5DCE9BA01D802C6200232D4D /* ZHTTPRequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTTPRequestSerializer.m; sourceTree = "<group>"; };
 		5DD24E011BC64BBA0076923D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		5DD24E021BC64BBA0076923D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		5DD24E031BC64BBA0076923D /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -467,8 +476,6 @@
 		5D0D9C2E1CF45527007C1759 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				5DA93C541D460D6400925802 /* NSParagraphStyle+YYText.h */,
-				5DA93C551D460D6400925802 /* NSParagraphStyle+YYText.m */,
 				5D1BFB1F1D20BB560032B8CB /* NSDate+ZAddition.h */,
 				5D1BFB201D20BB560032B8CB /* NSDate+ZAddition.m */,
 				5D0D9C351CF45527007C1759 /* NSTimer+ZAddition.h */,
@@ -479,6 +486,8 @@
 				5D0D9C301CF45527007C1759 /* NSObject+ZAddition.m */,
 				5D0D9C331CF45527007C1759 /* NSThread+ZAddition.h */,
 				5D0D9C341CF45527007C1759 /* NSThread+ZAddition.m */,
+				5DA93C541D460D6400925802 /* NSParagraphStyle+YYText.h */,
+				5DA93C551D460D6400925802 /* NSParagraphStyle+YYText.m */,
 				5DA93C511D46095700925802 /* NSAttributedString+ZAddition.h */,
 				5DA93C521D46095700925802 /* NSAttributedString+ZAddition.m */,
 			);
@@ -904,8 +913,14 @@
 			children = (
 				5DB882151BBBD09B007FFE0A /* ZBaseRequest.h */,
 				5DB882161BBBD09B007FFE0A /* ZBaseRequest.m */,
-				5DB882171BBBD09B007FFE0A /* ZRequestManager.h */,
-				5DB882181BBBD09B007FFE0A /* ZRequestManager.m */,
+				5D6CE0A51D816EF60000432A /* ZRequestDemo.h */,
+				5D6CE0A61D816EF60000432A /* ZRequestDemo.m */,
+				5DCE9B9F1D802C6200232D4D /* ZHTTPRequestSerializer.h */,
+				5DCE9BA01D802C6200232D4D /* ZHTTPRequestSerializer.m */,
+				5D6CE08C1D8105820000432A /* ZRequestSessionManager.h */,
+				5D6CE08D1D8105820000432A /* ZRequestSessionManager.m */,
+				5D6CE0891D81055F0000432A /* ZRequestOperationMananger.h */,
+				5D6CE08A1D8105600000432A /* ZRequestOperationMananger.m */,
 			);
 			path = ZBaseRequest;
 			sourceTree = "<group>";
@@ -1101,6 +1116,7 @@
 				5D80FCEB1BCF7E3F0012E464 /* UIImage+WebP.m in Sources */,
 				5D613C151BC78393008A299F /* ZPullTableView.m in Sources */,
 				5D1922861CFC2EC700DACED3 /* UIApplication+ZAddition.m in Sources */,
+				5DCE9BA11D802C6200232D4D /* ZHTTPRequestSerializer.m in Sources */,
 				5D80FCE41BCF7E3F0012E464 /* SDWebImageDownloaderOperation.m in Sources */,
 				5D0D9C641CF59D28007C1759 /* FMDatabasePool.m in Sources */,
 				5D0D9C4D1CF54153007C1759 /* UIBezierPath+ZAddition.m in Sources */,
@@ -1129,7 +1145,9 @@
 				5D33BC971BB96F3800F534DF /* ZStarGradeView.m in Sources */,
 				5DA93C421D41AA3600925802 /* ZStoreListCell.m in Sources */,
 				5D0D9C411CF45527007C1759 /* UIView+ZAddition.m in Sources */,
+				5D6CE08B1D8105600000432A /* ZRequestOperationMananger.m in Sources */,
 				5D0D9C471CF53486007C1759 /* UIBarButtonItem+ZAddition.m in Sources */,
+				5D6CE08E1D8105820000432A /* ZRequestSessionManager.m in Sources */,
 				5D80FCB61BCF7C1C0012E464 /* ZPhotoView.m in Sources */,
 				5D613C111BC78393008A299F /* EGORefreshTableHeaderView.m in Sources */,
 				5DD24E311BC64BBA0076923D /* UIAlertView+AFNetworking.m in Sources */,
@@ -1172,7 +1190,6 @@
 				5DD24E341BC64BBA0076923D /* UIProgressView+AFNetworking.m in Sources */,
 				5D0D9C3E1CF45527007C1759 /* NSThread+ZAddition.m in Sources */,
 				5D33BBE51BB4F04400F534DF /* ZTabBarController.m in Sources */,
-				5DB882361BBBD09B007FFE0A /* ZRequestManager.m in Sources */,
 				5D30CCED1D128374004F350D /* ZTextAttributes.m in Sources */,
 				5D0D9C661CF59D28007C1759 /* FMResultSet.m in Sources */,
 				5D80FCE31BCF7E3F0012E464 /* SDWebImageDownloader.m in Sources */,
@@ -1190,6 +1207,7 @@
 				5DD24E281BC64BBA0076923D /* AFHTTPSessionManager.m in Sources */,
 				5DA93C531D46095700925802 /* NSAttributedString+ZAddition.m in Sources */,
 				5D0D9C4A1CF534E8007C1759 /* UIGestureRecognizer+ZAddition.m in Sources */,
+				5D6CE0A71D816EF60000432A /* ZRequestDemo.m in Sources */,
 				5D33BB6B1BB4CF3300F534DF /* AppDelegate.m in Sources */,
 				5D0D9C401CF45527007C1759 /* CAAnimation+ZAddition.m in Sources */,
 				5D9629DE1BCBFFC000435C5E /* ZHelper.m in Sources */,

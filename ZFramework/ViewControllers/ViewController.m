@@ -21,6 +21,8 @@
 
 #import "ZAchiverCache.h"
 
+#import "ZBaseRequest.h"
+
 @interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end

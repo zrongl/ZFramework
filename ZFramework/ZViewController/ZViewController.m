@@ -8,7 +8,6 @@
 
 #import "ZViewController.h"
 #import <Availability.h>
-#import "ZRequestManager.h"
 #import <libkern/OSAtomic.h>
 
 #define kLoaddingViewWidth  120.f
@@ -65,11 +64,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    // 取消全部请求
-    [ZRequestManager cancelAllRequest];
-#if 0
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kViewControllerHideLoadingViewNotify];
-#endif
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -77,11 +71,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _loadingShowCount = 0;
-#if 0 // 隐藏loadingView
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(hideLoadingView)
-                                                     name:kViewControllerHideLoadingViewNotify object:nil];
-#endif
     }
     
     return self;

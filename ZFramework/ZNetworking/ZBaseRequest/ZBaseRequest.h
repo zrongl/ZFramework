@@ -15,37 +15,16 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
 };
 
 @protocol AFMultipartFormData;
-@class AFHTTPRequestOperation;
 
 @interface ZBaseRequest : NSObject
 
 @property (assign, nonatomic) BOOL isCached;
 
-@property (strong, nonatomic) NSString *urlHost;                // 请求基地址
-@property (strong, nonatomic) NSString *urlAction;              // 请求行为
+@property (strong, nonatomic) NSString *URLHost;                // 请求基地址
+@property (strong, nonatomic) NSString *URLAction;              // 请求行为
 @property (assign, nonatomic) HttpMethodType methodType;        // 请求方式 POST或GET
 @property (strong, nonatomic) NSMutableDictionary *resultDic;   // 请求返回json转换为dictionary
 @property (strong, nonatomic) NSMutableDictionary *parameterDic;// 请求参数
-
-// 返回
-- (AFHTTPRequestOperation *)generateOperationOnSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                                              onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock;
-
-/**
- *  读取本地json文件返回解析之后的字典
- *
- *  @param path 文件路径 需要作为资源文件添加到项目中
- *
- *  @return json转化后的dictionary
- */
-+ (NSDictionary *)localDataFromPath:(NSString *)path;
-
-/**
- *
- *  为了使得开发更加便捷，只对请求成功并且code==200的情况，进行处理
- *
- */
-- (void)resultonSuccess:(void(^)(id result))onResultSuccessBlock;
 
 /**
  *  普通GET/POST请求
@@ -53,8 +32,8 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
  *  @param onRequestSuccessBlock 成功block
  *  @param onRequestFailedBlock  失败block
  */
-- (void)requestonSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock;
+- (void)requestSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+               failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock;
 
 /**
  *  上传请求
@@ -91,10 +70,11 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
  
  [formData appendPartWithFileData:data name:@"img_file" fileName:fileName mimeType:@"image/jpeg"];
 */
-- (void)uploadRequestOnConstructingBody:(void(^)(id <AFMultipartFormData> formData))onConstrctBlock
-                        onUploadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
-                              onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                               onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock;
+
+- (void)uploadRequestConstructingBody:(void(^)(id <AFMultipartFormData> formData))onConstrctBlock
+                        uploadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
+                              success:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                              failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock;
 
 /**
  *  下载请求
@@ -105,25 +85,13 @@ typedef NS_ENUM(NSInteger, HttpMethodType){
  *  @param onRequestFailedBlock  失败block
  */
 - (void)downloadRequestWithFilePath:(NSString *)filePath
-                  onDownloadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
-                          onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                           onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock;
+                  downloadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
+                          success:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                          failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock;
 
 /**
  *  预先处理返回的字典数据，可以提前在此进行数据解析，将_resultDic字典中数据modle化，减少viewcontrller中解析的逻辑复杂度
  */
 - (void)preprocessResult;
-
-/**
- *  取消请求
- */
-- (void)cancelRequest;
-
-/**
- *  设置本地数据请求地址，只适用于普通请求
- *
- *  @return 返回本地请求URL
- */
-- (NSString *)localServerURL;
 
 @end

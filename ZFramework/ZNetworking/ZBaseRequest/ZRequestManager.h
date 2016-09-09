@@ -9,19 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AFURLRequestSerialization.h"
 
-typedef NS_ENUM(NSInteger, AFParameterEncoding) {
-    AFFormURLParameterEncoding,
-    AFJSONParameterEncoding,
-    AFPropertyListParameterEncoding,
-    AFJSONDesParameterEncoding,
-} ;
-
 @class AFHTTPRequestOperation;
-@protocol AFMultipartFormData;
 
 @interface ZRequestManager : NSObject
-
-@property (nonatomic, strong) AFHTTPRequestSerializer <AFURLRequestSerialization> * requestSerializer;
 
 /**
  *  不声明为单例的原因:

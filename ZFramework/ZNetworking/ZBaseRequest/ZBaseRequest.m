@@ -9,18 +9,18 @@
 #import "ZToastView.h"
 #import "ZGlobalData.h"
 #import "ZBaseRequest.h"
-#import "ZRequestManager.h"
-#import "AFHTTPRequestOperation.h"
 #import <CommonCrypto/CommonDigest.h>
 
-#define kURLHost  @"http://meiye.test.lashou.com/index.php"
+#import "ZRequestOperationMananger.h"
+#import "ZRequestSessionManager.h"
+
+#define kURLHost  @"http://127.0.0.1/"
 
 #define kIndicatorViewSide  37.f
 #define kLoaddingViewWidth  120.f
 
-typedef void (^ ResultSuccessBlock)(NSDictionary *);
 typedef void (^ RequestSuccessBlock)(ZBaseRequest *);
-typedef void (^ RequestFailedBlock)(ZBaseRequest*, NSError *);
+typedef void (^ RequestFailureBlock)(ZBaseRequest*, NSError *);
 typedef void (^ RequestProgressBlock)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected);
 
 static NSString *md5(NSString *stirng)
@@ -42,46 +42,23 @@ static NSString *md5(NSString *stirng)
 @interface ZBaseRequest()
 
 {
-    NSString                *_localUrl;;
+    NSString                *_URL;
     ZAchiverObjectCache     *_objectCache;
-    AFHTTPRequestOperation  *_requestOperation;
-    
 }
 
-@property (copy, nonatomic) RequestFailedBlock onRequestFailedBlock;
-@property (copy, nonatomic) ResultSuccessBlock onResultSuccessBlock;
 @property (copy, nonatomic) RequestSuccessBlock onRequestSuccessBlock;
+@property (copy, nonatomic) RequestFailureBlock onRequestFailureBlock;
 
 @end
 
 @implementation ZBaseRequest
-
-+ (NSDictionary *)localDataFromPath:(NSString *)path;
-{
-    NSError *error = nil;
-    NSMutableDictionary *resultDic = nil;
-    
-    NSString *jsonString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-    if (!error) {
-        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-        resultDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        if(![resultDic isKindOfClass:[NSDictionary class]] || error != nil){
-            NSLog(@"\n---------------------json格式错误解析失败--------------------\n");
-            resultDic = nil;
-        }
-    }else{
-        NSLog(@"%@", error);
-    }
-    
-    return resultDic;
-}
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         _isCached   = NO;
-        _urlHost    = kURLHost;
+        _URLHost    = kURLHost;
         _methodType = HttpMethodGet;
         _resultDic  = [[NSMutableDictionary alloc] init];
         _parameterDic = [[NSMutableDictionary alloc] init];
@@ -89,217 +66,187 @@ static NSString *md5(NSString *stirng)
     return self;
 }
 
-- (void)resultonSuccess:(void(^)(id result))onResultSuccessBlock
+- (void)requestSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+               failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock
 {
-    _onResultSuccessBlock = onResultSuccessBlock;
-    [self requestonSuccess:^(ZBaseRequest *request) {
-#if 0 // 隐藏loadingView
-        [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerHideLoadingViewNotify
-                                                            object:nil];
-#endif
-        if ([[request.resultDic objectForKey:@"code"] integerValue] == 200) {
-            if (_onResultSuccessBlock) {
-                _onResultSuccessBlock([request.resultDic objectForKey:@"data"]);
-            }
-        }else{
-            [ZToastView toastWithMessage:[request.resultDic objectForKey:@"msg"]];
-        }
-    }
-                  onFailed:^(ZBaseRequest *request, NSError *error) {
-#if 0 // 隐藏loadingView
-                      [[NSNotificationCenter defaultCenter] postNotificationName:kViewControllerHideLoadingViewNotify
-                                                                          object:nil];
-#endif
-                      // 取消请求导致的请求失败，不弹出toast
-                      if (error.code != -999) {
-                          [self handleRequestFailureWithError:error];
-                      }
-                  }];
+    [self operationRequestSuccess:onRequestSuccessBlock failure:onRequestFailureBlock];
+    
+    [self sessionRequestSuccess:onRequestSuccessBlock failure:onRequestFailureBlock];
 }
 
-- (void)requestonSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
+- (void)operationRequestSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                        failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock
 {
     _onRequestSuccessBlock = onRequestSuccessBlock;
-    _onRequestFailedBlock = onRequestFailedBlock;
+    _onRequestFailureBlock = onRequestFailureBlock;
     
-    // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *urlString = nil;
-    _localUrl = [self localServerURL];
-    if (_localUrl == nil) {
-        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
-    }else{
-        urlString = _localUrl;
-    }
+    NSString *URLString = [NSString stringWithFormat:@"%@%@", _URLHost, _URLAction];
     
     // 设置与服务器协商好的全局参数
-    // [self appendGlobalParameters];
+    // [self appendStaticParameters];
     
     if (_methodType == HttpMethodGet) {
-        ZRequestManager *manager = [ZRequestManager manager];
+        ZRequestOperationMananger *manager = [ZRequestOperationMananger manager];
         
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
         // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager GET:urlString
-                              parameters:_parameterDic
-                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                     [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                     [self handleResultObject:responseObject];
-                                     [self notifyRequestSuccess];
-                                 }
-                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [self handleRequestFailureWithError:error];
-                                 }];
+        [manager GET:URLString
+          parameters:_parameterDic
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 [self handleResponse:operation.response];
+                 [self handleResultObject:responseObject];
+                 [self notifyRequestSuccess];
+             }
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 [self handleRequestFailure:error];
+                 [ZToastView toastWithMessage:@"请求失败"];
+             }];
     }else if (_methodType == HttpMethodPost){
-        ZRequestManager *manager = [ZRequestManager manager];
+        ZRequestOperationMananger *manager = [ZRequestOperationMananger manager];
         
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
         // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager POST:urlString
-                               parameters:_parameterDic
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                      [self handleResultObject:responseObject];
-                                      [self notifyRequestSuccess];
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      [ZToastView toastWithMessage:@"请求失败"];
-                                  }];
+        [manager POST:URLString
+           parameters:_parameterDic
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  [self handleResponse:operation.response];
+                  [self handleResultObject:responseObject];
+                  [self notifyRequestSuccess];
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  [self handleRequestFailure:error];
+                  [ZToastView toastWithMessage:@"请求失败"];
+              }];
     }
 }
 
-- (AFHTTPRequestOperation *)generateOperationOnSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                                              onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
+- (void)sessionRequestSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+                      failure:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailureBlock
 {
     _onRequestSuccessBlock = onRequestSuccessBlock;
-    _onRequestFailedBlock = onRequestFailedBlock;
+    _onRequestFailureBlock = onRequestFailureBlock;
     
     // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *urlString = nil;
-    _localUrl = [self localServerURL];
-    if (_localUrl == nil) {
-        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
-    }else{
-        urlString = _localUrl;
-    }
+    NSString *URLString = [NSString stringWithFormat:@"%@%@", _URLHost, _URLAction];
     
     // 设置与服务器协商好的全局参数
-    // [self appendGlobalParameters];
+    // [self appendStaticParameters];
     
     if (_methodType == HttpMethodGet) {
-        ZRequestManager *manager = [ZRequestManager manager];
+        ZRequestSessionManager *manager = [ZRequestSessionManager manager];
         
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
         // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager GET:urlString
-                              parameters:_parameterDic
-                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                     [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                     [self handleResultObject:responseObject];
-                                     [self notifyRequestSuccess];
-                                 }
-                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                     [self handleRequestFailureWithError:error];
-                                 }];
+        [manager GET:URLString
+          parameters:_parameterDic
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 [self handleResponse:task.response];
+                 [self handleResultObject:responseObject];
+                 [self notifyRequestSuccess];
+             }
+             failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                 [self handleRequestFailure:error];
+                 [ZToastView toastWithMessage:@"请求失败"];
+             }];
+        
     }else if (_methodType == HttpMethodPost){
-        ZRequestManager *manager = [ZRequestManager manager];
+        ZRequestSessionManager *manager = [ZRequestSessionManager manager];
         
         // 此处可以调用setValue:forHTTPHeaderField:方法向httpheader添加额外信息
         // [manager setValue:(id) forHTTPHeaderField:(NSString *)];
         
-        _requestOperation = [manager POST:urlString
-                               parameters:_parameterDic
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                      [self handleResultObject:responseObject];
-                                      [self notifyRequestSuccess];
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      [ZToastView toastWithMessage:@"请求失败"];
-                                  }];
+        [manager POST:URLString
+          parameters:_parameterDic
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                 [self handleResponse:task.response];
+                 [self handleResultObject:responseObject];
+                 [self notifyRequestSuccess];
+             }
+             failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                 [self handleRequestFailure:error];
+                 [ZToastView toastWithMessage:@"请求失败"];
+             }];
     }
-    
-    return _requestOperation;
 }
 
-- (void)uploadRequestOnConstructingBody:(void(^)(id <AFMultipartFormData> formData))onConstrctBlock
-                        onUploadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
-                              onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                               onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
-{
-    _onRequestSuccessBlock = onRequestSuccessBlock;
-    _onRequestFailedBlock = onRequestFailedBlock;
-    
-    // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *urlString = nil;
-    _localUrl = [self localServerURL];
-    if (_localUrl == nil) {
-        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
-    }else{
-        urlString = _localUrl;
-    }
-    
-    // 设置与服务器协商好的全局参数
-    // [self appendGlobalParameters];
-    
-    ZRequestManager *manager = [ZRequestManager manager];
-    _requestOperation = [manager UPLOAD:urlString
-                             parameters:_parameterDic
-                       constructingBody:^(id<AFMultipartFormData> formData) {
-                           onConstrctBlock(formData);
-                       }
-                          uploadProcess:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
-                              processBlock(bytes, totalBytes,totalBytesExpected);
-                          }
-                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                    [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                    [self handleResultObject:responseObject];
-                                    [self notifyRequestSuccess];
-                                }
-                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                    [self notifyRequestFailed:error];
-                                }];
-}
-
-- (void)downloadRequestWithFilePath:(NSString *)filePath
-                  onDownloadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
-                          onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
-                           onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
-{
-    _onRequestSuccessBlock = onRequestSuccessBlock;
-    _onRequestFailedBlock = onRequestFailedBlock;
-    
-    // 如果设置了本地请求路径 则不请求远程服务器
-    NSString *urlString = nil;
-    _localUrl = [self localServerURL];
-    if (_localUrl == nil) {
-        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
-    }else{
-        urlString = _localUrl;
-    }
-    
-    // 设置与服务器协商好的全局参数
-    // [self appendGlobalParameters];
-    
-    ZRequestManager *manager = [ZRequestManager manager];
-    _requestOperation = [manager DOWNLOAD:urlString
-                               parameters:_parameterDic
-                                 filePath:filePath
-                          downloadProcess:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
-                              processBlock(bytes, totalBytes, totalBytesExpected);
-                          }
-                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
-                                      [self handleResultObject:responseObject];
-                                      [self notifyRequestSuccess];
-                                  }
-                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                      [self notifyRequestFailed:error];
-                                  }];
-}
+//- (void)uploadRequestOnConstructingBody:(void(^)(id <AFMultipartFormData> formData))onConstrctBlock
+//                        onUploadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
+//                              onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+//                               onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
+//{
+//    _onRequestSuccessBlock = onRequestSuccessBlock;
+//    _onRequestFailedBlock = onRequestFailedBlock;
+//    
+//    // 如果设置了本地请求路径 则不请求远程服务器
+//    NSString *urlString = nil;
+//    _localUrl = [self localServerURL];
+//    if (_localUrl == nil) {
+//        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+//    }else{
+//        urlString = _localUrl;
+//    }
+//    
+//    // 设置与服务器协商好的全局参数
+//    // [self appendGlobalParameters];
+//    
+//    ZRequestOperationMananger *manager = [ZRequestOperationMananger manager];
+//    _requestOperation = [manager UPLOAD:urlString
+//                             parameters:_parameterDic
+//                       constructingBody:^(id<AFMultipartFormData> formData) {
+//                           onConstrctBlock(formData);
+//                       }
+//                          uploadProcess:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
+//                              processBlock(bytes, totalBytes,totalBytesExpected);
+//                          }
+//                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                    [self handleHttpHeaderField:operation.response.allHeaderFields];
+//                                    [self handleResultObject:responseObject];
+//                                    [self notifyRequestSuccess];
+//                                }
+//                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                    [self notifyRequestFailed:error];
+//                                }];
+//}
+//
+//- (void)downloadRequestWithFilePath:(NSString *)filePath
+//                  onDownloadProcess:(void(^)(NSUInteger bytes, long long totalBytes, long long totalBytesExpected))processBlock
+//                          onSuccess:(void(^)(ZBaseRequest *request))onRequestSuccessBlock
+//                           onFailed:(void(^)(ZBaseRequest *request, NSError *error))onRequestFailedBlock
+//{
+//    _onRequestSuccessBlock = onRequestSuccessBlock;
+//    _onRequestFailedBlock = onRequestFailedBlock;
+//    
+//    // 如果设置了本地请求路径 则不请求远程服务器
+//    NSString *urlString = nil;
+//    _localUrl = [self localServerURL];
+//    if (_localUrl == nil) {
+//        urlString = [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+//    }else{
+//        urlString = _localUrl;
+//    }
+//    
+//    // 设置与服务器协商好的全局参数
+//    // [self appendGlobalParameters];
+//    
+//    ZRequestOperationMananger *manager = [ZRequestOperationMananger manager];
+//    _requestOperation = [manager DOWNLOAD:urlString
+//                               parameters:_parameterDic
+//                                 filePath:filePath
+//                          downloadProcess:^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
+//                              processBlock(bytes, totalBytes, totalBytesExpected);
+//                          }
+//                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                      [self handleHttpHeaderField:operation.response.allHeaderFields];
+//                                      [self handleResultObject:responseObject];
+//                                      [self notifyRequestSuccess];
+//                                  }
+//                                  failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                      [self notifyRequestFailed:error];
+//                                  }];
+//}
 
 
 #pragma mark - global parameter
@@ -309,7 +256,7 @@ static NSString *md5(NSString *stirng)
  * timestamp:时间戳
  * sign: username+md5(password)+md5(timestamp+"test")
  */
-- (void)appendGlobalParameters
+- (void)appendStaticParameters
 {
     [_parameterDic setValue:[self generateSign] forKey:@"sign"];
     [_parameterDic setValue:[ZGlobalData sharedGlobal].userName forKey:@"name"];
@@ -340,39 +287,32 @@ static NSString *md5(NSString *stirng)
 /**
  *  请求返回 将json转换为dictionary 存储到resultDic
  */
-- (void)handleHttpHeaderField:(NSDictionary *)headerField
+- (void)handleResponse:(id)response
 {
-
+    NSHTTPURLResponse *URLResponse = (NSHTTPURLResponse *)response;
+    NSLog(@"%@", URLResponse.allHeaderFields);
 }
 
 - (void)handleResultObject:(id)responceObject
 {
-    NSData *jsonData = responceObject;
-    NSMutableDictionary* resultDic = nil;
-    if (jsonData) {
-        NSError *error = nil;
-        if (responceObject && [responceObject isKindOfClass:[NSData class]]){
-            resultDic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    if(![responceObject isKindOfClass:[NSDictionary class]]){
+        NSLog(@"\n---------------------json格式错误解析失败--------------------\n");
+        responceObject = nil;
+    }else{
+        if (_isCached) {
+            NSString *urlKey = [NSString stringWithFormat:@"%@%@", _URLHost, _URLAction];
+            [[ZAchiverObjectCache sharedFileCache] storeObject:responceObject forKey:urlKey];
+            NSLog(@"%@", [[ZAchiverObjectCache sharedFileCache] objectFromDiskCacheForKey:urlKey]);
         }
-        if(![resultDic isKindOfClass:[NSDictionary class]] || error != nil){
-            NSLog(@"\n---------------------json格式错误解析失败--------------------\n");
-            resultDic = nil;
-        }else{
-            if (_isCached) {
-                NSString *urlKey = _localUrl ? _localUrl : [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
-                [[ZAchiverObjectCache sharedFileCache] storeObject:resultDic forKey:urlKey];
-                NSLog(@"%@", [[ZAchiverObjectCache sharedFileCache] objectFromDiskCacheForKey:urlKey]);
-            }
-            _resultDic = resultDic;
-        }
-        [self preprocessResult];
+        _resultDic = responceObject;
     }
+    [self preprocessResult];
 }
 
-- (void)handleRequestFailureWithError:(NSError *)error
+- (void)handleRequestFailure:(NSError *)error
 {
     if (_isCached) {
-        NSString *urlKey = _localUrl ? _localUrl : [NSString stringWithFormat:@"%@%@", _urlHost, _urlAction];
+        NSString *urlKey = [NSString stringWithFormat:@"%@%@", _URLHost, _URLAction];
         _resultDic = [[ZAchiverObjectCache sharedFileCache] objectFromDiskCacheForKey:urlKey];
         [self preprocessResult];
         [self notifyRequestSuccess];
@@ -390,25 +330,15 @@ static NSString *md5(NSString *stirng)
 
 - (void)notifyRequestFailed:(NSError *)error
 {
-    if (_onRequestFailedBlock) {
-        _onRequestFailedBlock(self, error);
+    if (_onRequestFailureBlock) {
+        _onRequestFailureBlock(self, error);
     }
-}
-
-- (void)cancelRequest
-{
-    [_requestOperation cancel];
 }
 
 #pragma mark - virtual function
 - (void)preprocessResult
 {
     
-}
-
-- (NSString *)localServerURL
-{
-    return nil;
 }
 
 @end

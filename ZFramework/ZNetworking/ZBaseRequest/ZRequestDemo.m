@@ -14,9 +14,9 @@
 {
     self = [super init];
     if (self) {
-        self.URLHost = @"http://127.0.0.1/";
-        self.URLAction = @"request/store.php";
-        self.methodType = HttpMethodPost;
+        self.URLHost = @"http://203.187.186.135:6220/";
+        self.URLAction = @"ufm/v1/protected/familyService/571029556312000000/familyMembers";
+        self.methodType = HttpMethodGet;
         [self.parameterDic setValue:userId forKey:@"userId"];
     }
     

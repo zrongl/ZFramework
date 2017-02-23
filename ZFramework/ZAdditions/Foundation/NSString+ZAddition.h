@@ -28,4 +28,8 @@
 
 + (NSString *)stringWithUUID;
 
+- (NSString *)timeStampToTimeString;
+- (NSString *)timeStringToYearString;
+
+
 @end

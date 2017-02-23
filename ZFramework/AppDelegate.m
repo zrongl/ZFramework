@@ -65,4 +65,14 @@
     NSLog(@"MemoryWarning");
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"%s deviceToken %@",__func__,deviceToken);
+    
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    token = [token substringWithRange:NSMakeRange(1, [token length] - 2)];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"\ntoken %@", token);
+}
+
 @end

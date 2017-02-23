@@ -17,7 +17,7 @@
 
 @protocol ZAsyncLayerDelegate <NSObject>
 
-@required
+@optional
 
 - ( ZAsyncLayerDisplayTask * _Nullable )newAsyncDisplayTask;
 

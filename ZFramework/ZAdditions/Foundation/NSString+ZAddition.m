@@ -100,4 +100,29 @@ NSInteger const kMaxCharacterCount = 9;
     
     return YES;
 }
+
+- (NSString *)timeStringToYearString
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate* date = [formatter dateFromString:self];
+    [formatter setDateFormat:@"YYYY"];
+    
+    return [formatter stringFromDate:date];
+}
+
+- (NSString *)timeStampToTimeString
+{
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:self.doubleValue];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
+    NSString *timeString = [formatter stringFromDate:date];
+    
+    return timeString;
+}
 @end

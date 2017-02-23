@@ -13,12 +13,20 @@
 #import "ZPullTableViewController.h"
 #import "ZStretchHeaderController.h"
 
+#import "UIImageView+WebCache.h"
+
+#import "InsetNoTouchTableView.h"
+
 @interface ZDemoViewController() <UITableViewDelegate, UITableViewDataSource>
 
 {
     NSArray     *_dataSource;
     UITableView *_tableView;
+    
+    NSInteger   _index;
 }
+
+@property (weak, nonatomic) UIView *backView;
 
 @end
 
@@ -33,20 +41,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _index = 100;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 0, kScreenWidth, 200)];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 200)];
+    [self.view addSubview:imageView];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://img2.3lian.com/2014/c7/12/d/76.jpg"]
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                            printf("%li", self->_index);
+                        }];
+    _index = 1000;
     _dataSource = [NSArray arrayWithObjects:@"刷新TableView", @"图片浏览", @"头部拉伸效果", nil];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _tableView = [[InsetNoTouchTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.contentSize = CGSizeMake(0, 1000);
+    _tableView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.separatorInset = UIEdgeInsetsMake(_tableView.separatorInset.top, 15, _tableView.separatorInset.bottom, 15);
+    _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
-    
-    ZRequestDemo *request = [[ZRequestDemo alloc] initWithId:@"1"];
-    [request sessionRequestSuccess:^(ZBaseRequest *request) {
-        
-    } failure:^(ZBaseRequest *request, NSError *error) {
-        
-    }];
+}
+
+- (void)buttonAction
+{
+    NSLog(@"\nback button click");
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -121,6 +146,7 @@
             break;
         }
         default:
+            
             break;
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ronglei. All rights reserved.
 //
 
-#import "ZAchiverCache.h"
+#import "ZArchiveCache.h"
 #import "ViewController5.h"
 #import "ZKeyboardManager.h"
 
@@ -31,25 +31,25 @@
 
 - (void)keyboardWillHide
 {
-
+    
 }
 
 - (IBAction)save:(id)sender
 {
     ZDemoModel *m = [ZDemoModel objectWithKeyValues:@{@"n":_textFiled.text}];
-    mAchiverCache.model = m;
-    [mAchiverCache saveAvhiverCache];
+    mArchiveCache.model = m;
+    [mArchiveCache saveAvhiverCache];
 }
 
 - (IBAction)use:(id)sender
 {
-    [mAchiverCache resetAchiverCache];
-    _textFiled.text = mAchiverCache.model.name;
+    [mArchiveCache resetArchiveCache];
+    _textFiled.text = mArchiveCache.model.name;
 }
 
 - (IBAction)clear:(id)sender
 {
-    [mAchiverCache clearAchiverCache];
+    [mArchiveCache clearArchiveCache];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

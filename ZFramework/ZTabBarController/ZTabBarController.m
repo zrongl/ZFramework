@@ -43,8 +43,6 @@
     ZNavigationController *nav1 = [[ZNavigationController alloc] initWithRootViewController:vc1];
     [viewControllers addObject:nav1];
     
-    
-    
     ViewController2 *vc2 = [[ViewController2 alloc] init];
     ZNavigationController *nav2 = [[ZNavigationController alloc] initWithRootViewController:vc2];
     [viewControllers addObject:nav2];

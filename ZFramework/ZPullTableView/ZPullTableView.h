@@ -38,9 +38,6 @@
  */
 - (void)resetHeaderView;
 
-- (void)disablePullAction;
-- (void)enablePullAction;
-
 @end
 
 @protocol ZPullTableViewDelegate <NSObject>

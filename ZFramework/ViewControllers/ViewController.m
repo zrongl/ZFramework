@@ -19,9 +19,17 @@
 #import "ZDemoViewController.h"
 #import "CollectionViewCell.h"
 
-#import "ZAchiverCache.h"
+#import "ZArchiveCache.h"
 
+#import "ZRequestSessionManager.h"
 #import "ZBaseRequest.h"
+#import "ZRequestDemo.h"
+#import "SqliteDB.h"
+
+#import "CNLoopProgressView.h"
+#import "CNShortVideoPlayerView.h"
+
+#import "ZProgressView.h"
 
 @interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -34,6 +42,14 @@
     [super viewDidLoad];
     [self setTitle:@"统计"];
     
+    SqliteDB *db = [[SqliteDB alloc] init];
+    
+    NSString *value = @"value";
+    [db dbSaveKey:@"testkey" value:[value dataUsingEncoding:NSUTF8StringEncoding]];
+    DBModel *m = [db dbQueryWithKey:@"testkey"];
+    NSLog(@"%@",  m);
+    
+    [db dbClose];
     
     
     UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
@@ -76,6 +92,61 @@
                     .attributeStringHeight(CGFLOAT_MAX);
     [self.view addSubview:label];
     
+    NSString *time = @"1476874312";
+    NSLog(@"%@", time.timeStampToTimeString);
+    
+    CAGradientLayer *timeLineLayer = [CAGradientLayer layer];
+    UIColor *sColor = RGBA(0, 0, 0, 1);
+    UIColor *eColor = RGBA(0, 0, 0, 0);
+    timeLineLayer.colors = @[(id)sColor.CGColor, (id)eColor.CGColor];
+    timeLineLayer.frame = CGRectMake(15, 100, 2, 200);
+    timeLineLayer.locations = @[@(0.8),@(1.0)];
+    [self.view.layer addSublayer:timeLineLayer];
+    
+    CNLoopProgressView *progressView = [[CNLoopProgressView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    progressView.center = self.view.center;
+    [self.view addSubview:progressView];
+//
+//    NSString *location = @"file:///Users/ronglei/Desktop/mp4";
+//    NSString *path = @"/Users/ronglei/Desktop/3242364578";
+//
+//    [[NSFileManager defaultManager] moveItemAtURL:[NSURL URLWithString:location] toURL:[NSURL URLWithString:[@"file://" stringByAppendingString:path]] error:nil];
+//
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    BOOL exist = [fileManager fileExistsAtPath:path];
+//    NSError *error = nil;
+//    if (exist) {
+//        [fileManager removeItemAtPath:path error:&error];
+//    }
+    
+//    CNShortVideoPlayerView *player = [[CNShortVideoPlayerView alloc] initWithFrame:CGRectMake(0, 64, 320, 421)];
+//    player.pathString = @"/Users/ronglei/Desktop/1234567.mp4";
+//    [self.view addSubview:player];
+//    [player play];
+    
+    [[ZBaseRequest new] downloadRequestWithUrl:@"http://img1.store.ksmobile.net/cmnews/20161129/13/3142787_14229fdc_148042693692_420_236.mp4"
+                                    saveToPath:nil
+                              downloadProgress:^(long long bytes, long long totalBytes) {
+                                  NSLog(@"%f", 1.0 * bytes/totalBytes);
+                                  [progressView setProgress:1.0 * bytes/totalBytes];
+                              }
+                                       success:^(NSURLResponse *response, NSString *filePath) {
+                                           NSLog(@"%@", filePath);
+                                       }
+                                       failure:^(NSURLResponse *response, NSError * _Nonnull error) {
+                                           NSLog(@"download failed");
+                                       }];
+//    [self imageSizeFromURL:@"http://img1.store.ksmobile.net/cmnews/20161129/16/83372_7ae13af2_148043870625_640_823.jpg"];
+    
+}
+
+- (CGSize)imageSizeFromURL:(NSString *)urlString
+{
+    NSString *lastPathName = [[urlString lastPathComponent] stringByDeletingPathExtension];
+    NSArray *array = [lastPathName componentsSeparatedByString:@"_"];
+    NSInteger count = array.count;
+    CGSize size = CGSizeMake([array[count - 2] floatValue], [array[array.count - 1] floatValue]);
+    return size;
 }
 
 - (void)pushInTo
@@ -101,9 +172,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    CGPoint point = [cell convertPoint:cell.origin toView:mKeyWindow];
-    NSLog(@"");
+//    CollectionViewCell *cell = (CollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//    CGPoint point = [cell convertPoint:cell.origin toView:mKeyWindow];
+//    NSLog(@"");
 }
 
 const CGFloat   kCellHeight = 62;
@@ -128,6 +199,8 @@ const NSInteger kNumberPerRow = 4;
     
     printf ("%lld\n", get_micro_time());
     printf("%llu\n", dispatch_walltime_date([NSDate date]));
+    
+    
 }
 
 @end

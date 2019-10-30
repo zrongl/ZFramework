@@ -151,7 +151,6 @@
 		5DF2AFAF1F0233F000D0DA78 /* illustrate_video_erro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AF961F0233F000D0DA78 /* illustrate_video_erro@2x.png */; };
 		5DF2AFB01F0233F000D0DA78 /* illustration_video_erro_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AF971F0233F000D0DA78 /* illustration_video_erro_white@2x.png */; };
 		5DF2AFB21F0240DD00D0DA78 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AFB11F0240DD00D0DA78 /* cover.png */; };
-		5DF98E0D23693822004CBBDB /* InsetNoTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */; };
 		8DD85469236932180030667E /* ZBaseRequest_v2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD85465236932180030667E /* ZBaseRequest_v2.m */; };
 /* End PBXBuildFile section */
 
@@ -392,8 +391,6 @@
 		5DF2AF961F0233F000D0DA78 /* illustrate_video_erro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "illustrate_video_erro@2x.png"; sourceTree = "<group>"; };
 		5DF2AF971F0233F000D0DA78 /* illustration_video_erro_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "illustration_video_erro_white@2x.png"; sourceTree = "<group>"; };
 		5DF2AFB11F0240DD00D0DA78 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
-		5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetNoTouchTableView.m; sourceTree = "<group>"; };
-		5DF98E0C23693822004CBBDB /* InsetNoTouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetNoTouchTableView.h; sourceTree = "<group>"; };
 		8DD85465236932180030667E /* ZBaseRequest_v2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBaseRequest_v2.m; sourceTree = "<group>"; };
 		8DD85466236932180030667E /* ZBaseRequest_v2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBaseRequest_v2.h; sourceTree = "<group>"; };
 		D659740D1B8DC8391C41BF60 /* Pods-ZFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFramework/Pods-ZFramework.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,8 +413,6 @@
 		5D0660B51BEA0F7B00CD6EAA /* ZDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5DF98E0C23693822004CBBDB /* InsetNoTouchTableView.h */,
-				5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */,
 				5D0660F91BEA0F9C00CD6EAA /* ZDemoViewController.h */,
 				5D0660FA1BEA0F9C00CD6EAA /* ZDemoViewController.m */,
 				5D0660C11BEA0F7B00CD6EAA /* ZPullTableView */,
@@ -1233,7 +1228,6 @@
 				5D0660FB1BEA0F9C00CD6EAA /* ZDemoViewController.m in Sources */,
 				5D92DDDC1F00A878007B24CA /* YTPlayerView.m in Sources */,
 				5D80C5B71C2016A9007D2232 /* NSObject+FBKVOController.m in Sources */,
-				5DF98E0D23693822004CBBDB /* InsetNoTouchTableView.m in Sources */,
 				5D7B23931BF9B21D0003F8F0 /* ZPullTableViewController.m in Sources */,
 				5DA93C531D46095700925802 /* NSAttributedString+ZAddition.m in Sources */,
 				5D0D9C4A1CF534E8007C1759 /* UIGestureRecognizer+ZAddition.m in Sources */,

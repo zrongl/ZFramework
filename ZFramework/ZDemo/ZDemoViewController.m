@@ -14,8 +14,6 @@
 
 #import "UIImageView+WebCache.h"
 
-#import "InsetNoTouchTableView.h"
-
 @interface ZDemoViewController() <UITableViewDelegate, UITableViewDataSource>
 
 {
@@ -57,7 +55,7 @@
                         }];
     _index = 1000;
     _dataSource = [NSArray arrayWithObjects:@"刷新TableView", @"图片浏览", @"头部拉伸效果", nil];
-    _tableView = [[InsetNoTouchTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.contentSize = CGSizeMake(0, 1000);

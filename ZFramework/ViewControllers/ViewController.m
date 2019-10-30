@@ -21,8 +21,24 @@
 
 #import "ZAchiverCache.h"
 
-@interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
+#import "ZBaseRequest_v2.h"
+#import "ZTextInputView.h"
+#import <Lottie/LOTAnimationView.h>
+#import "Masonry.h"
 
+#import "SubAnimationView.h"
+#import "YTPlayerView.h"
+#import "CNVideoPlayerView.h"
+
+
+#import "ZSystemVolume.h"
+
+#import "ViewController6.h"
+
+@interface ViewController()<UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    ZTextInputView *_inputView;
+}
 @end
 
 @implementation ViewController
@@ -32,9 +48,14 @@
     [super viewDidLoad];
     [self setTitle:@"统计"];
     
-    
+    _inputView = [[ZTextInputView alloc] initWithFrame:CGRectMake(0, self.view.height-kTextInputViewH, self.view.width, kTextInputViewH)];
+    [_inputView setPlaceholderText:@"input something"];
+    [self.view addSubview:_inputView];
     
     UIButton *button = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.6, 120, 30) title:@"推出" action:@selector(pushInTo) target:self];
+    [self.view addSubview:button];
+    
+    button = [ZHelper buttonWithFrame:CGRectMake((kScreenWidth - 120)/2, kScreenHeight*0.7, 120, 30) title:@"暂停" action:@selector(pause) target:self];
     [self.view addSubview:button];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -65,21 +86,128 @@
                             .font([UIFont systemFontOfSize:16])
                             .lineSpace(7)
                             .subcolor([UIColor orangeColor], substring)
+                            .subfont([UIFont systemFontOfSize:18], substring)
                             .attributeString(CGFLOAT_MAX);
     label.height =  ZTextAttributes
                     .string(string)
                     .font([UIFont systemFontOfSize:16])
                     .lineSpace(7)
                     .subcolor([UIColor orangeColor], substring)
+                    .subfont([UIFont systemFontOfSize:18], substring)
                     .attributeStringHeight(CGFLOAT_MAX);
     [self.view addSubview:label];
     
+//    ZBaseRequest *request = [[ZBaseRequest alloc] init];
+//    request.urlHost = @"https://nr-cmt-st.ksmobile.net";
+//    request.urlAction = @"/message/unread_count";
+//    request.methodType = HttpMethodPost;
+//    request.parameterDic = @{@"stoken":@""};
+//    [request requestonSuccess:^(ZBaseRequest *request) {
+//        
+//        }
+//                     onFailed:^(ZBaseRequest *request, NSError *error) {
+//                         
+//                     }];
+    
+//    [self lottieView];
+    
+//    SubAnimationView *v = [[SubAnimationView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    v.tag = 19283;
+//    v.center = self.view.center;
+//    [self.view addSubview:v];
+    
+//    YTPlayerView *player = [[YTPlayerView alloc] initWithFrame:CGRectMake(20, 100, kScreenWidth-40, (kScreenWidth-40)*9/16)];
+//    player.tag = 19283;
+//    [player loadWithVideoId:@"VCAu7f-E96M"];
+//    [self.view addSubview:player];
+    
+//    CNVideoPlayerView *aplayer = [[CNVideoPlayerView alloc] initWithFrame:CGRectMake(20, 100, kScreenWidth-40, (kScreenWidth-40)*9/16)];
+//    aplayer.tag = 1900;
+//    [aplayer setSoundType:CNSoundTypeNone];
+//    [aplayer setPlayNextType:CNPlayNextTypeDisable];
+//    [aplayer setCoverImageUrl:@"http://10.60.208.93/serve_header.png"];
+//    aplayer.superView = self.view;
+//    [aplayer prepareWithYoutubeUrl:@"https://www.youtube.com/watch?v=7NN4RlKspW0"];
+//    [aplayer prepareWithMP4Url:@"http://win.web.rh03.sycdn.kuwo.cn/b7950585b651ab977e83879be0bfecfe/595f02c4/resource/m3/63/27/115495919.mp4"];
+//    [self.view addSubview:aplayer];
+//    [aplayer play];
+//    [aplayer mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(20);
+//        make.right.equalTo(self.view).offset(-20);
+//        make.top.mas_equalTo(100);
+//        make.size.mas_equalTo(CGSizeMake(kScreenWidth-40, (kScreenWidth-40)*9/16));
+//    }];
+    
+//    [[ZSystemVolume shareInstance] setSystemVolumeSliderHidden:YES];
+//    [[ZSystemVolume shareInstance] performSelector:@selector(silent) withObject:nil afterDelay:0.2];
+//    [[ZSystemVolume shareInstance] silent];
+//    [[ZSystemVolume shareInstance] setVolumeChangeEnable:YES];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [_inputView rsgFirstResponder];
+}
+
+- (void)lottieView
+{
+    LOTAnimationView *animationView = [LOTAnimationView animationNamed:@"like"];
+    animationView.loopAnimation = NO;
+    animationView.tag = 10029;
+    animationView.backgroundColor = [UIColor orangeColor];
+    animationView.contentMode = UIViewContentModeScaleAspectFill;
+    animationView.size = CGSizeMake(100, 100);
+    animationView.center = self.view.center;
+    [self.view addSubview:animationView];
+    [self.view setNeedsLayout];
+}
+
+- (void) insertTransparentGradient {
+    UIColor *colorOne = [UIColor colorWithRed:(33/255.0)  green:(33/255.0)  blue:(33/255.0)  alpha:0.0];
+    UIColor *colorTwo = [UIColor colorWithRed:(33/255.0)  green:(33/255.0)  blue:(33/255.0)  alpha:1.0];
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
+//    NSNumber *stopOne = [NSNumber numberWithFloat:0.0];
+//    NSNumber *stopTwo = [NSNumber numberWithFloat:1.0];
+//    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+    
+    //crate gradient layer
+    CAGradientLayer *headerLayer = [CAGradientLayer layer];
+    
+    headerLayer.colors = colors;
+//    headerLayer.locations = locations;
+    headerLayer.frame = self.view.bounds;
+    [self.view.layer insertSublayer:headerLayer atIndex:0];
+}
+
+- (void)pause
+{
+    CNVideoPlayerView *aplayer = [self.view viewWithTag:1900];
+    [aplayer pause];
 }
 
 - (void)pushInTo
 {
-    ZDemoViewController *vc = [[ZDemoViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+//    CNVideoPlayerView *aplayer = [self.view viewWithTag:1900];
+//    [aplayer play];
+//    ZDemoViewController *vc = [[ZDemoViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+//    [_inputView bcmFirstResponder];
+//    [[self.view viewWithTag:10029] play];
+//    YTPlayerView *animationView = [self.view viewWithTag:19283];
+//    CGRect frame = animationView.frame;
+//    frame.origin.x -= 20;
+//    frame.size.width = kScreenWidth;
+//    frame.size.height = kScreenWidth*9/16;
+//    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+//        animationView.frame = frame;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+    
+    ViewController6 *v = [[ViewController6 alloc] init];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

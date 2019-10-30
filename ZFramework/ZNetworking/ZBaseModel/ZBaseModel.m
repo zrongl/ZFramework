@@ -41,8 +41,8 @@ static BOOL ZValidateAndSetValue(id obj, NSString *key, id value, BOOL forceUpda
             NSParameterAssert(ex != nil);
             NSDictionary *userInfo = @{
                                        NSLocalizedDescriptionKey: ex.description,
-                                       NSLocalizedFailureReasonErrorKey: ex.reason,
-                                       MTLModelThrownExceptionErrorKey: ex
+                                       NSLocalizedFailureReasonErrorKey: ex.reason
+//                                       MTLModelThrownExceptionErrorKey: ex
                                        };
             
             *error = [NSError errorWithDomain:@"ZBaseModelDomain" code:@"ZBaseModelException" userInfo:userInfo];

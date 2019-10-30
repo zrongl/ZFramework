@@ -24,8 +24,8 @@ typedef NS_ENUM(NSInteger, ZObjectCacheType) {
     ZObjectCacheTypeMemory
 };
 
-typedef void (^removeObjectBlock)();
-typedef void (^cleanObjectBlock)();
+typedef void (^removeObjectBlock)(void);
+typedef void (^cleanObjectBlock)(void);
 typedef void (^checkCacheBlock)(BOOL isInCache);
 typedef void (^calculateSizeBlock)(NSUInteger fileCount, NSUInteger totalSize);
 

@@ -63,9 +63,6 @@
             [_imageView sd_setImageWithURL:String2URL(photo.url)
                           placeholderImage:photo.placeholder
                                    options:SDWebImageRetryFailed|SDWebImageLowPriority
-                                  progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                                      // 显示进度条
-                                  }
                                  completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                      [weakSelf didFinishLoadImage:image];
                                  }];

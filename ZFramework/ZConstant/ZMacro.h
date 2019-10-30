@@ -53,14 +53,14 @@ static inline dispatch_time_t dispatch_walltime_date(NSDate *date)
     return milestone;
 }
 
-static inline void dispatch_async_on_global_queue(void (^block)()){
+static inline void dispatch_async_on_global_queue(void (^block)(void)){
     dispatch_async(dispatch_get_global_queue(0, 0), block);
 }
 
 /**
  Submits a block for asynchronous execution on a main queue and returns immediately.
  */
-static inline void dispatch_async_on_main_queue(void (^block)()) {
+static inline void dispatch_async_on_main_queue(void (^block)(void)) {
     if (pthread_main_np()) {
         block();
     } else {
@@ -71,7 +71,7 @@ static inline void dispatch_async_on_main_queue(void (^block)()) {
 /**
  Submits a block for execution on a main queue and waits until the block completes.
  */
-static inline void dispatch_sync_on_main_queue(void (^block)()) {
+static inline void dispatch_sync_on_main_queue(void (^block)(void)) {
     if (pthread_main_np()) {
         block();
     } else {
@@ -124,5 +124,15 @@ static inline void dispatch_sync_on_main_queue(void (^block)()) {
 #endif
 
 Z_EXTERN_C_END
+
+#ifdef DEBUG
+
+#define NSSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
+#else
+
+#define NSSLog(...)
+
+#endif
 
 #endif /* ZMacro_h */

@@ -94,9 +94,10 @@
     _tableView.clipsToBounds = YES;
     _tableView.backgroundColor = [UIColor clearColor];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kStretchViewHeight)];
+    headerView.clipsToBounds = YES;
     headerView.backgroundColor = [UIColor clearColor];
     UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((headerView.width - 70)/2, 84, 70, 70)];
-    headerImageView.image = [UIImage imageNamed:@"header.png"];
+    headerImageView.image = [UIImage imageNamed:@"headr.png"];
     headerImageView.layer.cornerRadius = 35.f;
     [headerView addSubview:headerImageView];
     _tableView.tableHeaderView = headerView;

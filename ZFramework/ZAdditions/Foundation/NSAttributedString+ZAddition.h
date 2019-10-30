@@ -41,7 +41,7 @@
  @return The value for the attribute named `attributeName` of the character at
  index `index`, or nil if there is no such attribute.
  */
-- (nullable id)attribute:(NSString *)attributeName atIndex:(NSUInteger)index;
+- (nullable id)attribute:(NSString *_Nullable)attributeName atIndex:(NSUInteger)index;
 
 
 #pragma mark - Get character attribute as property
@@ -446,14 +446,6 @@
 
 
 @interface NSMutableAttributedString (ZAddition)
-
-- (void)setAttributes:(nullable NSDictionary<NSString *, id> *)attributes;
-
-- (void)setAttribute:(NSString *)name value:(nullable id)value;
-
-- (void)setAttribute:(NSString *)name value:(nullable id)value range:(NSRange)range;
-
-- (void)removeAttributesInRange:(NSRange)range;
 
 #pragma mark - Set character attribute
 ///=============================================================================

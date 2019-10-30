@@ -9,7 +9,7 @@
 #import "ZPullTableViewController.h"
 #import "ZPullTableView.h"
 
-#import "ZBaseRequest.h"
+#import "ZBaseRequest_v2.h"
 
 @interface ZPullTableViewController()<UITableViewDelegate, UITableViewDataSource>
 

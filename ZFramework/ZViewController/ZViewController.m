@@ -8,7 +8,6 @@
 
 #import "ZViewController.h"
 #import <Availability.h>
-#import "ZRequestManager.h"
 #import <libkern/OSAtomic.h>
 
 #define kLoaddingViewWidth  120.f
@@ -66,7 +65,6 @@
 {
     [super viewWillDisappear:animated];
     // 取消全部请求
-    [ZRequestManager cancelAllRequest];
 #if 0
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:kViewControllerHideLoadingViewNotify];
 #endif

@@ -20,12 +20,12 @@
  */
 #ifdef __OBJC__
 
+#endif
+
 #import "ZMacro.h"
 #import "ZHelper.h"
 #import "ZConstant.h"
 #import "ZAdditions.h"
 #import "LxDBAnything.h"
-
-#endif
 
 #endif /* PrefixHeader_pch */

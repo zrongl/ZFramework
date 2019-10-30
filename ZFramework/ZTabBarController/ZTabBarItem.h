@@ -27,6 +27,10 @@ typedef NS_ENUM(NSInteger, ButtonImageLayout){
  *
  *  @return 自定义的tabBarItem
  */
-- (id)initWithFrame:(CGRect)frame title:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage imageLayoutType:(ButtonImageLayout)layoutType;
+- (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+              image:(UIImage *)image
+      selectedImage:(UIImage *)selectedImage
+    imageLayoutType:(ButtonImageLayout)layoutType;
 
 @end

@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/ZBaseRequest/ZBaseRequest.m \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/PrefixHeader.pch \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZConstant/ZMacro.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZConstant/ZHelper.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZConstant/ZConstant.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/ZAdditions.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/Foundation/NSTimer+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/Foundation/NSObject+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/Foundation/NSString+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/CAAnimation+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/Foundation/NSAttributedString+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIView+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIDevice+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIControl+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIApplication+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIBarButtonItem+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZAdditions/UIKit/UIGestureRecognizer+ZAddition.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZConstant/LxDBAnything.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZToastView/ZToastView.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/ZGlobalData/ZGlobalData.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/ZBaseRequest/ZBaseRequest.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZCache/ZObjectCache.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/ZBaseRequest/ZRequestOperationMananger.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFHTTPRequestOperation.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFURLConnectionOperation.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFURLRequestSerialization.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFURLResponseSerialization.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFSecurityPolicy.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/ZBaseRequest/ZRequestSessionManager.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFHTTPSessionManager.h \
+  /Users/ronglei/Documents/Github/Framework/ZFramework/ZFramework/ZNetworking/AFNetworking/AFNetworking/AFURLSessionManager.h

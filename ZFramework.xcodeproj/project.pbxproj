@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1D4D0BB5103A0CD2BAFF1A02 /* libPods-ZFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC38EB5B3ECA840BFBB395DC /* libPods-ZFramework.a */; };
 		5D0660FB1BEA0F9C00CD6EAA /* ZDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0660FA1BEA0F9C00CD6EAA /* ZDemoViewController.m */; };
-		5D069ACF1BD727D300285BA6 /* ZAchiverCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */; };
 		5D069AD01BD727D300285BA6 /* ZAchiverObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACC1BD727D300285BA6 /* ZAchiverObjectCache.m */; };
 		5D069AD11BD727D300285BA6 /* ZUserDefaultCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D069ACE1BD727D300285BA6 /* ZUserDefaultCache.m */; };
 		5D0D9C3C1CF45527007C1759 /* NSObject+ZAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0D9C301CF45527007C1759 /* NSObject+ZAddition.m */; };
@@ -152,6 +151,7 @@
 		5DF2AFAF1F0233F000D0DA78 /* illustrate_video_erro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AF961F0233F000D0DA78 /* illustrate_video_erro@2x.png */; };
 		5DF2AFB01F0233F000D0DA78 /* illustration_video_erro_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AF971F0233F000D0DA78 /* illustration_video_erro_white@2x.png */; };
 		5DF2AFB21F0240DD00D0DA78 /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DF2AFB11F0240DD00D0DA78 /* cover.png */; };
+		5DF98E0D23693822004CBBDB /* InsetNoTouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */; };
 		8DD85469236932180030667E /* ZBaseRequest_v2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD85465236932180030667E /* ZBaseRequest_v2.m */; };
 /* End PBXBuildFile section */
 
@@ -159,8 +159,6 @@
 		05844366913E3DF99940691D /* Pods-ZFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFramework/Pods-ZFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		5D0660F91BEA0F9C00CD6EAA /* ZDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDemoViewController.h; sourceTree = "<group>"; };
 		5D0660FA1BEA0F9C00CD6EAA /* ZDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDemoViewController.m; sourceTree = "<group>"; };
-		5D069AC91BD727D300285BA6 /* ZAchiverCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAchiverCache.h; sourceTree = "<group>"; };
-		5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAchiverCache.m; sourceTree = "<group>"; };
 		5D069ACB1BD727D300285BA6 /* ZAchiverObjectCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAchiverObjectCache.h; sourceTree = "<group>"; };
 		5D069ACC1BD727D300285BA6 /* ZAchiverObjectCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAchiverObjectCache.m; sourceTree = "<group>"; };
 		5D069ACD1BD727D300285BA6 /* ZUserDefaultCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUserDefaultCache.h; sourceTree = "<group>"; };
@@ -394,6 +392,8 @@
 		5DF2AF961F0233F000D0DA78 /* illustrate_video_erro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "illustrate_video_erro@2x.png"; sourceTree = "<group>"; };
 		5DF2AF971F0233F000D0DA78 /* illustration_video_erro_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "illustration_video_erro_white@2x.png"; sourceTree = "<group>"; };
 		5DF2AFB11F0240DD00D0DA78 /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetNoTouchTableView.m; sourceTree = "<group>"; };
+		5DF98E0C23693822004CBBDB /* InsetNoTouchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetNoTouchTableView.h; sourceTree = "<group>"; };
 		8DD85465236932180030667E /* ZBaseRequest_v2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZBaseRequest_v2.m; sourceTree = "<group>"; };
 		8DD85466236932180030667E /* ZBaseRequest_v2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBaseRequest_v2.h; sourceTree = "<group>"; };
 		D659740D1B8DC8391C41BF60 /* Pods-ZFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFramework/Pods-ZFramework.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,6 +416,8 @@
 		5D0660B51BEA0F7B00CD6EAA /* ZDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5DF98E0C23693822004CBBDB /* InsetNoTouchTableView.h */,
+				5DF98E0B23693821004CBBDB /* InsetNoTouchTableView.m */,
 				5D0660F91BEA0F9C00CD6EAA /* ZDemoViewController.h */,
 				5D0660FA1BEA0F9C00CD6EAA /* ZDemoViewController.m */,
 				5D0660C11BEA0F7B00CD6EAA /* ZPullTableView */,
@@ -443,8 +445,6 @@
 				5D86D0291D00113A00A32981 /* ZDemoModel.m */,
 				5D30CB301D058349004F350D /* ZDiskCache.h */,
 				5D30CB311D058349004F350D /* ZDiskCache.m */,
-				5D069AC91BD727D300285BA6 /* ZAchiverCache.h */,
-				5D069ACA1BD727D300285BA6 /* ZAchiverCache.m */,
 				5D30CB2D1D05557D004F350D /* ZMemoryCache.h */,
 				5D30CB2E1D05557D004F350D /* ZMemoryCache.m */,
 				5D069ACD1BD727D300285BA6 /* ZUserDefaultCache.h */,
@@ -1180,7 +1180,6 @@
 				5D86D0331D00163200A32981 /* ViewController5.m in Sources */,
 				5DB882371BBBD09B007FFE0A /* ZGlobalData.m in Sources */,
 				5D879D481CA38BAD001A9E2E /* CollectionViewCell.m in Sources */,
-				5D069ACF1BD727D300285BA6 /* ZAchiverCache.m in Sources */,
 				5D8098DA1ED57385000810A0 /* ZSystemVolume.m in Sources */,
 				5D2935221EA897D40054090D /* ZTextInputView.m in Sources */,
 				5D92DDE21F00F7FB007B24CA /* CNVolumeSlider.m in Sources */,
@@ -1234,6 +1233,7 @@
 				5D0660FB1BEA0F9C00CD6EAA /* ZDemoViewController.m in Sources */,
 				5D92DDDC1F00A878007B24CA /* YTPlayerView.m in Sources */,
 				5D80C5B71C2016A9007D2232 /* NSObject+FBKVOController.m in Sources */,
+				5DF98E0D23693822004CBBDB /* InsetNoTouchTableView.m in Sources */,
 				5D7B23931BF9B21D0003F8F0 /* ZPullTableViewController.m in Sources */,
 				5DA93C531D46095700925802 /* NSAttributedString+ZAddition.m in Sources */,
 				5D0D9C4A1CF534E8007C1759 /* UIGestureRecognizer+ZAddition.m in Sources */,

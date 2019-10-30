@@ -20,7 +20,11 @@
 
 @implementation ZTabBarItem
 
-- (id)initWithFrame:(CGRect)frame title:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage imageLayoutType:(ButtonImageLayout)layoutType
+- (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+              image:(UIImage *)image
+      selectedImage:(UIImage *)selectedImage
+    imageLayoutType:(ButtonImageLayout)layoutType
 {
     self = [super initWithFrame:frame];
     if (self) {

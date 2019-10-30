@@ -15,7 +15,6 @@
 {
     NSInteger                   _loadedCount;
     id                          _pullDelegate;
-    FBKVOController             *_KVOController;
     BOOL                        _isPullRefreshing;
     BOOL                        _isPullLoadingMore;
     EGORefreshTableHeaderView   *_refreshHeaderView;
@@ -49,14 +48,13 @@
         _isPullRefreshing = NO;
         _isPullLoadingMore = NO;
         
-        _KVOController = [FBKVOController controllerWithObserver:self];
-        __weak typeof (self) weakSelf = self;
-        [_KVOController observe:self
-                        keyPath:@"contentOffset"
-                        options:NSKeyValueObservingOptionNew
-                        block:^(id observer, id object, NSDictionary *change) {
-                            [weakSelf scrollViewScrolling];
-                        }];
+        FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
+        [kvoController observe:self
+                       keyPath:@"contentOffset"
+                       options:NSKeyValueObservingOptionNew
+                         block:^(id observer, id object, NSDictionary *change) {
+                             [self scrollViewScrolling];
+                         }];
     }
     
     return self;
@@ -108,26 +106,6 @@
 {
     _isPullRefreshing = NO;
     [_refreshHeaderView  egoRefreshScrollViewDataSourceDidFinishedLoading:self];
-}
-
-- (void)disablePullAction
-{
-    [_KVOController unobserveAll];
-    _refreshHeaderView.hidden = YES;
-    _loadMoreFooterView.hidden = YES;
-}
-
-- (void)enablePullAction
-{
-    __weak typeof (self) weakSelf = self;
-    [_KVOController observe:self
-                    keyPath:@"contentOffset"
-                    options:NSKeyValueObservingOptionNew
-                      block:^(id observer, id object, NSDictionary *change) {
-                          [weakSelf scrollViewScrolling];
-                      }];
-    _refreshHeaderView.hidden = NO;
-    _loadMoreFooterView.hidden = NO;
 }
 
 #pragma mark - UIScrollViewDelegate

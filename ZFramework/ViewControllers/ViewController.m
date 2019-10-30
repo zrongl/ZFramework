@@ -19,8 +19,6 @@
 #import "ZDemoViewController.h"
 #import "CollectionViewCell.h"
 
-#import "ZAchiverCache.h"
-
 #import "ZBaseRequest_v2.h"
 #import "ZTextInputView.h"
 #import <Lottie/LOTAnimationView.h>

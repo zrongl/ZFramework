@@ -15,9 +15,9 @@
 /**
  *  供ZToastOperation调用
  */
-+ (ZToastView*)sharedToastView;
++ (ZToastView*)sharedInstance;
 - (void)hide;
-- (void)toastWithMessage:(NSString *)message;
+- (void)toastMessage:(NSString *)message;
 
 /**
  *  直接弹出提示框，当有多个弹框时，前面的弹框会被后面的覆盖
@@ -25,10 +25,10 @@
  *  @param message 提示信息
  *  @param second  显示时间
  */
-+ (void)toastWithMessage:(NSString *)message;
-+ (void)toastWithMessage:(NSString *)message stady:(float)second;
++ (void)toastMessage:(NSString *)message;
++ (void)toastMessage:(NSString *)message stady:(float)second;
 
-+ (void)serialToastWithMessage:(NSString *)message stady:(float)second;
++ (void)serialToastMessage:(NSString *)message stady:(float)second;
 
 @end
 

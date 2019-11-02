@@ -23,7 +23,7 @@
 
 @implementation ZToastView
 
-+ (ZToastView*)sharedToastView
++ (ZToastView*)sharedInstance
 {
     static dispatch_once_t oncePredicate;
     static ZToastView* shareToastView;
@@ -33,19 +33,21 @@
     return shareToastView;
 }
 
-+ (void)toastWithMessage:(NSString *)message
++ (void)toastMessage:(NSString *)message
 {
-    [[ZToastView sharedToastView] toastWithMessage:message stady:2.f];
+    [[ZToastView sharedInstance] toastMessage:message stady:2.f];
 }
 
-+ (void)toastWithMessage:(NSString *)message stady:(float)second
++ (void)toastMessage:(NSString *)message stady:(float)second
 {
-    [[ZToastView sharedToastView] toastWithMessage:message stady:second];
+    [[ZToastView sharedInstance] toastMessage:message stady:second];
 }
 
-+ (void)serialToastWithMessage:(NSString *)message stady:(float)second
++ (void)serialToastMessage:(NSString *)message stady:(float)second
 {
-    [[ZToastView sharedToastView] addOperation:[ZToastOperation operationWithMessage:message stady:second]];
+    ZToastOperation *operaction = [ZToastOperation operationWithMessage:message
+                                                                  stady:second];
+    [[ZToastView sharedInstance] addOperation:operaction];
 }
 
 - (id)init
@@ -68,12 +70,12 @@
     return self;
 }
 
-- (void)toastWithMessage:(NSString *)message
+- (void)toastMessage:(NSString *)message
 {
-    [self toastWithMessage:message stady:0];
+    [self toastMessage:message stady:0];
 }
 
-- (void)toastWithMessage:(NSString *)message stady:(float)second
+- (void)toastMessage:(NSString *)message stady:(float)second
 {
     _message = message;
     [self setNeedsLayout];
@@ -153,11 +155,11 @@
 - (void)main
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[ZToastView sharedToastView] toastWithMessage:_message];
+        [[ZToastView sharedInstance] toastMessage:_message];
     });
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, _stadySecond);
     dispatch_after(time, dispatch_get_main_queue(), ^{
-        [[ZToastView sharedToastView] hide];
+        [[ZToastView sharedInstance] hide];
     });
     
     // 延迟0.1秒，使得当前toast充分hide之后，下一个toast弹出

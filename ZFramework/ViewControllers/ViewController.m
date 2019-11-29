@@ -21,7 +21,6 @@
 
 #import "ZBaseRequest_v2.h"
 #import "ZTextInputView.h"
-#import <Lottie/LOTAnimationView.h>
 #import "Masonry.h"
 
 #import "SubAnimationView.h"
@@ -119,22 +118,22 @@
 //    [player loadWithVideoId:@"VCAu7f-E96M"];
 //    [self.view addSubview:player];
     
-//    CNVideoPlayerView *aplayer = [[CNVideoPlayerView alloc] initWithFrame:CGRectMake(20, 100, kScreenWidth-40, (kScreenWidth-40)*9/16)];
-//    aplayer.tag = 1900;
-//    [aplayer setSoundType:CNSoundTypeNone];
-//    [aplayer setPlayNextType:CNPlayNextTypeDisable];
-//    [aplayer setCoverImageUrl:@"http://10.60.208.93/serve_header.png"];
-//    aplayer.superView = self.view;
-//    [aplayer prepareWithYoutubeUrl:@"https://www.youtube.com/watch?v=7NN4RlKspW0"];
-//    [aplayer prepareWithMP4Url:@"http://win.web.rh03.sycdn.kuwo.cn/b7950585b651ab977e83879be0bfecfe/595f02c4/resource/m3/63/27/115495919.mp4"];
-//    [self.view addSubview:aplayer];
-//    [aplayer play];
-//    [aplayer mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view).offset(20);
-//        make.right.equalTo(self.view).offset(-20);
-//        make.top.mas_equalTo(100);
-//        make.size.mas_equalTo(CGSizeMake(kScreenWidth-40, (kScreenWidth-40)*9/16));
-//    }];
+    CNVideoPlayerView *aplayer = [[CNVideoPlayerView alloc] initWithFrame:CGRectMake(20, 100, kScreenWidth-40, (kScreenWidth-40)*9/16)];
+    aplayer.tag = 1900;
+    [aplayer setSoundType:CNSoundTypeNone];
+    [aplayer setPlayNextType:CNPlayNextTypeDisable];
+    [aplayer setCoverImageUrl:@"http://10.60.208.93/serve_header.png"];
+    aplayer.superView = self.view;
+//    [aplayer prepareWithYoutubeUrl:@"https://www.youtube.com/watch?v=L6McGERlbw8"];
+    [aplayer prepareWithMP4Url:@"http://www.170mv.com/tool/jiexi/ajax/vid/3396605.mp4"];
+    [self.view addSubview:aplayer];
+    [aplayer play];
+    [aplayer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
+        make.top.mas_equalTo(100);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth-40, (kScreenWidth-40)*9/16));
+    }];
     
 //    [[ZSystemVolume shareInstance] setSystemVolumeSliderHidden:YES];
 //    [[ZSystemVolume shareInstance] performSelector:@selector(silent) withObject:nil afterDelay:0.2];
@@ -145,19 +144,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [_inputView rsgFirstResponder];
-}
-
-- (void)lottieView
-{
-    LOTAnimationView *animationView = [LOTAnimationView animationNamed:@"like"];
-    animationView.loopAnimation = NO;
-    animationView.tag = 10029;
-    animationView.backgroundColor = [UIColor orangeColor];
-    animationView.contentMode = UIViewContentModeScaleAspectFill;
-    animationView.size = CGSizeMake(100, 100);
-    animationView.center = self.view.center;
-    [self.view addSubview:animationView];
-    [self.view setNeedsLayout];
 }
 
 - (void) insertTransparentGradient {
@@ -271,7 +257,7 @@ const NSInteger kNumberPerRow = 4;
     [self showLoadingViewWithTitle:@"正在加载..."];
     
     for (NSInteger i = 0; i < 4; i++) {
-        [ZToastView serialToastWithMessage:@"请稍候" stady:2];
+        [ZToastView serialToastMessage:@"请稍候" stady:2];
     }
     
     _starView = [[ZStarGradeView alloc] initWithFrame:CGRectMake((kScreenWidth - 200)/2, 100, 200, 25)

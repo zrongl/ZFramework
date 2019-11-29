@@ -142,7 +142,8 @@ static NSString *md5(NSString *stirng)
                         [self notifyRequestSuccess];
                     }
                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                        [ZToastView toastWithMessage:@"请求失败"];
+                        [ZToastView toastMessage:@"请求失败"];
+            
                     }];
     }
 }
